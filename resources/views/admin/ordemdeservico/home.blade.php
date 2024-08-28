@@ -10,8 +10,8 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <div class="d-flex align-items-center justify-content-between">
-                        <h1 class="mb-0">Lista de Produtos</h1>
-                        <a href="{{route('admin.OrdemDeServico.create') }}" class="btn btn-primary">Adicionar produto</a>
+                        <h1 class="mb-0">Lista das Ordens de Serviços</h1>
+                        <a href="{{route('admin.OrdemDeServico.create') }}" class="btn btn-primary">Adicionar ordem</a>
                     </div>
                     <hr />
                     @if (Session::has('success'))
@@ -22,10 +22,11 @@
                     <table class="table table-hover">
                         <thead class="table-primary">
                             <tr>
-                                <th>#</th>
-                                <th>Nome</th>
-                                <th>Categoria</th>
-                                <th>Preço</th>
+                                <th>CÓD.Arte</th>
+                                <th>Cliente</th>
+                                <th>Serviços</th>
+                                <th>Data e Hora de Entrega</th>
+                                <th>Status</th>
                                 <th>Ações</th>
                             </tr>
                         </thead>

@@ -31,7 +31,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
  
     Route::get('/admin/ordemdeservico', [OrdemDeServicoController::class, 'index'])->name('adminOrdemDeServico.index');
     Route::get('/admin/ordemdeservico/create', [OrdemDeServicoController::class, 'create'])->name('admin.OrdemDeServico.create');
-
+    Route::post('/admin/ordemdeservico/', [OrdemDeServicoController::class, 'store'])->name('admin.OrdemDeServico.store');
 });
 
 

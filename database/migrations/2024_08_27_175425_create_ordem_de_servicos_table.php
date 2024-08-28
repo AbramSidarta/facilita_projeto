@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('ordem_de_servicos', function (Blueprint $table) {
             $table->id();
+            $table->string('status');
             $table->string('ORC_venda');
             $table->string('cliente');
             $table->string('servico');
