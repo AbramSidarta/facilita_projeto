@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Pagina das Ordens') }}
+            {{ __('Pagina das Ordens entregues') }}
         </h2>
     </x-slot>
 
@@ -10,8 +10,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <div class="d-flex align-items-center justify-content-between">
-                        <h1 class="mb-0">Lista de Produtos</h1>
-                        <a href="#" class="btn btn-primary">Adicionar produto</a>
+                        <h1 class="mb-0">Lista das Ordens de Serviços</h1>
                     </div>
                     <hr />
                     @if (Session::has('success'))
@@ -23,9 +22,11 @@
                         <thead class="table-primary">
                             <tr>
                                 <th>#</th>
-                                <th>Nome</th>
-                                <th>Categoria</th>
-                                <th>Preço</th>
+                                <th>CÓD.Arte</th>
+                                <th>Cliente</th>
+                                <th>Serviços</th>
+                                <th>Data e Hora de Entrega</th>
+                                <th>Status</th>
                                 <th>Ações</th>
                             </tr>
                         </thead>

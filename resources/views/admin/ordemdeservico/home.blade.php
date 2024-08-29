@@ -11,7 +11,7 @@
                 <div class="p-6 text-gray-900">
                     <div class="d-flex align-items-center justify-content-between">
                         <h1 class="mb-0">Lista das Ordens de Serviços</h1>
-                        <a href="{{route('admin.OrdemDeServico.create') }}" class="btn btn-primary">Adicionar ordem</a>
+                        <a href="{{route('adminOrdemDeServico.create') }}" class="btn btn-primary">Adicionar ordem</a>
                     </div>
                     <hr />
                     @if (Session::has('success'))
@@ -30,7 +30,32 @@
                                 <th>Ações</th>
                             </tr>
                         </thead>
-                    <table></table>
+                        <tbody>
+                            @forelse ($ordemdeservicos as $ordemdeservico)
+                            <tr>
+                                <td class="align-middle">{{ $ordemdeservico->id }}</td>
+                                <td class="align-middle">{{ $ordemdeservico->cliente }}</td>
+                                <td class="align-middle">{{ $ordemdeservico->servico }}</td>
+                                <td class="align-middle">
+                                    {{ $ordemdeservico->data_de_entrega }} {{ $ordemdeservico->hora_de_entrega }}
+                                </td>
+                                <td class="align-middle">{{ $ordemdeservico->status }}</td>
+
+                                <td class="align-middle">
+                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                        <spam class="p-2 ">
+                                            <a href="{{ route('adminOrdemDeServico.index')}}" type="button" class="btn btn-warning fs-6">Ver Mais</a>
+                                        </spam>
+                                    </div>
+                                </td>
+                            </tr>
+                            @empty
+                            <tr>
+                                <td class="text-center" colspan="5">Produto não encontrado</td>
+                            </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

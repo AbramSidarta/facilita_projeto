@@ -18,7 +18,7 @@
                                 {{session('error')}}
                             </div>
                         @endif                
-                        <form action="{{ route('admin.OrdemDeServico.store') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('adminOrdemDeServico.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                             <div class="d-flex justify-content-between d-flex align-items-center">
                                 <div class="d-flex flex-row ">
@@ -47,7 +47,16 @@
                             </div>
 
                             <hr />
-                    
+                            <div class="row mb-3">
+                                <div class="col form-floating">
+                                    <input type="text" name="ORC_venda" class="form-control floatingInput" id="ORC_venda" placeholder="ORC de venda" value="{{old('ORC_venda')}}">
+                                    <label class="text-body-secondary  ms-3"for="floatingInput">ORC DE VENDA</label>
+                                    @error('ORC_venda')
+                                        <span class="text-danger">{{$message}}</span>
+                                    @enderror
+                                </div>
+                            </div>
+
                             <div class="row mb-3">
                                 <div class="col form-floating">
                                     <input type="text" name="cliente" class="form-control floatingInput" id="cliente" placeholder="Cliente" value="{{old('cliente')}}">
@@ -117,9 +126,6 @@
                                 <div class="col form-floating">
                                     <input type="text" name="falta" class="form-control floatingInput" id="falta" placeholder="Falta" value="{{old('falta')}}">
                                     <label class="text-body-secondary  ms-3"for="floatingInput">falta</label>
-                                    @error('falta')
-                                        <span class="text-danger">{{$message}}</span>
-                                    @enderror
                                 </div>
                             </div>
                             <div class="row mb-3">

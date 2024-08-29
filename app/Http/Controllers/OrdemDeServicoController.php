@@ -9,7 +9,9 @@ class OrdemDeServicoController extends Controller
 {
     public function index()
     {
-        return view('admin.ordemdeservico.home');
+        $ordemdeservicos = OrdemDeServico::orderBy('id','asc')->get();
+        $total = OrdemDeServico::count();
+        return view('admin.ordemdeservico.home', compact(['ordemdeservicos','total']));
     }
 
     public function create()
@@ -28,20 +30,20 @@ class OrdemDeServicoController extends Controller
             'fone' => 'required',
             'valor' => 'required',
             'pago' => 'required',
-            'falta' => 'required',
+            'falta' => 'nullable|string',
             'data_de_recebimento' => 'required',
             'data_de_entrega' => 'required',
             'hora_de_entrega' => 'required',
-            'prazo_da_impressao_data' => 'required',
-            'prazo_da_impressao_hora' => 'required',
-            'dia_do_recebimento_do_controle' => 'required',
-            'hora_do_recebimento_do_controle' => 'required',
-            'servico_externo' => 'required',
-            'formas_de_pagamento' => 'required',
-            'observacoes_pedido' => 'required',
+            'prazo_da_impressao_data' => 'nullable|date',
+            'prazo_da_impressao_hora' => 'nullable|string',
+            'dia_do_recebimento_do_controle' => 'nullable|string',
+            'hora_do_recebimento_do_controle' => 'nullable|string',
+            'servico_externo' => 'nullable|boolean',
+            'formas_de_pagamento' => 'nullable|string',
+            'observacoes_pedido' => 'nullable|string',
             'layout' => 'required',
             'embalagem' => 'required',
-            'observacoes_layout' => 'required',
+            'observacoes_layout' => 'nullable|string',
             'nome_funcionario' => 'required',
         ]);
         $data =  OrdemDeServico::create($validation);

@@ -23,16 +23,14 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
-
 Route::middleware(['auth', 'admin'])->group(function () {
  
     Route::get('admin/dashboard', [HomeController::class, 'index']);
  
     Route::get('/admin/ordemdeservico', [OrdemDeServicoController::class, 'index'])->name('adminOrdemDeServico.index');
-    Route::get('/admin/ordemdeservico/create', [OrdemDeServicoController::class, 'create'])->name('admin.OrdemDeServico.create');
-    Route::post('/admin/ordemdeservico/', [OrdemDeServicoController::class, 'store'])->name('admin.OrdemDeServico.store');
+    Route::get('/admin/ordemdeservico/create', [OrdemDeServicoController::class, 'create'])->name('adminOrdemDeServico.create');
+    Route::post('/admin/ordemdeservico/', [OrdemDeServicoController::class, 'store'])->name('adminOrdemDeServico.store');
 });
 
-
+require __DIR__.'/auth.php';
 

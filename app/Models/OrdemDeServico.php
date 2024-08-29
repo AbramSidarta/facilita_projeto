@@ -9,7 +9,8 @@ class OrdemDeServico extends Model
 {
     use HasFactory;
     protected $table = 'ordem_de_servicos';
-    protected $fillaable = [
+    protected $fillable = [
+        'status',
         'ORC_venda',
         'cliente',
         'servico',
