@@ -23,7 +23,7 @@
                             <div class="d-flex justify-content-between d-flex align-items-center">
                                 <div class="d-flex flex-row ">
                                     <h3 class="">Estados da ordem de serviço:</h3>
-                                    <div class="row mb-3">
+                                    <div class="row mb-3 ms-1">
                                         <div class="col ">
                                             <select id="status" name="status" class="form-control pe-5" required >
                                                 <option value="">Selecione uma Categoria</option>
@@ -47,19 +47,24 @@
                             </div>
 
                             <hr />
+                          
                             <div class="row mb-3">
-                                <div class="col form-floating">
-                                    <input type="text" name="ORC_venda" class="form-control floatingInput" id="ORC_venda" placeholder="ORC de venda" value="{{old('ORC_venda')}}">
-                                    <label class="text-body-secondary  ms-3"for="floatingInput">ORC DE VENDA</label>
-                                    @error('ORC_venda')
-                                        <span class="text-danger">{{$message}}</span>
-                                    @enderror
+                                <div class="col-6 form-floating d-flex justify-content-between">
+                                    <x-application-logo class="block h-20 fill-current text-gray-800" />
+                                    
+                                    <div class="col-6 form-floating ml-4">
+                                        <input type="text" name="ORC_venda" class="form-control floatingInput" id="ORC_venda" placeholder="ORC de venda" value="{{old('ORC_venda')}}" required>
+                                        <label class="text-body-secondary  ms-3"for="floatingInput">ORC DE VENDA</label>
+                                        @error('ORC_venda')
+                                            <span class="text-danger">{{$message}}</span>
+                                        @enderror
+                                    </div>
                                 </div>
                             </div>
-
+                          
                             <div class="row mb-3">
                                 <div class="col form-floating">
-                                    <input type="text" name="cliente" class="form-control floatingInput" id="cliente" placeholder="Cliente" value="{{old('cliente')}}">
+                                    <input type="text" name="cliente" class="form-control floatingInput" id="cliente" placeholder="Cliente" value="{{old('cliente')}}" required>
                                     <label class="text-body-secondary  ms-3"for="floatingInput">Cliente</label>
                                     @error('cliente')
                                         <span class="text-danger">{{$message}}</span>
@@ -69,7 +74,7 @@
 
                             <div class="row mb-3">
                                 <div class="col form-floating">
-                                    <input type="text" name="servico" class="form-control floatingInput" id="servico" placeholder="Serviço" value="{{old('servico')}}">
+                                    <input type="text" name="servico" class="form-control floatingInput" id="servico" placeholder="Serviço" value="{{old('servico')}}" required>
                                     <label class="text-body-secondary  ms-3"for="floatingInput">Serviço</label>
                                     @error('servico')
                                         <span class="text-danger">{{$message}}</span>
@@ -79,27 +84,17 @@
 
                             <div class="row mb-3">
                                 <div class="col form-floating">
-                                    <input type="text" name="end" class="form-control floatingInput" id="end" placeholder="Endereço" value="{{old('end')}}">
+                                    <input type="text" name="end" class="form-control floatingInput" id="end" placeholder="Endereço" value="{{old('end')}}" required>
                                     <label class="text-body-secondary  ms-3"for="floatingInput">Endereço</label>
                                     @error('end')
                                         <span class="text-danger">{{$message}}</span>
                                     @enderror
                                 </div>
                             </div>
-
-                            <div class="row mb-3">
-                                <div class="col form-floating">
-                                    <input type="text" name="fone" class="form-control floatingInput" id="fone" placeholder="Fone" value="{{old('fone')}}">
-                                    <label class="text-body-secondary  ms-3"for="floatingInput">Fone:</label>
-                                    @error('fone')
-                                        <span class="text-danger">{{$message}}</span>
-                                    @enderror
-                                </div>
-                            </div>
-
+            
                             <div class="row mb-3">
                                 <div class="col-6 form-floating">
-                                    <input type="text" name="valor" class="form-control floatingInput" id="valor" placeholder="Valor R$" value="{{old('valor')}}">
+                                    <input type="text" name="valor" class="form-control floatingInput" id="valor" placeholder="Valor R$" value="{{old('valor')}}" required>
                                     <label class="text-body-secondary  ms-3"for="floatingInput">valor R$:</label>
                                     @error('valor')
                                         <span class="text-danger">{{$message}}</span>
