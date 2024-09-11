@@ -175,7 +175,7 @@
                                         </div>
                                     </div>
                                 </div>              
-                            <div class="mt-4 flex-wrap col-6 form-floating d-flex d-flex justify-content-evenly flex-wrap">
+                            <div class="mt-4 p-0 flex-wrap col-6 form-floating d-flex d-flex justify-content-evenly flex-wrap">
                                 <div class="col-12 row d-flex justify-content-evenly border border-success border-bottom-0 ">
                                     <h5 class="col-12 d-flex justify-content-center text-bg-success align-items-center">PRAZO DA IMPRESSÃO</h5>
                                     <div class="row mb-3 col-6 align-items-center">
@@ -261,12 +261,12 @@
                                     </div>
                                 </div>   
                             </div>
-                            <div class="col-12 row d-flex justify-content-evenly mt-4">
+                            <div class="p-0 mt-4">
                                 <div class="border border-black">
                                     <h4  style="background-color: #9B9A9C;" class="d-flex justify-content-center col-12 ">OBSERVAÇÃO:</h4>
                                     <div class="row mb-3">
                                         <div class="col form-floating">
-                                            <input type="text" name="observacoes_pedido" class="form-control floatingInput" id="observacoes_pedido" placeholder="Observacoes da ordem" value="{{old('observacoes_pedido')}}">
+                                            <textarea type="text" name="observacoes_pedido" class="form-control floatingInput" style="height: 100px" id="observacoes_pedido" placeholder="Observacoes da ordem" value="{{old('observacoes_pedido')}}"></textarea>
                                             <label class="  ms-3"for="floatingInput">OBSERVAÇÕES</label>
                                             @error('observacoes_pedido')
                                                 <span class="text-danger">{{$message}}</span>
@@ -277,14 +277,16 @@
                             </div>
                             <h4>LAYOUT</h4>
                             <div class="row mb-3">
-                                <div class="col form-floating">
-                                    <input type="text" name="layout" class="form-control floatingInput" id="layout" placeholder="Layout" value="{{old('layout')}}">
-                                    <label class="  ms-3"for="floatingInput"></label>
+                                <div class="col">
+                                    <input type="file" name="layout" class="form-control" id="layout" placeholder="Layout" value="{{old('layout')}}">
+                                    <label class="  ms-3"></label>
                                     @error('layout')
                                         <span class="text-danger">{{$message}}</span>
                                     @enderror
                                 </div>
                             </div>
+
+
                             
                             <div class="col-6 form-floating d-flex justify-content-between d-flex align-items-center">
                                 <h4>EMBALAGEM:</h4>
