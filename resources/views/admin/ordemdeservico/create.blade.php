@@ -275,41 +275,47 @@
                                     </div>
                                 </div>
                             </div>
-                            <h4>LAYOUT</h4>
-                            <div class="row mb-3">
-                                <div class="col">
-                                    <input type="file" name="layout" class="form-control" id="layout" placeholder="Layout" value="{{old('layout')}}">
-                                    <label class="  ms-3"></label>
-                                    @error('layout')
-                                        <span class="text-danger">{{$message}}</span>
-                                    @enderror
+                            <div class="border border-dark  ">
+                                
+                                <div class="col d-flex flex-row  mt-4">
+                                    <h4 class="">LAYOUT:</h4>
+                                   
+                                    <div class="row mb-3 ms-2">
+                                        <div class="col">
+                                            <input type="file" name="layout" class="form-control" id="layout" placeholder="Layout" value="{{old('layout')}}">
+                                            <label class="  ms-3"></label>
+                                            @error('layout')
+                                                <span class="text-danger">{{$message}}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
 
-
-                            
-                            <div class="col-6 form-floating d-flex justify-content-between d-flex align-items-center">
-                                <h4>EMBALAGEM:</h4>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input rounded-0  border border-black " type="radio" name="embalagem" id="embalagem" value="sim">
-                                    <label class="form-check-label" for="inlineRadio1">SIM</label>
+                                
+                                <div class="col-6 form-floating d-flex justify-content-between d-flex align-items-center mt-3">
+                                    <h4>EMBALAGEM:</h4>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input rounded-0  border border-black " type="radio" name="embalagem" id="embalagem" value="sim">
+                                        <label class="form-check-label" for="inlineRadio1">SIM</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input rounded-0 border border-black" type="radio" name="embalagem" id="embalagem" value="nao">
+                                        <label class="form-check-label" for="inlineRadio1">NÃO</label>
+                                    </div>
+                                    <div class="col d-flex flex-row ">
+                                            <h4 class="pe-2">OBS:</h4>
+                                            <input type="text" name="observacoes_layout" class="form-control " id="observacoes_layout" placeholder="Observacoes" value="{{old('observacoes_layout')}}">
+                                            @error('observacoes_layout')
+                                                <span class="text-danger">{{$message}}</span>
+                                            @enderror
+                                        </div>
                                 </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input rounded-0 border border-black" type="radio" name="embalagem" id="embalagem" value="nao">
-                                    <label class="form-check-label" for="inlineRadio1">NÃO</label>
-                                </div>
-                                <h4>OBS:</h4>
-                                <div class="row mb-3">
-                                    <div class="col form-floating">
-                                        <input type="text" name="observacoes_layout" class="form-control floatingInput" id="observacoes_layout" placeholder="Observacoes" value="{{old('observacoes_layout')}}">
-                                        <label class="  ms-3"for="floatingInput"></label>
-                                        @error('observacoes_layout')
-                                            <span class="text-danger">{{$message}}</span>
-                                        @enderror
+                                    <div class="row mb-3">
+                                        
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12 form-floating d-flex justify-content-end justify-content-around mt-5">
+                            <div class="col-12 form-floating d-flex justify-content-end mt-5 me-4">
                                 <div class="row mb-3">
                                     <div class="col form-floating me-5">
                                         <input type="text" name="nome_funcionario" class="form-control floatingInput" id="nome_funcionario" placeholder="Nome do funcionario" value="nome_funcionario">

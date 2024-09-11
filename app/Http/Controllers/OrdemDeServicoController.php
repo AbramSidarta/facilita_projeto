@@ -41,12 +41,22 @@ class OrdemDeServicoController extends Controller
             'servico_externo' => 'nullable|boolean',
             'formas_de_pagamento' => 'nullable|string',
             'observacoes_pedido' => 'nullable|string',
-            'layout' => 'required',
+            'layout' => 'required|image|mimes:jpg,png,jpeg,gif,svg',
             'embalagem' => 'required',
             'observacoes_layout' => 'nullable|string',
             'nome_funcionario' => 'required',
         ]);
-        $data =  OrdemDeServico::create($validation);
+
+        if ($request->hasFile('layout')) {
+            $file = $request->file('layout');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $extension;
+            $file->move(public_path('uploads/ordemdeservico'), $filename);
+            $layoutFile = $filename;
+        }
+        
+
+        $data = OrdemDeServico::create(array_merge($request->all(), ['layout' => $layoutFile]));
         if ($data) {
             session()->flash('success', 'Ordem add Successfully');
             return redirect(route('adminOrdemDeServico.index'));
