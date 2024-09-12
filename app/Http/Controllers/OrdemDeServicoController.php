@@ -65,4 +65,8 @@ class OrdemDeServicoController extends Controller
             return redirect(route('admin.OrdemDeServico.create'));
         }
     }
+
+   
 }
+
+   

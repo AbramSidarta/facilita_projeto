@@ -1,1 +1,1 @@
-<img src="{{ asset('img/logo_facilita_02.png')}}" viewBox="0 0 316 316" {{ $attributes }}>
+<img src="{{ asset('img/logoCerta.png')}}" viewBox="0 0 316 316" {{ $attributes }}>

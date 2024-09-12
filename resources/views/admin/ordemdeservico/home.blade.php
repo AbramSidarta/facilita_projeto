@@ -39,19 +39,51 @@
                                 <td class="align-middle">
                                     {{ $ordemdeservico->data_de_entrega }} {{ $ordemdeservico->hora_de_entrega }}
                                 </td>
-                                <td class="align-middle">{{ $ordemdeservico->status }}</td>
+                                <td class="align-middle">
+                                    @php
+                                        $statusClass = '';
+                                        $statusTextClass = '';
+                                        switch($ordemdeservico->status) {
+                                            case 'pendente':
+                                                $statusClass = 'bg-danger';
+                                                $statusTextClass = 'text-white'; // Bootstrap text color for better contrast
+                                                break;
+                                            case 'impressão':
+                                                $statusClass = 'bg-warning';
+                                                $statusTextClass = 'text-dark';
+                                                break;
+                                            case 'produção':
+                                                $statusClass = 'bg-primary';
+                                                $statusTextClass = 'text-white';
+                                                break;
+                                            case 'concluido':
+                                                $statusClass = 'bg-success';
+                                                $statusTextClass = 'text-white';
+                                                break;
+                                            default:
+                                                $statusClass = 'bg-secondary';
+                                                $statusTextClass = 'text-white';
+                                        }
+                                    @endphp
+
+                                    <span class="px-3 py-2 rounded {{ $statusClass }} {{ $statusTextClass }}">
+                                            {{ ucfirst($ordemdeservico->status) }}
+                                    </span>
+                                </td>
+
+                                
 
                                 <td class="align-middle">
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                         <spam class="p-2 ">
-                                            <a href="{{ route('adminOrdemDeServico.index')}}" type="button" class="btn btn-warning fs-6">Ver Mais</a>
+                                            <a href="" type="button" class="btn bg-secondary text-white fs-6">Ver Mais</a>
                                         </spam>
                                     </div>
                                 </td>
                             </tr>
                             @empty
                             <tr>
-                                <td class="text-center" colspan="5">Produto não encontrado</td>
+                                <td class="text-center" colspan="6">Produto não encontrado</td>
                             </tr>
                             @endforelse
                         </tbody>

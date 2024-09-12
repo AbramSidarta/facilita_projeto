@@ -21,9 +21,9 @@
                         <form action="{{ route('adminOrdemDeServico.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                             <div class="d-flex justify-content-between d-flex align-items-center">
-                                <div class="d-flex flex-row ">
-                                    <h3 class="">Estados da ordem de serviço:</h3>
-                                    <div class="row mb-3 ms-1">
+                                <div class="d-flex flex-row d-flex align-items-center">
+                                    <h3 class="m-0">Estados da ordem de serviço:</h3>
+                                    <div class="row ms-1">
                                         <div class="col ">
                                             <select id="status" name="status" class="form-control pe-5" required >
                                                 <option value="">Selecione uma Categoria</option>
@@ -49,7 +49,7 @@
                             <hr />
                             <div class="row mb-3">
                                 <div class="col-12 d-flex justify-content-between align-items-center border border-black">
-                                    <x-application-logo class="block h-20 fill-current text-gray-800" />
+                                    <x-application-logo class="block h-20 p-2 fill-current text-gray-800" />
                                     <div class=" form-floating ml-4">
                                         <input type="text" name="" class="form-control floatingInput" id="" placeholder="CÓD. ARTE" value="{{old('')}}"  disabled="disabled">
                                         <label class="  ms-3"for="floatingInput">CÓD. ARTE</label>
@@ -139,7 +139,7 @@
                                     </div>
                                     <div style="border: 2px solid #094081;" class="col-13 row d-flex justify-content-evenly  ">
                                         
-                                            <h5 style="background-color: #094081;" class="col-12 d-flex justify-content-center text-white">Prazo De Entrega Do Serviço</h5>
+                                            <h5 style="background-color: #094081;" class="col-12 d-flex justify-content-center text-white">PRAZO  DE ENTREGA DO SERVIÇO</h5>
                                         
                                         <div class=" d-flex justify-content-between">
                                             <div class="col-5"> 
@@ -277,13 +277,11 @@
                             </div>
                             <div class="border border-dark  ">
                                 
-                                <div class="col d-flex flex-row  mt-4">
-                                    <h4 class="">LAYOUT:</h4>
-                                   
-                                    <div class="row mb-3 ms-2">
-                                        <div class="col">
+                                <div class="col d-flex flex-row  d-flex align-items-center mt-3">
+                                    <h4 class="m-0 ">LAYOUT:</h4>
+                                    <div class="row">
+                                        <div class="col ms-3">
                                             <input type="file" name="layout" class="form-control" id="layout" placeholder="Layout" value="{{old('layout')}}">
-                                            <label class="  ms-3"></label>
                                             @error('layout')
                                                 <span class="text-danger">{{$message}}</span>
                                             @enderror
@@ -293,17 +291,17 @@
 
                                 
                                 <div class="col-6 form-floating d-flex justify-content-between d-flex align-items-center mt-3">
-                                    <h4>EMBALAGEM:</h4>
-                                    <div class="form-check form-check-inline">
+                                    <h4 class="m-0">EMBALAGEM:</h4>
+                                    <div class="form-check form-check-inline ms-2">
                                         <input class="form-check-input rounded-0  border border-black " type="radio" name="embalagem" id="embalagem" value="sim">
                                         <label class="form-check-label" for="inlineRadio1">SIM</label>
                                     </div>
-                                    <div class="form-check form-check-inline">
+                                    <div class="form-check form-check-inline m-2">
                                         <input class="form-check-input rounded-0 border border-black" type="radio" name="embalagem" id="embalagem" value="nao">
                                         <label class="form-check-label" for="inlineRadio1">NÃO</label>
                                     </div>
                                     <div class="col d-flex flex-row ">
-                                            <h4 class="pe-2">OBS:</h4>
+                                            <h4 class="d-flex align-items-center m-0 p-2">OBS:</h4>
                                             <input type="text" name="observacoes_layout" class="form-control " id="observacoes_layout" placeholder="Observacoes" value="{{old('observacoes_layout')}}">
                                             @error('observacoes_layout')
                                                 <span class="text-danger">{{$message}}</span>
@@ -317,8 +315,8 @@
                             </div>
                             <div class="col-12 form-floating d-flex justify-content-end mt-5 me-4">
                                 <div class="row mb-3">
-                                    <div class="col form-floating me-5">
-                                        <input type="text" name="nome_funcionario" class="form-control floatingInput" id="nome_funcionario" placeholder="Nome do funcionario" value="nome_funcionario">
+                                    <div class="col me-5">
+                                        <input type="text" name="nome_funcionario" class="form-control floatingInput" id="nome_funcionario" placeholder="Nome do funcionario" value="{{old('nome_funcionario')}}">
                                         <label class="  ms-3"for="floatingInput"></label>
                                         <h2>Funcionario</h2>
                                         @error('nome_funcionario')

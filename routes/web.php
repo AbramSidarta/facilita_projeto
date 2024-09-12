@@ -7,6 +7,7 @@ use App\Http\Controllers\OrdemDeServicoController;
 
 
 
+
 Route::get('/', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -30,6 +31,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/ordemdeservico', [OrdemDeServicoController::class, 'index'])->name('adminOrdemDeServico.index');
     Route::get('/admin/ordemdeservico/create', [OrdemDeServicoController::class, 'create'])->name('adminOrdemDeServico.create');
     Route::post('/admin/ordemdeservico/', [OrdemDeServicoController::class, 'store'])->name('adminOrdemDeServico.store');
+  
 });
 
 require __DIR__.'/auth.php';
