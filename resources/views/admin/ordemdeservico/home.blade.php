@@ -76,7 +76,7 @@
                                 <td class="align-middle">
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                         <spam class="p-2 ">
-                                            <a href="" type="button" class="btn bg-secondary text-white fs-6">Ver Mais</a>
+                                            <a href="{{route('adminOrdemDeServico.show', $ordemdeservico->id) }} " type="button" class="btn bg-secondary text-white fs-6">Ver Mais</a>
                                         </spam>
                                     </div>
                                 </td>

@@ -19,6 +19,12 @@ class OrdemDeServicoController extends Controller
         return view('admin.ordemdeservico.create');
     }
     
+    public function show($id)
+    {
+        $ordemServico = OrdemDeServico::findOrFail($id);
+        return view('admin.ordemdeservico.show', compact('ordemServico'));
+    }
+
     public function store(Request $request)
     {
         $validation = $request->validate([

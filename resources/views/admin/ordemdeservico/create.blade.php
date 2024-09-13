@@ -275,8 +275,21 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="border border-dark  ">
-                                
+                            <div class="border border-dark  ">             
+                                @if (session('success'))
+                                    <p>{{ session('success') }}</p>
+                                    <div id="image-preview">
+                                        <img src="{{ asset('storage/' . session('path')) }}" alt="Imagem carregada">
+                                    </div>
+                                @endif
+
+                                @if ($errors->any())
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                @endif
                                 <div class="col d-flex flex-row  d-flex align-items-center mt-3">
                                     <h4 class="m-0 ">LAYOUT:</h4>
                                     <div class="row">
@@ -288,7 +301,11 @@
                                         </div>
                                     </div>
                                 </div>
-
+                                <div class="border border-dark-subtle mt-3">
+                                    <div class="d-flex justify-content-center " id="layout">
+                                        <img class="m-3 " id="preview" src="" alt="Nenhuma imagem selecionada ">
+                                    </div>
+                                </div>
                                 
                                 <div class="col-6 form-floating d-flex justify-content-between d-flex align-items-center mt-3">
                                     <h4 class="m-0">EMBALAGEM:</h4>
@@ -336,5 +353,8 @@
     
     <!-- Alpine Core -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <script src="{{ asset('js/input_image.js') }}"></script>
+    <script src="{{ asset('js/mascara.js') }}"></script>
 </x-app-layout>
         
