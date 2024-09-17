@@ -26,12 +26,12 @@
                                     <div class="row ms-1">
                                         <div class="col ">
                                             <select id="status" name="status" class="form-control pe-5" required >
-                                                <option value="">Selecione uma Categoria</option>
-                                                <option value="pendente">Pendente</option>
-                                                <option value="impressão">Impressão</option>
-                                                <option value="produção">Produção</option>
-                                                <option value="concluido">Concluido</option>
-                                                <option value="entregue">Entregue</option>
+                                            <option value="">Selecione uma Categoria</option>
+                                            <option value="Pendente" {{ old('status') === 'Pendente' ? 'selected' : '' }}>Pendente</option>
+                                            <option value="Impressão" {{ old('status') === 'Impressão' ? 'selected' : '' }}>Impressão</option>
+                                            <option value="Produção" {{ old('status') === 'Produção' ? 'selected' : '' }}>Produção</option>
+                                            <option value="Concluido" {{ old('status') === 'Concluido' ? 'selected' : '' }}>Concluído</option>
+                                            <option value="Entregue" {{ old('status') === 'Entregue' ? 'selected' : '' }}>Entregue</option>
                                             </select>
                                         </div>
                                     </div>
@@ -108,28 +108,28 @@
                                     </div>
                                     <div class="row mb-3">
                                         <div class="col-6 d-flex justify-content-between align-items-center">
-                                            <label class="  mx-2">Valor R$:</label>
+                                            <label class=" col-3 mx-2">Valor R$:</label>
                                             <input type="text" name="valor" class="form-control " id="valor" placeholder="Valor R$" value="{{old('valor')}}" required>
                                             @error('valor')
                                                 <span class="text-danger">{{$message}}</span>
                                             @enderror
                                         </div>
-
                                         <div class="col-6 form-floating d-flex justify-content-between d-flex align-items-center">
                                             <span>Pago:</span>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input  border border-black  rounded-0" type="radio" name="pago" id="pago" value="sim">
-                                                <label class="form-check-label " for="inlineRadio1 ">Sim</label>
+                                                <input class="form-check-input border border-black rounded-0" type="radio" name="pago" id="pago_sim" value="sim" {{ old('pago') === 'sim' ? 'checked' : '' }}>
+                                                <label class="form-check-label" for="pago_sim">Sim</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input  border border-black   rounded-0" type="radio" name="pago" id="pago" value="nao">
-                                                <label class="form-check-label" for="inlineRadio2">Não</label>
+                                                <input class="form-check-input border border-black rounded-0" type="radio" name="pago" id="pago_nao" value="nao" {{ old('pago') === 'nao' ? 'checked' : '' }}>
+                                                <label class="form-check-label" for="pago_nao">Não</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input  border border-black   rounded-0" type="radio" name="pago" id="pago" value="50%">
-                                                <label class="form-check-label" for="inlineRadio2">50%</label>
+                                                <input class="form-check-input border border-black rounded-0" type="radio" name="pago" id="pago_50" value="50%" {{ old('pago') === '50%' ? 'checked' : '' }}>
+                                                <label class="form-check-label" for="pago_50">50%</label>
                                             </div>
                                         </div>
+
                                     </div>
                                     <div class="row mb-3">
                                         <div class="col d-flex justify-content-between align-items-center">
@@ -222,11 +222,11 @@
                                     <h5 style="background-color: #8F00FF;" class="col-12 d-flex justify-content-center text-white align-items-center">SERVIÇO EXTERNO</h5>
                                     <div class="col-6 form-floating d-flex justify-content-between d-flex align-items-center">
                                         <div class="form-check form-check-inline ">
-                                            <input class="form-check-input border border-black  rounded-0" type="radio" name="servico_externo" id="servico_externo" value="1">
+                                            <input class="form-check-input border border-black  rounded-0" type="radio" name="servico_externo" id="servico_externo" value="1"{{ old('servico_externo') === '1' ? 'checked' : '' }}>
                                             <label class="form-check-label" for="inlineRadio1">Sim</label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input  border border-black  rounded-0" type="radio" name="servico_externo" id="servico_externo" value="0">
+                                            <input class="form-check-input  border border-black  rounded-0" type="radio" name="servico_externo" id="servico_externo" value="0"{{ old('servico_externo') === '0' ? 'checked' : '' }}>
                                             <label class="form-check-label" for="inlineRadio2">Não</label>
                                         </div>
                                     </div>
@@ -236,25 +236,25 @@
                                     <div class=" d-flex justify-content-evenly">
                                         <div class="d-flex flex-column">
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input  border border-black rounded-0" type="radio" name="formas_de_pagamento" id="formas_de_pagamento" value="pix">
+                                                <input class="form-check-input  border border-black rounded-0" type="radio" name="formas_de_pagamento" id="formas_de_pagamento" value="pix"{{ old('formas_de_pagamento') === 'pix' ? 'checked' : '' }}>
                                                 <label class="form-check-label" for="inlineRadio1">PIX</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input  border border-black  rounded-0" type="radio" name="formas_de_pagamento" id="formas_de_pagamento" value="transfbanc./deposito">
+                                                <input class="form-check-input  border border-black  rounded-0" type="radio" name="formas_de_pagamento" id="formas_de_pagamento" value="transfbanc./deposito"{{ old('formas_de_pagamento') === 'transfbanc./deposito' ? 'checked' : '' }}>
                                                 <label class="form-check-label" for="inlineRadio1">CARTÃO</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input  border border-black  rounded-0" type="radio" name="formas_de_pagamento" id="formas_de_pagamento" value="pag.naloja">
+                                                <input class="form-check-input  border border-black  rounded-0" type="radio" name="formas_de_pagamento" id="formas_de_pagamento" value="pag.naloja"{{ old('formas_de_pagamento') === 'pag.naloja' ? 'checked' : '' }}>
                                                 <label class="form-check-label" for="inlineRadio1">TRANSF.BANC./DEPÓSITO</label>
                                             </div>
                                         </div>
                                         <div class=" d-flex flex-column">
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input  border border-black  rounded-0" type="radio" name="formas_de_pagamento" id="formas_de_pagamento" value="dinheiro">
+                                                <input class="form-check-input  border border-black  rounded-0" type="radio" name="formas_de_pagamento" id="formas_de_pagamento" value="dinheiro"{{ old('formas_de_pagamento') === 'dinheiro' ? 'checked' : '' }}>
                                                 <label class="form-check-label" for="inlineRadio1">DINHEIRO</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input  border border-black  rounded-0" type="radio" name="formas_de_pagamento" id="formas_de_pagamento" value="cartao">
+                                                <input class="form-check-input  border border-black  rounded-0" type="radio" name="formas_de_pagamento" id="formas_de_pagamento" value="cartao"{{ old('formas_de_pagamento') === 'cartao' ? 'checked' : '' }}>
                                                 <label class="form-check-label" for="inlineRadio1">PAG. NA LOJA</label>
                                             </div>
                                         </div>
@@ -266,7 +266,7 @@
                                     <h4  style="background-color: #9B9A9C;" class="d-flex justify-content-center col-12 ">OBSERVAÇÃO:</h4>
                                     <div class="row mb-3">
                                         <div class="col form-floating">
-                                            <textarea type="text" name="observacoes_pedido" class="form-control floatingInput" style="height: 100px" id="observacoes_pedido" placeholder="Observacoes da ordem" value="{{old('observacoes_pedido')}}"></textarea>
+                                            <textarea type="text" name="observacoes_pedido" class="form-control floatingInput" style="height: 100px" id="observacoes_pedido" placeholder="Observacoes da ordem" >{{ old('observacoes_pedido') }}</textarea>
                                             <label class="  ms-3"for="floatingInput">OBSERVAÇÕES</label>
                                             @error('observacoes_pedido')
                                                 <span class="text-danger">{{$message}}</span>
@@ -310,11 +310,11 @@
                                 <div class="col-6 form-floating d-flex justify-content-between d-flex align-items-center mt-3">
                                     <h4 class="m-0">EMBALAGEM:</h4>
                                     <div class="form-check form-check-inline ms-2">
-                                        <input class="form-check-input rounded-0  border border-black " type="radio" name="embalagem" id="embalagem" value="sim">
+                                        <input class="form-check-input rounded-0  border border-black " type="radio" name="embalagem" id="embalagem" value="sim"{{ old('embalagem') === 'sim' ? 'checked' : '' }}>
                                         <label class="form-check-label" for="inlineRadio1">SIM</label>
                                     </div>
                                     <div class="form-check form-check-inline m-2">
-                                        <input class="form-check-input rounded-0 border border-black" type="radio" name="embalagem" id="embalagem" value="nao">
+                                        <input class="form-check-input rounded-0 border border-black" type="radio" name="embalagem" id="embalagem" value="nao"{{ old('embalagem') === 'nao' ? 'checked' : '' }}>
                                         <label class="form-check-label" for="inlineRadio1">NÃO</label>
                                     </div>
                                     <div class="col d-flex flex-row ">
@@ -332,10 +332,9 @@
                             </div>
                             <div class="col-12 form-floating d-flex justify-content-end mt-5 me-4">
                                 <div class="row mb-3">
-                                    <div class="col me-5">
+                                    <div class="col me-5 ">
                                         <input type="text" name="nome_funcionario" class="form-control floatingInput" id="nome_funcionario" placeholder="Nome do funcionario" value="{{old('nome_funcionario')}}">
-                                        <label class="  ms-3"for="floatingInput"></label>
-                                        <h2>Funcionario</h2>
+                                        <h2 class="d-flex justify-content-center">Funcionario</h2>
                                         @error('nome_funcionario')
                                             <span class="text-danger">{{$message}}</span>
                                         @enderror

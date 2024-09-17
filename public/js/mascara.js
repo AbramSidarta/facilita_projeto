@@ -19,6 +19,10 @@ document.getElementById('valor').addEventListener('input', function(event) {
     input.value = formatPrice(input.value);
 });
 
+document.getElementById('falta').addEventListener('input', function(event) {
+    const input = event.target;
+    input.value = formatPrice(input.value);
+});
 //Horas
 
 function formatTime(value) {

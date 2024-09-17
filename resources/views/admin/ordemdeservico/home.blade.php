@@ -44,19 +44,19 @@
                                         $statusClass = '';
                                         $statusTextClass = '';
                                         switch($ordemdeservico->status) {
-                                            case 'pendente':
+                                            case 'Pendente':
                                                 $statusClass = 'bg-danger';
                                                 $statusTextClass = 'text-white'; // Bootstrap text color for better contrast
                                                 break;
-                                            case 'impressão':
+                                            case 'Impressão':
                                                 $statusClass = 'bg-warning';
                                                 $statusTextClass = 'text-dark';
                                                 break;
-                                            case 'produção':
+                                            case 'Produção':
                                                 $statusClass = 'bg-primary';
                                                 $statusTextClass = 'text-white';
                                                 break;
-                                            case 'concluido':
+                                            case 'Concluido':
                                                 $statusClass = 'bg-success';
                                                 $statusTextClass = 'text-white';
                                                 break;

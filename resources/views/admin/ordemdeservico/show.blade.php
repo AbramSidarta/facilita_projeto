@@ -17,15 +17,8 @@
                                 <div class="d-flex flex-row d-flex align-items-center">
                                     <h3 class="m-0">Estados da ordem de serviço:</h3>
                                     <div class="row ms-1">
-                                        <div class="col ">
-                                            <select id="status" name="status" class="form-control pe-5" required >
-                                                <option value="">Selecione uma Categoria</option>
-                                                <option value="pendente">Pendente</option>
-                                                <option value="impressão">Impressão</option>
-                                                <option value="produção">Produção</option>
-                                                <option value="concluido">Concluido</option>
-                                                <option value="entregue">Entregue</option>
-                                            </select>
+                                        <div class="col border-2 rounded ms-3" style="border: 2px solid ##dee2e6;">
+                                            <h4 class="m-0 p-1 ">{{ $ordemServico->status}}</h4>
                                         </div>
                                     </div>
                                 </div>
@@ -33,7 +26,7 @@
                                     <a style="background-color: #094081;border: 2px solid #094081;"  href="#" class="btn btn-primary me-3">Imprimir</a>
                                     <div class="row">
                                         <div class="d-grid">
-                                            <button style="background-color: #19940E;border: 2px solid #19940E;" class="btn btn-primary">Enviar</button>
+                                            <button style="background-color: #FF8A00;border: 2px solid #FF8A00;" class="btn btn-primary">Editar</button>
                                         </div>
                                     </div>
                                 </div>
@@ -42,16 +35,18 @@
                             <hr />
                             <div class="row mb-3">
                                 <div class="col-12 d-flex justify-content-between align-items-center border border-black">
-                                    <x-application-logo class="block h-20 p-2 fill-current text-gray-800" />
-                                    <div class=" ml-4 d-flex flex-row mt-3">
+                                    <div class="col-4">
+                                        <x-application-logo class="block h-20 p-2 fill-current text-gray-800 " />
+                                    </div>
+                                    <div class=" ml-4 d-flex flex-row mt-3 col-4">
                                         
                                         <label class=" pe-3 ms-3"for="floatingInput">CÓD. ARTE:</label>
-                                        <p>{{ $ordemServico->id }}</p>
+                                        <p class="m-0 border-bottom border-dark  col-4 d-flex justify-content-center">{{ $ordemServico->id }}</p>
                                     </div>
-                                    <div class=" d-flex flex-row ml-4 mt-3  me-5" >
+                                    <div class=" d-flex flex-row ml-4 mt-3  me-5 col-4" >
                                        
                                         <label class=" pe-3 ms-3"for="floatingInput">ORC DE VENDA:</label>
-                                        <p>{{ $ordemServico->ORC_venda }}</p>
+                                        <p class="m-0 border-bottom border-dark  col-4 d-flex justify-content-center">{{ $ordemServico->ORC_venda }}</p>
                                         
                                     </div>
                                 </div>
@@ -60,34 +55,34 @@
                                     <div class="row mb-3 mt-4">
                                         <div class=" d-flex flex-row col align-items-center">
                                             <label class="  mx-2  "for="">Cliente:</label>
-                                            <p class="m-0">{{ $ordemServico->cliente }}</p>
+                                            <p class="m-0 border-bottom border-dark  col-10">{{ $ordemServico->cliente }}</p>
                                         </div>
                                     </div>
 
                                     <div class="row mb-3">
                                         <div class=" d-flex flex-row  col d-flex align-items-center">
                                             <label class="  mx-2"for="">Serviço:</label>
-                                            <p class="m-0">{{ $ordemServico->servico}}</p>
+                                            <p class="m-0 border-bottom border-dark  col-10">{{ $ordemServico->servico}}</p>
                                         </div>
                                     </div>
 
                                     <div class="row mb-3">
                                         <div class="col  d-flex flex-row d-flex align-items-center">
                                             <label class="  mx-2"for="">Endereço:</label>
-                                            <p class="m-0">{{ $ordemServico->end}}</p>
+                                            <p class="m-0 border-bottom border-dark  col-10">{{ $ordemServico->end}}</p>
                                         </div>
                                     </div>
 
                                     <div class="row mb-3">
                                         <div class="col d-flex align-items-center" x-data="{ telefone : ' ' }">
                                             <label class="  mx-2"for="">Fone:</label>
-                                            <p class="m-0">{{ $ordemServico->fone}}</p>
+                                            <p class="m-0 border-bottom border-dark  col-10">{{ $ordemServico->fone}}</p>
                                         </div>
                                     </div>
                                     <div class="row mb-3">
-                                        <div class="col-6 d-flex flex-row  align-items-center">
-                                            <label class=" ">Valor R$:</label>
-                                            <p class="m-0">{{ $ordemServico->valor}}</p>
+                                        <div class="col d-flex align-items-center">
+                                            <label class=" mx-2">Valor R$:</label>
+                                            <p class="m-0 border-bottom border-dark  col-8">{{ $ordemServico->valor}}</p>
                                            
                                         </div>
 
@@ -110,7 +105,7 @@
                                     <div class="row mb-3">
                                         <div class="col  d-flex flex-row  align-items-center">
                                             <label class="  mx-2">Falta:</label>
-                                            <p class="m-0">{{ $ordemServico->falta}}</p>
+                                            <p class="m-0 border-bottom border-dark  col-10">{{ $ordemServico->falta}}</p>
                                             
                                         </div>
                                     </div>
@@ -118,26 +113,26 @@
                                         
                                             <h5 style="background-color: #094081;" class="col-12 d-flex justify-content-center text-white">PRAZO  DE ENTREGA DO SERVIÇO</h5>
                                         
-                                        <div class=" d-flex justify-content-between">
+                                        <div class=" d-flex justify-content-evenly">
                                             <div class="col-5"> 
                                                 <div class="row mb-3 ">
-                                                    <div class="col d-flex justify-content-between align-items-center">
+                                                    <div class="col d-flex align-items-center">
                                                         <label class="  mx-2">D.R:</label>
-                                                        <p>{{ date('d/m/Y', strtotime($ordemServico->data_de_recebimento)) }}</p>
+                                                        <p class="m-0">{{ date('d/m/Y', strtotime($ordemServico->data_de_recebimento)) }}</p>
                                                     </div>
                                                 </div>
                                                 <div class="row mb-3">
-                                                    <div class="col d-flex justify-content-between align-items-center">
+                                                    <div class="col d-flex  align-items-center">
                                                         <label class="  mx-2">D.E:</label>
-                                                        <p>{{ date('d/m/Y', strtotime($ordemServico->data_de_entrega)) }}</p>
+                                                        <p class="m-0">{{ date('d/m/Y', strtotime($ordemServico->data_de_entrega)) }}</p>
                                                     </div>
                                                 </div>
                                             </div>
                                             
                                             <div class="row mb-3 col-6 d-flex align-items-center">
                                                 <div>
-                                                    <label class="mx-2 mb-2">HORA ENTREGA:</label>
-                                                    <p>{{ $ordemServico->hora_de_entrega}}</p>
+                                                    <label class="mx-2 mb-3 d-flex justify-content-center">HORA ENTREGA:</label>
+                                                    <p class="d-flex justify-content-center m-0 border-bottom border-dark  ">{{ $ordemServico->hora_de_entrega}}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -147,18 +142,15 @@
                                 <div class="col-12 row d-flex justify-content-evenly border border-success border-bottom-0 ">
                                     <h5 class="col-12 d-flex justify-content-center text-bg-success align-items-center">PRAZO DA IMPRESSÃO</h5>
                                     <div class="row mb-3 col-6 align-items-center">
-                                        <div class="col  d-flex justify-content-between align-items-center">
+                                        <div class="col  d-flex align-items-center justify-content-center">
                                             <label class="  mx-2">D.E:</label>
-                                            <input type="date" name="prazo_da_impressao_data" class="form-control" id="prazo_da_impressao_data" placeholder="Data de entrega da impressão" value="{{old('prazo_da_impressao_data')}}">
-                                            @error('prazo_da_impressao_data')
-                                                <span class="text-danger">{{$message}}</span>
-                                            @enderror
+                                            <p class="m-0">{{ date('d/m/Y', strtotime($ordemServico->prazo_da_impressao_data)) }}</p>
                                         </div>
                                     </div>
-                                    <div class="row mb-3 col-6 align-items-center">
+                                    <div class="row mb-3 col-6 align-items-center d-flex justify-content-center">
                                         <div class="col">
-                                            <label class="  ms-3">HORA ENTREGA:</label>
-                                            <p>{{ $ordemServico->prazo_da_impressao_hora}}</p>
+                                            <label class=" d-flex justify-content-center ms-3">HORA ENTREGA:</label>
+                                            <p class=" d-flex justify-content-center m-0 border-bottom border-dark">{{ $ordemServico->prazo_da_impressao_hora}}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -166,17 +158,14 @@
                                     <h5 style="background-color: #FF8A00;" class="col-12 d-flex justify-content-center text-white align-items-center">ESTA ABA É RESTRITAMENTE DO IMPRESSOR</h5>
                                     <div class="col-6 row mb-3 align-items-center">
                                         <div class="">
-                                            <label class="  ms-3">DIA REC. DO CONTROLE </label>
-                                            <input type="date" name="dia_do_recebimento_do_controle" class="form-control " id="dia_do_recebimento_do_controle" placeholder="Rec. do controle" value="{{old('dia_do_recebimento_do_controle')}}">
-                                            @error('dia_do_recebimento_do_controle')
-                                                <span class="text-danger">{{$message}}</span>
-                                            @enderror
+                                            <label class=" d-flex justify-content-center ms-3">DIA REC. DO CONTROLE </label>
+                                            <p class= " m-0 d-flex justify-content-center">{{ date('d/m/Y', strtotime($ordemServico->dia_do_recebimento_do_controle)) }}</p>
                                         </div>
                                     </div>
                                     <div class="row mb-3 col-6 align-items-center ">
                                         <div class="">
-                                            <label class="ms-3" for="">HORA REC. </label>
-                                            <p>{{ $ordemServico->hora_do_recebimento_do_controle}}</p>
+                                            <label class="d-flex justify-content-center ms-3" for="">HORA REC. </label>
+                                            <p class=" m-0 d-flex justify-content-center border-bottom border-dark">{{ $ordemServico->hora_do_recebimento_do_controle}}</p>
                                         </div>
                                     </div>
                                 </div>

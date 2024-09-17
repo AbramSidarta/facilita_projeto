@@ -28,14 +28,14 @@ class OrdemDeServicoController extends Controller
     public function store(Request $request)
     {
         $validation = $request->validate([
-            'status' => 'required',
+            'status' => 'required|in:Pendente,Impressão,Produção,Concluido,Entregue',
             'ORC_venda'  => 'required',
             'cliente'  => 'required',
             'servico'  => 'required',
             'end'  => 'required',
             'fone' => 'required',
             'valor' => 'required',
-            'pago' => 'required',
+            'pago' => 'required|in:sim,nao,50%',
             'falta' => 'nullable|string',
             'data_de_recebimento' => 'required',
             'data_de_entrega' => 'required',
