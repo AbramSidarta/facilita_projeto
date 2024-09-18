@@ -25,6 +25,12 @@ class OrdemDeServicoController extends Controller
         return view('admin.ordemdeservico.show', compact('ordemServico'));
     }
 
+    public function edit($id)
+    {
+        $ordemServico = OrdemDeServico::findOrFail($id);
+        return view('admin.ordemdeservico.update', compact('ordemServico'));
+    }
+
     public function store(Request $request)
     {
         $validation = $request->validate([
@@ -36,7 +42,7 @@ class OrdemDeServicoController extends Controller
             'fone' => 'required',
             'valor' => 'required',
             'pago' => 'required|in:sim,nao,50%',
-            'falta' => 'nullable|string',
+            'falta' => 'required|string',
             'data_de_recebimento' => 'required',
             'data_de_entrega' => 'required',
             'hora_de_entrega' => 'required',

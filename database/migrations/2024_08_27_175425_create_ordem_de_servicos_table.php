@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('fone' , 20);
             $table->string('valor');
             $table->string('pago');
-            $table->string('falta')->nullable();
+            $table->string('falta');
             $table->date('data_de_recebimento');
             $table->date('data_de_entrega');
             $table->string('hora_de_entrega');

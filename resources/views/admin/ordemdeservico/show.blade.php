@@ -26,7 +26,7 @@
                                     <a style="background-color: #094081;border: 2px solid #094081;"  href="#" class="btn btn-primary me-3">Imprimir</a>
                                     <div class="row">
                                         <div class="d-grid">
-                                            <button style="background-color: #FF8A00;border: 2px solid #FF8A00;" class="btn btn-primary">Editar</button>
+                                            <a href="{{ route('adminOrdemDeServico.update',['id'=> $ordemServico->id])  }}" style="background-color: #FF8A00;border: 2px solid #FF8A00;" class="btn btn-primary">Editar</a>
                                         </div>
                                     </div>
                                 </div>
@@ -86,26 +86,31 @@
                                            
                                         </div>
 
+                                        
                                         <div class="col-6 form-floating d-flex justify-content-between d-flex align-items-center">
                                             <span>Pago:</span>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input  border border-black  rounded-0" type="radio" name="pago" id="pago" value="sim">
-                                                <label class="form-check-label " for="inlineRadio1 ">Sim</label>
+                                                <input class="form-check-input border border-black rounded-0 opacity-100" type="radio" name="pago" id="pago_sim" value="sim" 
+                                                    {{ $ordemServico->pago == 'sim' ? 'checked' : '' }} disabled>
+                                                <label class="form-check-label opacity-100" for="pago_sim">Sim</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input  border border-black   rounded-0" type="radio" name="pago" id="pago" value="nao">
-                                                <label class="form-check-label" for="inlineRadio2">Não</label>
+                                                <input class="form-check-input border border-black rounded-0 opacity-100" type="radio" name="pago" id="pago_nao" value="nao" 
+                                                    {{ $ordemServico->pago == 'nao' ? 'checked' : '' }} disabled>
+                                                <label class="form-check-label opacity-100" for="pago_nao">Não</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input  border border-black   rounded-0" type="radio" name="pago" id="pago" value="50%">
-                                                <label class="form-check-label" for="inlineRadio2">50%</label>
+                                                <input class="form-check-input border border-black rounded-0 opacity-100" type="radio" name="pago" id="pago_50" value="50%" 
+                                                    {{ $ordemServico->pago == '50%' ? 'checked' : '' }} disabled>
+                                                <label class="form-check-label  opacity-100" for="pago_50">50%</label>
                                             </div>
                                         </div>
+
                                     </div>
                                     <div class="row mb-3">
                                         <div class="col  d-flex flex-row  align-items-center">
-                                            <label class="  mx-2">Falta:</label>
-                                            <p class="m-0 border-bottom border-dark  col-10">{{ $ordemServico->falta}}</p>
+                                            <label class="  mx-2 ">Falta:</label>
+                                            <p class=" text-danger m-0 border-bottom border-dark  col-10">{{ $ordemServico->falta}}</p>
                                             
                                         </div>
                                     </div>
@@ -173,12 +178,12 @@
                                     <h5 style="background-color: #8F00FF;" class="col-12 d-flex justify-content-center text-white align-items-center">SERVIÇO EXTERNO</h5>
                                     <div class="col-6 form-floating d-flex justify-content-between d-flex align-items-center">
                                         <div class="form-check form-check-inline ">
-                                            <input class="form-check-input border border-black  rounded-0" type="radio" name="servico_externo" id="servico_externo" value="1">
-                                            <label class="form-check-label" for="inlineRadio1">Sim</label>
+                                            <input class="form-check-input border border-black  rounded-0 opacity-100" type="radio" name="servico_externo" id="servico_externo" value="1" {{ $ordemServico->servico_externo == '1' ? 'checked' : '' }} disabled>
+                                            <label class="form-check-label opacity-100" for="inlineRadio1">Sim</label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input  border border-black  rounded-0" type="radio" name="servico_externo" id="servico_externo" value="0">
-                                            <label class="form-check-label" for="inlineRadio2">Não</label>
+                                            <input class="form-check-input  border border-black  rounded-0 opacity-100" type="radio" name="servico_externo" id="servico_externo" value="0" {{ $ordemServico->servico_externo == '0' ? 'checked' : '' }} disabled>
+                                            <label class="form-check-label opacity-100" for="inlineRadio2">Não</label>
                                         </div>
                                     </div>
                                 </div> 
@@ -187,45 +192,50 @@
                                     <div class=" d-flex justify-content-evenly">
                                         <div class="d-flex flex-column">
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input  border border-black rounded-0" type="radio" name="formas_de_pagamento" id="formas_de_pagamento" value="pix">
-                                                <label class="form-check-label" for="inlineRadio1">PIX</label>
+                                                <input class="form-check-input  border border-black rounded-0 opacity-100" type="radio" name="formas_de_pagamento" id="formas_de_pagamento" value="pix"{{ $ordemServico->formas_de_pagamento == 'pix' ? 'checked' : '' }} disabled>
+                                                <label class="form-check-label opacity-100" for="inlineRadio1">PIX</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input  border border-black  rounded-0" type="radio" name="formas_de_pagamento" id="formas_de_pagamento" value="transfbanc./deposito">
-                                                <label class="form-check-label" for="inlineRadio1">CARTÃO</label>
+                                                <input class="form-check-input  border border-black  rounded-0 opacity-100" type="radio" name="formas_de_pagamento" id="formas_de_pagamento" value="transfbanc./deposito" {{ $ordemServico->formas_de_pagamento == 'transfbanc./deposito' ? 'checked' : '' }} disabled>
+                                                <label class="form-check-label opacity-100" for="inlineRadio1">CARTÃO</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input  border border-black  rounded-0" type="radio" name="formas_de_pagamento" id="formas_de_pagamento" value="pag.naloja">
-                                                <label class="form-check-label" for="inlineRadio1">TRANSF.BANC./DEPÓSITO</label>
+                                                <input class="form-check-input  border border-black  rounded-0 opacity-100" type="radio" name="formas_de_pagamento" id="formas_de_pagamento" value="pag.naloja"  {{ $ordemServico->formas_de_pagamento == 'pag.naloja' ? 'checked' : '' }} disabled> 
+                                                <label class="form-check-label opacity-100" for="inlineRadio1">TRANSF.BANC./DEPÓSITO</label>
                                             </div>
                                         </div>
                                         <div class=" d-flex flex-column">
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input  border border-black  rounded-0" type="radio" name="formas_de_pagamento" id="formas_de_pagamento" value="dinheiro">
-                                                <label class="form-check-label" for="inlineRadio1">DINHEIRO</label>
+                                                <input class="form-check-input  border border-black  rounded-0 opacity-100" type="radio" name="formas_de_pagamento" id="formas_de_pagamento" value="dinheiro"  {{ $ordemServico->formas_de_pagamento == 'dinheiro' ? 'checked' : '' }} disabled>
+                                                <label class="form-check-label opacity-100" for="inlineRadio1">DINHEIRO</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input  border border-black  rounded-0" type="radio" name="formas_de_pagamento" id="formas_de_pagamento" value="cartao">
-                                                <label class="form-check-label" for="inlineRadio1">PAG. NA LOJA</label>
+                                                <input class="form-check-input  border border-black  rounded-0 opacity-100" type="radio" name="formas_de_pagamento" id="formas_de_pagamento" value="cartao"  {{ $ordemServico->formas_de_pagamento == 'cartao' ? 'checked' : '' }} disabled>
+                                                <label class="form-check-label opacity-100" for="inlineRadio1">PAG. NA LOJA</label>
                                             </div>
                                         </div>
                                     </div>
                                 </div>   
                             </div>
+                        
                             <div class="p-0 mt-4">
                                 <div class="border border-black">
-                                    <h4  style="background-color: #9B9A9C;" class="d-flex justify-content-center col-12 ">OBSERVAÇÃO:</h4>
+                                    <h4 style="background-color: #9B9A9C;" class="d-flex justify-content-center col-12">OBSERVAÇÃO:</h4>
                                     <div class="row mb-3">
-                                        <div class="col form-floating">
-                                            <textarea type="text" name="observacoes_pedido" class="form-control floatingInput" style="height: 100px" id="observacoes_pedido" placeholder="Observacoes da ordem" value="{{old('observacoes_pedido')}}"></textarea>
-                                            <label class="  ms-3"for="floatingInput">OBSERVAÇÕES</label>
+                                        <div class="col form-floating mx-2">
+                                            @foreach (explode("\n", $ordemServico->observacoes_pedido) as $linha)
+                                                <p class="m-0 border-bottom border-dark" >
+                                                {{ strtoupper(e($linha)) }}
+                                                </p>
+                                            @endforeach
                                             @error('observacoes_pedido')
-                                                <span class="text-danger">{{$message}}</span>
+                                                <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
                             <div class="border border-dark  ">             
                                 @if (session('success'))
                                     <p>{{ session('success') }}</p>
@@ -243,34 +253,26 @@
                                 @endif
                                 <div class="col d-flex flex-row  d-flex align-items-center mt-3">
                                     <h4 class="m-0 ">LAYOUT:</h4>
-                                    <div class="row">
-                                        <div class="col ms-3">
-                                            <input type="file" name="layout" class="form-control" id="layout" placeholder="Layout" value="{{old('layout')}}">
-                                            @error('layout')
-                                                <span class="text-danger">{{$message}}</span>
-                                            @enderror
-                                        </div>
-                                    </div>
                                 </div>
                                 <div class="border border-dark-subtle mt-3">
                                     <div class="d-flex justify-content-center " id="layout">
-                                        <img class="m-3 " id="preview" src="" alt="Nenhuma imagem selecionada ">
+                                        <img class="m-3 " id="preview" src="{{ asset('uploads/ordemdeservico/' . $ordemServico->layout) }}" alt="Nenhuma imagem selecionada ">
                                     </div>
                                 </div>
                                 
                                 <div class="col-6 form-floating d-flex justify-content-between d-flex align-items-center mt-3">
                                     <h4 class="m-0">EMBALAGEM:</h4>
                                     <div class="form-check form-check-inline ms-2">
-                                        <input class="form-check-input rounded-0  border border-black " type="radio" name="embalagem" id="embalagem" value="sim">
-                                        <label class="form-check-label" for="inlineRadio1">SIM</label>
+                                        <input class="form-check-input rounded-0  border border-black opacity-100" type="radio" name="embalagem" id="embalagem" value="sim" {{ $ordemServico->embalagem == 'sim' ? 'checked' : '' }} disabled>
+                                        <label class="form-check-label opacity-100" for="inlineRadio1">SIM</label>
                                     </div>
                                     <div class="form-check form-check-inline m-2">
-                                        <input class="form-check-input rounded-0 border border-black" type="radio" name="embalagem" id="embalagem" value="nao">
-                                        <label class="form-check-label" for="inlineRadio1">NÃO</label>
+                                        <input class="form-check-input rounded-0 border border-black opacity-100" type="radio" name="embalagem" id="embalagem" value="nao" {{ $ordemServico->embalagem == 'nao' ? 'checked' : '' }} disabled>
+                                        <label class="form-check-label opacity-100" for="inlineRadio1">NÃO</label>
                                     </div>
-                                    <div class="col d-flex flex-row ">
+                                    <div class="col d-flex flex-row d-flex align-items-center ">
                                             <h4 class="d-flex align-items-center m-0 p-2">OBS:</h4>
-                                            <input type="text" name="observacoes_layout" class="form-control " id="observacoes_layout" placeholder="Observacoes" value="{{old('observacoes_layout')}}">
+                                            <p class="m-0 border-bottom border-dark  col-10">{{ $ordemServico->observacoes_layout }}</p>
                                             @error('observacoes_layout')
                                                 <span class="text-danger">{{$message}}</span>
                                             @enderror
@@ -283,10 +285,10 @@
                             </div>
                             <div class="col-12 form-floating d-flex justify-content-end mt-5 me-4">
                                 <div class="row mb-3">
-                                    <div class="col me-5">
+                                    <div class="col me-5 ">
                                       
-                                        <label class="  ms-3"for="floatingInput"></label>
-                                        <p>{{ $ordemServico->nome_funcionario}}</p>
+                                        
+                                        <p class="m-0 border-bottom border-dark  col-12 d-flex justify-content-center">{{ $ordemServico->nome_funcionario}}</p>
                                         <h2>Funcionario</h2>
                                      
                                     </div>

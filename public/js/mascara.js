@@ -11,7 +11,7 @@ function formatPrice(value) {
     cleanedValue = cleanedValue.replace(/(\d)(?=(\d{3})+(\D|$))/g, '$1.');
 
     // Adiciona o prefixo "R$"
-    return 'R$ ' + cleanedValue;
+    return cleanedValue;
 }
 
 document.getElementById('valor').addEventListener('input', function(event) {
@@ -23,6 +23,7 @@ document.getElementById('falta').addEventListener('input', function(event) {
     const input = event.target;
     input.value = formatPrice(input.value);
 });
+
 //Horas
 
 function formatTime(value) {
