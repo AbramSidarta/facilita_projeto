@@ -182,7 +182,7 @@
                                     <div class="row mb-3 col-6 align-items-center">
                                         <div class="col  d-flex justify-content-between align-items-center">
                                             <label class="  mx-2">D.E:</label>
-                                            <input type="date" name="prazo_da_impressao_data" class="form-control" id="prazo_da_impressao_data" placeholder="Data de entrega da impressão" value="{{($ordemServico->prazo_da_impressao_data)}}">
+                                            <input type="date" name="prazo_da_impressao_data" class="form-control" id="prazo_da_impressao_data" placeholder="Data de entrega da impressão" value='<?php echo date("Y-m-d"); ?>'>
                                             @error('prazo_da_impressao_data')
                                                 <span class="text-danger">{{$message}}</span>
                                             @enderror
@@ -203,7 +203,7 @@
                                     <div class="col-6 row mb-3 align-items-center">
                                         <div class="">
                                             <label class="  ms-3">DIA REC. DO CONTROLE </label>
-                                            <input type="date" name="dia_do_recebimento_do_controle" class="form-control " id="dia_do_recebimento_do_controle" placeholder="Rec. do controle" value="{{($ordemServico->dia_do_recebimento_do_controle)}}">
+                                            <input type="date" name="dia_do_recebimento_do_controle" class="form-control " id="dia_do_recebimento_do_controle" placeholder="Rec. do controle" value='<?php echo date("Y-m-d"); ?>'>
                                             @error('dia_do_recebimento_do_controle')
                                                 <span class="text-danger">{{$message}}</span>
                                             @enderror

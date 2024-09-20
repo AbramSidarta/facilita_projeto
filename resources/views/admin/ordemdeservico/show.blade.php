@@ -23,6 +23,7 @@
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-between d-flex align-items-center">
+                                    <a style="background-color: #DC1C2E;border: 2px solid #DC1C2E;"  href="{{ route('adminOrdemDeServico.destroy',['id'=> $ordemServico->id])  }}" class="btn btn-primary me-3">Deletar</a>
                                     <a style="background-color: #094081;border: 2px solid #094081;"  href="#" class="btn btn-primary me-3">Imprimir</a>
                                     <div class="row">
                                         <div class="d-grid">

@@ -31,6 +31,19 @@ class OrdemDeServicoController extends Controller
         return view('admin.ordemdeservico.update', compact('ordemServico'));
     }
 
+    public function destroy($id)
+    {
+        $ordemServico = OrdemDeServico::findOrFail($id)->delete();
+        if ($ordemServico) {
+            session()->flash('success', 'Deletado com Sucesso');
+            return redirect(route('adminOrdemDeServico.index'));
+        } else {
+            session()->flash('error', 'Ocorreu algum problema');
+            return redirect(route('adminOrdemDeServico.show', ['id'=> $ordemServico->id]));
+        }
+    }
+
+
     public function update(Request $request, $id)
     {
         $validation = $request->validate([
@@ -53,7 +66,7 @@ class OrdemDeServicoController extends Controller
             'servico_externo' => 'nullable|boolean',
             'formas_de_pagamento' => 'nullable|string',
             'observacoes_pedido' => 'nullable|string',
-            'layout' => 'required|image|mimes:jpg,png,jpeg,gif,svg',
+            'layout' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg',
             'embalagem' => 'required',
             'observacoes_layout' => 'nullable|string',
             'nome_funcionario' => 'required',
@@ -79,7 +92,7 @@ class OrdemDeServicoController extends Controller
         $servico_externo = $request->servico_externo;
         $formas_de_pagamento = $request->formas_de_pagamento;
         $observacoes_pedido = $request->observacoes_pedido;
-        $layout = $request->layout;
+
         $embalagem = $request->embalagem;
         $observacoes_layout = $request->observacoes_layout;
         $nome_funcionario = $request->nome_funcionario;
@@ -103,10 +116,27 @@ class OrdemDeServicoController extends Controller
         $ordemServico->servico_externo = $servico_externo;
         $ordemServico->formas_de_pagamento = $formas_de_pagamento;
         $ordemServico->observacoes_pedido = $observacoes_pedido;
-        $ordemServico->layout = $layout;
+
         $ordemServico->embalagem = $embalagem;
         $ordemServico->observacoes_layout = $observacoes_layout;
         $ordemServico->nome_funcionario = $nome_funcionario;
+
+        if ($request->hasFile('layout')) {
+            // Remove a imagem antiga, se necessário
+            if ($ordemServico->layout) {
+                $oldFilePath = public_path('uploads/ordemdeservico/' . $ordemServico->layout);
+                if (file_exists($oldFilePath)) {
+                    unlink($oldFilePath); // Deleta a imagem antiga
+                }
+            }
+    
+            // Salva a nova imagem
+            $file = $request->file('layout');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('uploads/ordemdeservico'), $filename);
+            $ordemServico->layout = $filename; // Atualiza o campo layout
+        }
+    
 
         $data = $ordemServico->save();
         if ($data) {
