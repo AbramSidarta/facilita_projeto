@@ -9,15 +9,30 @@ class OrdemDeServicoController extends Controller
 {
     public function index()
     {
-        $ordemdeservicos = OrdemDeServico::orderBy('id','asc')->get();
+        $ordemdeservicos = OrdemDeServico::whereIn('status', ['Pendente', 'Impressão', 'Produção', 'Concluído'])
+            ->orderBy('id', 'asc')
+            ->get();
         $total = OrdemDeServico::count();
-        return view('admin.ordemdeservico.home', compact(['ordemdeservicos','total']));
+        
+        return view('admin.ordemdeservico.home', compact(['ordemdeservicos', 'total']));
+    }
+
+    // Método para listar ordens de serviço entregues
+    public function entregues()
+    {
+        $ordemdeservicos = OrdemDeServico::where('status', 'Entregue')
+            ->orderBy('id', 'desc')
+            ->get();
+        $total = OrdemDeServico::count();
+        
+        return view('admin.ordemdeservico.entregues', compact(['ordemdeservicos', 'total']));
     }
 
     public function create()
     {
         return view('admin.ordemdeservico.create');
     }
+    
     
     public function show($id)
     {
