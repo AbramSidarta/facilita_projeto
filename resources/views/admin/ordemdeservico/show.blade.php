@@ -26,7 +26,7 @@
                                     <a style="background-color: #094081;border: 2px solid #094081;"  href="#" class="btn btn-primary me-3">Imprimir</a>
                                     <div class="row">
                                         <div class="d-grid">
-                                            <a href="{{ route('adminOrdemDeServico.update',['id'=> $ordemServico->id])  }}" style="background-color: #FF8A00;border: 2px solid #FF8A00;" class="btn btn-primary">Editar</a>
+                                            <a href="{{ route('adminOrdemDeServico.edit',['id'=> $ordemServico->id])  }}" style="background-color: #FF8A00;border: 2px solid #FF8A00;" class="btn btn-primary">Editar</a>
                                         </div>
                                     </div>
                                 </div>

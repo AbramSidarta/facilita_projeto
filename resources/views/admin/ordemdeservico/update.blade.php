@@ -4,7 +4,7 @@
             <span class="font-semibold text-xl text-gray-800 leading-tight">
                 {{ __('Visualizar Ordem de Serviço') }}
             </span>
-            <a style="background-color: #ADB5BD;border: 2px solid #ADB5BD;" href="{{ route('adminOrdemDeServico.index') }}" class="btn btn-primary text-dark">Voltar</a>
+            
         </div>
        
     </x-slot>
@@ -18,8 +18,9 @@
                                 {{session('error')}}
                             </div>
                         @endif                
-                        <form action="{{ route('adminOrdemDeServico.store') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('adminOrdemDeServico.update', [$ordemServico->id]) }}" method="POST" enctype="multipart/form-data">
                         @csrf
+                        @method('PUT')
                             <div class="d-flex justify-content-between d-flex align-items-center">
                                 <div class="d-flex flex-row d-flex align-items-center">
                                     <h3 class="m-0">Estados da ordem de serviço:</h3>
@@ -37,10 +38,10 @@
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-between d-flex align-items-center">
-                                    <a style="background-color: #094081;border: 2px solid #094081;"  href="#" class="btn btn-primary me-3">Imprimir</a>
+                                    <a style="background-color: #DC1C2E;border: 2px solid #DC1C2E;"  href="{{ route('adminOrdemDeServico.show',['id'=> $ordemServico->id])}}" class="btn btn-primary me-3">Cancelar</a>
                                     <div class="row">
                                         <div class="d-grid">
-                                            <button style="background-color: #19940E;border: 2px solid #19940E;" class="btn btn-primary">Enviar</button>
+                                            <button style="background-color: #198754;border: 2px solid #198754;" href="" class="btn btn-primary">Pronto</button>
                                         </div>
                                     </div>
                                 </div>
@@ -291,22 +292,28 @@
                                         @endforeach
                                     </ul>
                                 @endif
-                                <div class="col d-flex flex-row  d-flex align-items-center mt-3">
-                                    <h4 class="m-0 ">LAYOUT:</h4>
+                                
+                                <div class="col d-flex flex-row align-items-center mt-3">
+                                    <h4 class="m-0">LAYOUT:</h4>
                                     <div class="row">
                                         <div class="col ms-3">
-                                            <input type="file" name="layout" class="form-control" id="layout" placeholder="Layout" value="{{($ordemServico->layout)}}">
+                                            <input type="file" name="layout" class="form-control" id="layout" placeholder="Layout" onchange="previewImage(event)">
                                             @error('layout')
-                                                <span class="text-danger">{{$message}}</span>
+                                                <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="border border-dark-subtle mt-3">
-                                    <div class="d-flex justify-content-center " id="layout">
-                                        <img class="m-3 " id="preview" src="" alt="Nenhuma imagem selecionada ">
+                                    <div class="d-flex justify-content-center">
+                                        <img class="m-3" id="preview" 
+                                            src="{{ $ordemServico->layout ? asset('uploads/ordemdeservico/' . $ordemServico->layout) : '' }}" 
+                                            alt="Nenhuma imagem selecionada" 
+                                            style="{{ $ordemServico->layout ? '' : 'display:none;' }}">
                                     </div>
                                 </div>
+
                                 
                                 <div class="col-6 form-floating d-flex justify-content-between d-flex align-items-center mt-3">
                                     <h4 class="m-0">EMBALAGEM:</h4>
@@ -320,7 +327,7 @@
                                     </div>
                                     <div class="col d-flex flex-row ">
                                             <h4 class="d-flex align-items-center m-0 p-2">OBS:</h4>
-                                            <input type="text" name="observacoes_layout" class="form-control " id="observacoes_layout" placeholder="Observacoes" value="{{($ordemServico->observacoes_layout )}}">
+                                            <input type="text" name="observacoes_layout" class="form-control " id="observacoes_layout" placeholder="Observacoes" value="{{($ordemServico->observacoes_layout )}}"{{ ($ordemServico->observacoes_layout) }}>
                                             @error('observacoes_layout')
                                                 <span class="text-danger">{{$message}}</span>
                                             @enderror
@@ -334,7 +341,7 @@
                             <div class="col-12 form-floating d-flex justify-content-end mt-5 me-4">
                                 <div class="row mb-3">
                                     <div class="col me-5 ">
-                                        <input type="text" name="nome_funcionario" class="form-control floatingInput" id="nome_funcionario" placeholder="Nome do funcionario" value="{{old('nome_funcionario')}}">
+                                        <input type="text" name="nome_funcionario" class="form-control floatingInput" id="nome_funcionario" placeholder="Nome do funcionario" value="{{$ordemServico->nome_funcionario}}">
                                         <h2 class="d-flex justify-content-center">Funcionario</h2>
                                         @error('nome_funcionario')
                                             <span class="text-danger">{{$message}}</span>
