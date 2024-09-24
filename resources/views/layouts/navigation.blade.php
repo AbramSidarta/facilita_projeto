@@ -17,7 +17,7 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('#')">
+                    <x-nav-link :href="route('adminOrdemDeServico.entregues')" :active="request()->routeIs('adminOrdemDeServico.entregues')">
                         {{ __('Lista entregues') }}
                     </x-nav-link>
                 </div>
@@ -26,8 +26,8 @@
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('#')">
-                        {{ __('Cadastrar cliente') }}
+                    <x-nav-link :href="route('adminCliente.index')" :active="request()->routeIs('#')">
+                        {{ __('Clientes') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex me-5">

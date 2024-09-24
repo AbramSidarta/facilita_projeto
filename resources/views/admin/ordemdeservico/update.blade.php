@@ -101,7 +101,7 @@
                                     <div class="row mb-3">
                                         <div class="col d-flex justify-content-between align-items-center" x-data="{ telefone : ' ' }">
                                             <label class="  mx-2"for="">Fone:</label>
-                                            <input type="text" name="fone" class="form-control " id="fone" placeholder="Fone" x-mask="(99) 99999-9999" value="{{$ordemServico->fone}}">
+                                            <input type="text" name="fone" class="form-control " id="fone" placeholder="Fone" x-mask="(99) 99999-9999" value="{{$ordemServico->fone}}" required>
                                             @error('fone')
                                                 <span class="text-danger">{{$message}}</span>
                                             @enderror
@@ -118,15 +118,15 @@
                                         <div class="col-6 form-floating d-flex justify-content-between d-flex align-items-center">
                                             <span>Pago:</span>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input border border-black rounded-0" type="radio" name="pago" id="pago_sim" value="sim" {{ $ordemServico->pago == 'sim' ? 'checked' : '' }} >
+                                                <input class="form-check-input border border-black rounded-0" type="radio" name="pago" id="pago_sim" value="sim" {{ $ordemServico->pago == 'sim' ? 'checked' : '' }}  required>
                                                 <label class="form-check-label" for="pago_sim">Sim</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input border border-black rounded-0" type="radio" name="pago" id="pago_nao" value="nao"  {{ $ordemServico->pago == 'nao' ? 'checked' : '' }}>
+                                                <input class="form-check-input border border-black rounded-0" type="radio" name="pago" id="pago_nao" value="nao"  {{ $ordemServico->pago == 'nao' ? 'checked' : '' }} required>
                                                 <label class="form-check-label" for="pago_nao">Não</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input border border-black rounded-0" type="radio" name="pago" id="pago_50" value="50%" {{ $ordemServico->pago == '50%' ? 'checked' : '' }}>
+                                                <input class="form-check-input border border-black rounded-0" type="radio" name="pago" id="pago_50" value="50%" {{ $ordemServico->pago == '50%' ? 'checked' : '' }} required>
                                                 <label class="form-check-label" for="pago_50">50%</label>
                                             </div>
                                         </div>
@@ -147,7 +147,7 @@
                                                 <div class="row mb-3 ">
                                                     <div class="col d-flex justify-content-between align-items-center">
                                                         <label class="  mx-2">D.R:</label>
-                                                        <input type="date" name="data_de_recebimento" class="form-control " id="data_de_recebimento" placeholder="Data de recebimento" value='<?php echo date("Y-m-d"); ?>'>
+                                                        <input type="date" name="data_de_recebimento" class="form-control " id="data_de_recebimento" placeholder="Data de recebimento" value='{{($ordemServico->data_de_recebimento)}}'>
                                                         @error('data_de_recebimento')
                                                             <span class="text-danger">{{$message}}</span>
                                                         @enderror
@@ -156,7 +156,7 @@
                                                 <div class="row mb-3">
                                                     <div class="col d-flex justify-content-between align-items-center">
                                                         <label class="  mx-2">D.E:</label>
-                                                        <input type="date" name="data_de_entrega" class="form-control " id="data_de_entrega" placeholder="Data de entrega" value="{{($ordemServico->data_de_entrega)}}">
+                                                        <input type="date" name="data_de_entrega" class="form-control " id="data_de_entrega" placeholder="Data de entrega" value="{{($ordemServico->data_de_entrega)}}" required>
                                                         @error('data_de_entrega')
                                                             <span class="text-danger">{{$message}}</span>
                                                         @enderror
@@ -167,7 +167,7 @@
                                             <div class="row mb-3 col-6 d-flex align-items-center">
                                                 <div>
                                                     <label class="mx-2 mb-2">HORA ENTREGA:</label>
-                                                    <input type="text " name="hora_de_entrega" class=" form-control " id="hora_de_entrega" placeholder="Hora de entrega" value="{{($ordemServico->hora_de_entrega)}}">
+                                                    <input type="text " name="hora_de_entrega" class=" form-control " id="hora_de_entrega" placeholder="Hora de entrega" value="{{($ordemServico->hora_de_entrega)}}" required>
                                                     @error('hora_de_entrega:')
                                                         <span class="text-danger">{{$message}}</span>
                                                     @enderror
@@ -182,7 +182,7 @@
                                     <div class="row mb-3 col-6 align-items-center">
                                         <div class="col  d-flex justify-content-between align-items-center">
                                             <label class="  mx-2">D.E:</label>
-                                            <input type="date" name="prazo_da_impressao_data" class="form-control" id="prazo_da_impressao_data" placeholder="Data de entrega da impressão" value='<?php echo date("Y-m-d"); ?>'>
+                                            <input type="date" name="prazo_da_impressao_data" class="form-control" id="prazo_da_impressao_data" placeholder="Data de entrega da impressão" value='{{($ordemServico->prazo_da_impressao_data)}}' required>
                                             @error('prazo_da_impressao_data')
                                                 <span class="text-danger">{{$message}}</span>
                                             @enderror
@@ -191,7 +191,7 @@
                                     <div class="row mb-3 col-6 align-items-center">
                                         <div class="col">
                                             <label class="  ms-3">HORA ENTREGA:</label>
-                                            <input type="text" name="prazo_da_impressao_hora" class="form-control" id="prazo_da_impressao_hora" placeholder="Hora de entrega da impressão" value="{{($ordemServico->prazo_da_impressao_hora)}}">
+                                            <input type="text" name="prazo_da_impressao_hora" class="form-control" id="prazo_da_impressao_hora" placeholder="Hora de entrega da impressão" value="{{($ordemServico->prazo_da_impressao_hora)}}" required>
                                             @error('prazo_da_impressao_hora')
                                                 <span class="text-danger">{{$message}}</span>
                                             @enderror
@@ -203,7 +203,7 @@
                                     <div class="col-6 row mb-3 align-items-center">
                                         <div class="">
                                             <label class="  ms-3">DIA REC. DO CONTROLE </label>
-                                            <input type="date" name="dia_do_recebimento_do_controle" class="form-control " id="dia_do_recebimento_do_controle" placeholder="Rec. do controle" value='<?php echo date("Y-m-d"); ?>'>
+                                            <input type="date" name="dia_do_recebimento_do_controle" class="form-control " id="dia_do_recebimento_do_controle" placeholder="Rec. do controle" value='{{($ordemServico->dia_do_recebimento_do_controle)}}'required>
                                             @error('dia_do_recebimento_do_controle')
                                                 <span class="text-danger">{{$message}}</span>
                                             @enderror
@@ -212,7 +212,7 @@
                                     <div class="row mb-3 col-6 align-items-center ">
                                         <div class="">
                                             <label class="ms-3" for="">HORA REC. </label>
-                                            <input type="text" name="hora_do_recebimento_do_controle" class="form-control " id="hora_do_recebimento_do_controle" placeholder="Hora do recebimento" value="{{( $ordemServico->hora_do_recebimento_do_controle)}}">
+                                            <input type="text" name="hora_do_recebimento_do_controle" class="form-control " id="hora_do_recebimento_do_controle" placeholder="Hora do recebimento" value="{{( $ordemServico->hora_do_recebimento_do_controle)}}" required>
                                             @error('hora_do_recebimento_do_controle')
                                                 <span class="text-danger">{{$message}}</span>
                                             @enderror
@@ -224,11 +224,11 @@
                                     <div class="col-6 form-floating d-flex justify-content-between d-flex align-items-center">
                                         <div class="form-check form-check-inline ">
                                             <input class="form-check-input border border-black  rounded-0" type="radio" name="servico_externo" id="servico_externo" value="1"
-                                            {{ $ordemServico->servico_externo == '1' ? 'checked' : '' }}
+                                            {{ $ordemServico->servico_externo == '1' ? 'checked' : '' }} required>
                                             <label class="form-check-label" for="inlineRadio1">Sim</label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input  border border-black  rounded-0" type="radio" name="servico_externo" id="servico_externo" value="0"{{ $ordemServico->servico_externo == '0' ? 'checked' : '' }}>
+                                            <input class="form-check-input  border border-black  rounded-0" type="radio" name="servico_externo" id="servico_externo" value="0"{{ $ordemServico->servico_externo == '0' ? 'checked' : '' }} required>
                                             <label class="form-check-label" for="inlineRadio2">Não</label>
                                         </div>
                                     </div>
@@ -238,25 +238,25 @@
                                     <div class=" d-flex justify-content-evenly">
                                         <div class="d-flex flex-column">
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input  border border-black rounded-0" type="radio" name="formas_de_pagamento" id="formas_de_pagamento" value="pix"{{ $ordemServico->formas_de_pagamento == 'pix' ? 'checked' : '' }}>
+                                                <input class="form-check-input  border border-black rounded-0" type="radio" name="formas_de_pagamento" id="formas_de_pagamento" value="pix"{{ $ordemServico->formas_de_pagamento == 'pix' ? 'checked' : '' }} required>
                                                 <label class="form-check-label" for="inlineRadio1">PIX</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input  border border-black  rounded-0" type="radio" name="formas_de_pagamento" id="formas_de_pagamento" value="transfbanc./deposito"{{ $ordemServico->formas_de_pagamento == 'transfbanc./deposito' ? 'checked' : '' }}>
+                                                <input class="form-check-input  border border-black  rounded-0" type="radio" name="formas_de_pagamento" id="formas_de_pagamento" value="transfbanc./deposito"{{ $ordemServico->formas_de_pagamento == 'transfbanc./deposito' ? 'checked' : '' }} required>
                                                 <label class="form-check-label" for="inlineRadio1">CARTÃO</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input  border border-black  rounded-0" type="radio" name="formas_de_pagamento" id="formas_de_pagamento" value="pag.naloja"{{ $ordemServico->formas_de_pagamento == 'pag.naloja' ? 'checked' : '' }}>
+                                                <input class="form-check-input  border border-black  rounded-0" type="radio" name="formas_de_pagamento" id="formas_de_pagamento" value="pag.naloja"{{ $ordemServico->formas_de_pagamento == 'pag.naloja' ? 'checked' : '' }} required>
                                                 <label class="form-check-label" for="inlineRadio1">TRANSF.BANC./DEPÓSITO</label>
                                             </div>
                                         </div>
                                         <div class=" d-flex flex-column">
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input  border border-black  rounded-0" type="radio" name="formas_de_pagamento" id="formas_de_pagamento" value="dinheiro"{{ $ordemServico->formas_de_pagamento == 'dinheiro' ? 'checked' : '' }}>
+                                                <input class="form-check-input  border border-black  rounded-0" type="radio" name="formas_de_pagamento" id="formas_de_pagamento" value="dinheiro"{{ $ordemServico->formas_de_pagamento == 'dinheiro' ? 'checked' : '' }} required>
                                                 <label class="form-check-label" for="inlineRadio1">DINHEIRO</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input  border border-black  rounded-0" type="radio" name="formas_de_pagamento" id="formas_de_pagamento" value="cartao"{{ $ordemServico->formas_de_pagamento == 'cartao' ? 'checked' : '' }}>
+                                                <input class="form-check-input  border border-black  rounded-0" type="radio" name="formas_de_pagamento" id="formas_de_pagamento" value="cartao"{{ $ordemServico->formas_de_pagamento == 'cartao' ? 'checked' : '' }} required>
                                                 <label class="form-check-label" for="inlineRadio1">PAG. NA LOJA</label>
                                             </div>
                                         </div>
@@ -297,7 +297,7 @@
                                     <h4 class="m-0">LAYOUT:</h4>
                                     <div class="row">
                                         <div class="col ms-3">
-                                            <input type="file" name="layout" class="form-control" id="layout" placeholder="Layout" onchange="previewImage(event)">
+                                            <input type="file" name="layout" class="form-control" id="layout" placeholder="Layout" onchange="previewImage(event)" >
                                             @error('layout')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
@@ -318,16 +318,16 @@
                                 <div class="col-6 form-floating d-flex justify-content-between d-flex align-items-center mt-3">
                                     <h4 class="m-0">EMBALAGEM:</h4>
                                     <div class="form-check form-check-inline ms-2">
-                                        <input class="form-check-input rounded-0  border border-black " type="radio" name="embalagem" id="embalagem" value="sim"{{$ordemServico->embalagem === 'sim' ? 'checked' : '' }}>
+                                        <input class="form-check-input rounded-0  border border-black " type="radio" name="embalagem" id="embalagem" value="sim"{{$ordemServico->embalagem === 'sim' ? 'checked' : '' }} required>
                                         <label class="form-check-label" for="inlineRadio1">SIM</label>
                                     </div>
                                     <div class="form-check form-check-inline m-2">
-                                        <input class="form-check-input rounded-0 border border-black" type="radio" name="embalagem" id="embalagem" value="nao"{{ $ordemServico->embalagem === 'nao' ? 'checked' : '' }}>
+                                        <input class="form-check-input rounded-0 border border-black" type="radio" name="embalagem" id="embalagem" value="nao"{{ $ordemServico->embalagem === 'nao' ? 'checked' : '' }} required>
                                         <label class="form-check-label" for="inlineRadio1">NÃO</label>
                                     </div>
                                     <div class="col d-flex flex-row ">
                                             <h4 class="d-flex align-items-center m-0 p-2">OBS:</h4>
-                                            <input type="text" name="observacoes_layout" class="form-control " id="observacoes_layout" placeholder="Observacoes" value="{{($ordemServico->observacoes_layout )}}"{{ ($ordemServico->observacoes_layout) }}>
+                                            <input type="text" name="observacoes_layout" class="form-control " id="observacoes_layout" placeholder="Observacoes" value="{{($ordemServico->observacoes_layout )}}"{{ ($ordemServico->observacoes_layout) }}  >
                                             @error('observacoes_layout')
                                                 <span class="text-danger">{{$message}}</span>
                                             @enderror
@@ -341,7 +341,7 @@
                             <div class="col-12 form-floating d-flex justify-content-end mt-5 me-4">
                                 <div class="row mb-3">
                                     <div class="col me-5 ">
-                                        <input type="text" name="nome_funcionario" class="form-control floatingInput" id="nome_funcionario" placeholder="Nome do funcionario" value="{{$ordemServico->nome_funcionario}}">
+                                        <input type="text" name="nome_funcionario" class="form-control floatingInput" id="nome_funcionario" placeholder="Nome do funcionario" value="{{$ordemServico->nome_funcionario}}" required>
                                         <h2 class="d-flex justify-content-center">Funcionario</h2>
                                         @error('nome_funcionario')
                                             <span class="text-danger">{{$message}}</span>

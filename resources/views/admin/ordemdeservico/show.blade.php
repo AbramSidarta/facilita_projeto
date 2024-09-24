@@ -4,7 +4,11 @@
             <span class="font-semibold text-xl text-gray-800 leading-tight">
                 {{ __('Visualizar Ordem de Serviço') }}
             </span>
-            <a style="background-color: #ADB5BD;border: 2px solid #ADB5BD;" href="{{ route('adminOrdemDeServico.index') }}" class="btn btn-primary text-dark">Voltar</a>
+            @if ($ordemServico->status !== 'Entregue')
+                <a style="background-color: #ADB5BD;border: 2px solid #ADB5BD;" href="{{ route('adminOrdemDeServico.index') }}" class="btn btn-primary text-dark">Voltar</a>
+            @else
+                <a style="background-color: #ADB5BD;border: 2px solid #ADB5BD;" href="{{ route('adminOrdemDeServico.entregues') }}" class="btn btn-primary text-dark">Voltar</a>
+            @endif
         </div>
        
     </x-slot>
@@ -27,7 +31,11 @@
                                     <a style="background-color: #094081;border: 2px solid #094081;"  href="#" class="btn btn-primary me-3">Imprimir</a>
                                     <div class="row">
                                         <div class="d-grid">
-                                            <a href="{{ route('adminOrdemDeServico.edit',['id'=> $ordemServico->id])  }}" style="background-color: #FF8A00;border: 2px solid #FF8A00;" class="btn btn-primary">Editar</a>
+                                            @if ($ordemServico->status !== 'Entregue')
+                                                <a href="{{ route('adminOrdemDeServico.edit', ['id' => $ordemServico->id]) }}" 
+                                                style="background-color: #FF8A00; border: 2px solid #FF8A00;" 
+                                                class="btn btn-primary">Editar</a>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>

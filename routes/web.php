@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrdemDeServicoController;
+use App\Http\Controllers\ClienteController;
+
 
 
 
@@ -39,7 +41,13 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/ordemdeservico{id}', [OrdemDeServicoController::class, 'show'])->name('adminOrdemDeServico.show');
     Route::get('/admin/ordemdeservico/edit/{id}', [OrdemDeServicoController::class, 'edit'])->name('adminOrdemDeServico.edit');
     Route::put('/admin/ordemdeservico/{id}', [OrdemDeServicoController::class, 'update'])->name('adminOrdemDeServico.update');
-    Route::delete('/admin/ordemdeservico/{id}', [OrdemDeServicoController::class, 'destroy'])->name('adminOrdemDeServico.destroy');
+    Route::get('/admin/ordemdeservico/{id}', [OrdemDeServicoController::class, 'destroy'])->name('adminOrdemDeServico.destroy');
+
+    //clientes
+    Route::get('/admin/cliente', [ClienteController::class, 'index'])->name('adminCliente.index');
+    Route::get('/admin/cliente/create', [ClienteController::class, 'create'])->name('adminCliente.create');
+    Route::post('/admin/cliente/', [ClienteController::class, 'store'])->name('adminCliente.store');
+
 });
 
 require __DIR__.'/auth.php';
