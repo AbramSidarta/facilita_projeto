@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('name', 255);
             $table->string('endereco');
             $table->string('telefone', 20)->nullable();
+            $table->timestamps();
         });
     }
 

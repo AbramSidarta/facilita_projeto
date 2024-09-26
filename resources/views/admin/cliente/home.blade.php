@@ -29,10 +29,27 @@
                                 <th>Ações</th>
                             </tr>
                         </thead>
-                        <tbody>                             
+                        <tbody>  
+                            @forelse ($clientes as $cliente)
+                                <tr>
+                                    <td class="align-middle">{{ $cliente->id }}</td>
+                                    <td class="align-middle">{{ $cliente->endereco }}</td>
+                                    <td class="align-middle">{{ $cliente->telefone }}</td>
+                                   
+                                        
+                                    <td class="align-middle">
+                                        <div class="btn-group" role="group" aria-label="Basic example">
+                                            <spam class="p-2 ">
+                                                <a href="{{route('adminCliente.show', $cliente->id) }} " type="button" class="btn bg-secondary text-white fs-6">Ver Mais</a>
+                                            </spam>
+                                        </div>
+                                    </td>
+                                </tr>  
+                            @empty                       
                             <tr>
                                 <td class="text-center" colspan="6">Produto não encontrado</td>
                             </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>

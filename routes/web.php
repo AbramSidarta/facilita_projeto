@@ -47,6 +47,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/cliente', [ClienteController::class, 'index'])->name('adminCliente.index');
     Route::get('/admin/cliente/create', [ClienteController::class, 'create'])->name('adminCliente.create');
     Route::post('/admin/cliente/', [ClienteController::class, 'store'])->name('adminCliente.store');
+    Route::get('/admin/cliente{id}', [ClienteController::class, 'show'])->name('adminCliente.show');
+    Route::get('/admin/cliente/edit/{id}', [ClienteController::class, 'edit'])->name('adminCliente.edit');
+    Route::put('/admin/cliente/edit{id}', [ClienteController::class, 'update'])->name('adminCliente.update');
 
 });
 
