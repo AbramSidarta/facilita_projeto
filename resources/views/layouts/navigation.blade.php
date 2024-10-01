@@ -26,12 +26,12 @@
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('adminCliente.index')" :active="request()->routeIs('#')">
+                    <x-nav-link :href="route('adminCliente.index')" :active="request()->routeIs('adminCliente.index')">
                         {{ __('Clientes') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex me-5">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('#')">
+                    <x-nav-link :href="route('adminFuncionario.index')" :active="request()->routeIs('adminFuncionario.index')">
                         {{ __('Cadastrar funcionario') }}
                     </x-nav-link>
                 </div>

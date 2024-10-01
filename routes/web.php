@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrdemDeServicoController;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\FuncionarioController;
 
 
 
@@ -47,9 +48,18 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/cliente', [ClienteController::class, 'index'])->name('adminCliente.index');
     Route::get('/admin/cliente/create', [ClienteController::class, 'create'])->name('adminCliente.create');
     Route::post('/admin/cliente/', [ClienteController::class, 'store'])->name('adminCliente.store');
-    Route::get('/admin/cliente{id}', [ClienteController::class, 'show'])->name('adminCliente.show');
+    Route::get('/admin/cliente/{id}', [ClienteController::class, 'show'])->name('adminCliente.show');
     Route::get('/admin/cliente/edit/{id}', [ClienteController::class, 'edit'])->name('adminCliente.edit');
-    Route::put('/admin/cliente/edit{id}', [ClienteController::class, 'update'])->name('adminCliente.update');
+    Route::put('/admin/cliente/{id}', [ClienteController::class, 'update'])->name('adminCliente.update');
+
+
+     //funcionarios
+     Route::get('/admin/funcionario', [FuncionarioController::class, 'index'])->name('adminFuncionario.index');
+     Route::get('/admin/funcionario/create', [FuncionarioController::class, 'create'])->name('adminFuncionario.create');
+     Route::post('/admin/funcionario/', [FuncionarioController::class, 'store'])->name('adminFuncionario.store');
+     
+    
+
 
 });
 

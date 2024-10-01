@@ -33,8 +33,8 @@
                                         <div class="d-grid">
                                             @if ($ordemServico->status !== 'Entregue')
                                                 <a href="{{ route('adminOrdemDeServico.edit', ['id' => $ordemServico->id]) }}" 
-                                                style="background-color: #FF8A00; border: 2px solid #FF8A00;" 
-                                                class="btn btn-primary">Editar</a>
+                                                style="  background-color: #FF8A00; border: 2px solid #FF8A00;" 
+                                                class="btn text-white">Editar</a>
                                             @endif
                                         </div>
                                     </div>
@@ -303,7 +303,7 @@
                                     </div>
                                 </div>
                             </div>
-                    </div>
+                        </div>
                 </div>
             </div>
         </div>
