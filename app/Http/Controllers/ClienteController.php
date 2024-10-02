@@ -44,6 +44,7 @@ class ClienteController extends Controller
         $name = $request->name;
         $endereco = $request->endereco;
         $telefone = $request->telefone;
+        
 
 
         $cliente->name = $name;

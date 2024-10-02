@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nome', 255);
             $table->string('cpf');
+            $table->string('funcao');
             $table->string('senha', 20)->nullable();
             $table->timestamps();
         });

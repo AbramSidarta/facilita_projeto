@@ -3,7 +3,7 @@
     <x-slot name="header">
         <div class="d-flex justify-content-between d-flex align-items-center"   >
             <span class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Visualizar Ordem de Serviço') }}
+                {{ __('Cadastrar Funcionario') }}
             </span>
             <a style="background-color: #ADB5BD;border: 2px solid #ADB5BD;" href="{{ route('adminFuncionario.index') }}" class="btn btn-primary text-dark">Voltar</a>
         </div>
@@ -15,7 +15,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <h1 class="mb-0">Cadastrar Funcionario</h1>
-                    <hr />
+                  
                     @if (session()->has('error'))
                     <div>
                         {{session('error')}}
@@ -24,31 +24,80 @@
         
                     <form action="{{ route('adminFuncionario.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        <div class="row mb-3">
-                            <div class="col-11">
-                                <label class="ms-2 mb-2" for="">Nome</label>
+                       
+                        <div class="d-flex flex-row d-flex align-items-center d-flex justify-content-end mt-4" >
+                            <h6 class="m-0">Niveis de acesso:</h6>
+                            <div class="row ms-1">
+                                <div class="col ">
+                                    <select id="funcao" name="funcao" class="form-control pe-5" required >
+                                    <option value="">Selecione um nivel</option>
+                                    <option value="1" {{ old('funcao') === '1' ? 'selected' : '' }}>1</option>
+                                    <option value="2" {{ old('funcao') === '2' ? 'selected' : '' }}>2</option>
+                                    <option value="3" {{ old('funcao') === '3' ? 'selected' : '' }}>3</option>
+                                    <option value="4" {{ old('funcao') === '4' ? 'selected' : '' }}>4</option>
+                                    </select>
+                                </div>
+                                @error('funcao')
+                                <span class="text-danger">{{$message}}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="d-flex flex-row  mb-3 mt-4">
+                            <div class="col-8 d-flex flex-row d-flex align-items-center">
+                                <label class="mx-2" for="">Nome:</label>
                                 <input type="text" name="nome" class="form-control" placeholder="Nome">
                                 @error('nome')
                                 <span class="text-danger">{{$message}}</span>
                                 @enderror
                             </div>
                         </div>
+
+                        
                         
                         <div class="row mb-3">
-                            <div class="col-11">
+                            <div class="col-6 d-flex flex-row d-flex align-items-center">
                            
-                                <label class="ms-2 mb-2" for="">CPF</label>
-                                <input type="text" name="cpf" class="form-control" placeholder="CPF">
+                                <label class="mx-2" for="">CPF:</label>
+                                <input type="text" name="cpf" class="form-control" id="cpf"placeholder="CPF">
+                                <script>
+                                    function formatCPF(value) {
+                                        // Remove tudo que não é dígito
+                                        let cleanedValue = value.replace(/\D/g, '');
+
+                                        // Verifica se o comprimento é maior que 11
+                                        if (cleanedValue.length > 11) {
+                                            cleanedValue = cleanedValue.slice(0, 11);
+                                        }
+
+                                        // Adiciona a formatação
+                                        if (cleanedValue.length <= 3) {
+                                            return cleanedValue; // 000
+                                        } else if (cleanedValue.length <= 6) {
+                                            return cleanedValue.replace(/(\d{3})(\d+)/, '$1.$2'); // 000.000
+                                        } else if (cleanedValue.length <= 9) {
+                                            return cleanedValue.replace(/(\d{3})(\d{3})(\d+)/, '$1.$2.$3'); // 000.000.000
+                                        } else {
+                                            return cleanedValue.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4'); // 000.000.000-00
+                                        }
+                                    }
+
+                                    document.getElementById('cpf').addEventListener('input', function(event) {
+                                        const input = event.target;
+                                        input.value = formatCPF(input.value);
+                                    });
+                                </script>
+
                                 @error('cpf')
                                 <span class="text-danger">{{$message}}</span>
                                 @enderror
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <div class="col-6">
+                            <div class="col-6 d-flex flex-row d-flex align-items-center">
                               
-                                <label class="ms-2 mb-2" for="">Senha</label>
-                                <input type="text" name="senha" class="form-control" placeholder="Senha"   >
+                                <label class="mx-2" for="">Senha:</label>
+                                <input type="password" name="senha" class="form-control" placeholder="Senha"   >
                                 @error('senha')
                                 <span class="text-danger">{{$message}}</span>
                                 @enderror

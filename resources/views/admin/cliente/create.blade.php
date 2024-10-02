@@ -25,8 +25,8 @@
                     <form action="{{ route('adminCliente.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="row mb-3">
-                            <div class="col-11">
-                                <label class="ms-2 mb-2" for="">Nome</label>
+                            <div class="col-8 d-flex flex-row d-flex align-items-center">
+                                <label class="mx-2" for="">Nome:</label>
                                 <input type="text" name="name" class="form-control" placeholder="Nome">
                                 @error('name')
                                 <span class="text-danger">{{$message}}</span>
@@ -34,9 +34,9 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <div class="col-11">
+                            <div class="col-6 d-flex flex-row d-flex align-items-center">
                            
-                                <label class="ms-2 mb-2" for="">Endereço</label>
+                                <label class="mx-2" for="">Endereço:</label>
                                 <input type="text" name="endereco" class="form-control" placeholder="Endereço">
                                 @error('endereco')
                                 <span class="text-danger">{{$message}}</span>
@@ -44,9 +44,9 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <div class="col-6" x-data="{ telefone : ' ' }">
+                            <div class="col-6 d-flex flex-row d-flex align-items-center" x-data="{ telefone : ' ' }">
                               
-                                <label class="ms-2 mb-2" for="">Telefone</label>
+                                <label class="mx-2" for="">Telefone:</label>
                                 <input type="text" name="telefone" class="form-control" placeholder="Telefone"  x-mask="(99) 99999-9999" >
                                 @error('telefone')
                                 <span class="text-danger">{{$message}}</span>

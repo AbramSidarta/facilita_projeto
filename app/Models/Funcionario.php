@@ -14,6 +14,7 @@ class Funcionario extends Model
         'nome',
         'cpf',
         'senha',
+        'funcao',
        
     ];
 }
