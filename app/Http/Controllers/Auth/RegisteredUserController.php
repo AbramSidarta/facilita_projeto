@@ -17,6 +17,9 @@ class RegisteredUserController extends Controller
     /**
      * Display the registration view.
      */
+
+
+
     public function create(): View
     {
         return view('auth.register');
@@ -31,14 +34,16 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'cpf' => ['required', 'string', 'max:14', 'unique:'.User::class], // Adicione validação para CPF
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'usertype' => 'required|in:guiche,impressao,producao,caixa,admin',
         ]);
 
         $user = User::create([
             'name' => $request->name,
-            'email' => $request->email,
+            'cpf' => $request->cpf, // Armazene o CPF
             'password' => Hash::make($request->password),
+            'usertype' => $request->usertype, // Adicione isso
         ]);
 
         event(new Registered($user));

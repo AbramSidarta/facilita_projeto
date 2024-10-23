@@ -60,33 +60,7 @@
                            
                                 <label class="mx-2" for="">CPF:</label>
                                 <input type="text" name="cpf" class="form-control" id="cpf"placeholder="CPF">
-                                <script>
-                                    function formatCPF(value) {
-                                        // Remove tudo que não é dígito
-                                        let cleanedValue = value.replace(/\D/g, '');
-
-                                        // Verifica se o comprimento é maior que 11
-                                        if (cleanedValue.length > 11) {
-                                            cleanedValue = cleanedValue.slice(0, 11);
-                                        }
-
-                                        // Adiciona a formatação
-                                        if (cleanedValue.length <= 3) {
-                                            return cleanedValue; // 000
-                                        } else if (cleanedValue.length <= 6) {
-                                            return cleanedValue.replace(/(\d{3})(\d+)/, '$1.$2'); // 000.000
-                                        } else if (cleanedValue.length <= 9) {
-                                            return cleanedValue.replace(/(\d{3})(\d{3})(\d+)/, '$1.$2.$3'); // 000.000.000
-                                        } else {
-                                            return cleanedValue.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4'); // 000.000.000-00
-                                        }
-                                    }
-
-                                    document.getElementById('cpf').addEventListener('input', function(event) {
-                                        const input = event.target;
-                                        input.value = formatCPF(input.value);
-                                    });
-                                </script>
+                              
 
                                 @error('cpf')
                                 <span class="text-danger">{{$message}}</span>

@@ -11,7 +11,7 @@
                 <div class="p-6 text-gray-900">
                     <div class="d-flex align-items-center justify-content-between">
                         <h1 class="mb-0">Lista dos funcionarios</h1>
-                        <a href="{{ route('adminFuncionario.create') }}" class="btn btn-primary">Cadastrar Funcionario</a>
+                        <a href="{{ route('register') }}" class="btn btn-primary">Cadastrar Funcionario</a>
                     </div>
                     <hr />
                     @if (Session::has('success'))
