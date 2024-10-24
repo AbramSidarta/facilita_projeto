@@ -6,10 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrdemDeServicoController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\FuncionarioController;
-
-
-
-
+use App\Http\Controllers\RegisteredUserController ;
 
 Route::get('/', function () {
     return view('dashboard');
@@ -54,7 +51,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
 
      //funcionarios
-     Route::get('/admin/funcionario', [FuncionarioController::class, 'index'])->name('adminFuncionario.index');
+     Route::get('/admin/funcionario', [RegisteredUserController ::class, 'index'])->name('adminFuncionario.index');
      Route::get('/admin/funcionario/create', [FuncionarioController::class, 'create'])->name('adminFuncionario.create');
      Route::post('/admin/funcionario/', [FuncionarioController::class, 'store'])->name('adminFuncionario.store');
      Route::get('/admin/funcionario/{id}', [FuncionarioController::class, 'show'])->name('adminFuncionario.show');

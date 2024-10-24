@@ -28,7 +28,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($funcionarios as $funcionario)
+                            @forelse ($Users as $User)
                                 <tr>
                                     <td class="text-center align-middle">{{ $funcionario->nome }}</td>
                                     <td class="text-center align-middle">{{ $funcionario->funcao }}</td> <!-- Corrigido para a coluna correta -->
