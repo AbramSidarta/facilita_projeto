@@ -46,7 +46,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/cliente/{id}', [ClienteController::class, 'show'])->name('adminCliente.show');
     Route::get('/admin/cliente/edit/{id}', [ClienteController::class, 'edit'])->name('adminCliente.edit');
     Route::put('/admin/cliente/{id}', [ClienteController::class, 'update'])->name('adminCliente.update');
-
+    Route::get('/admin/cliente/{id}', [ClienteController::class, 'destroy'])->name('adminCliente.destroy');
 
     //funcionarios
     Route::get('/admin/funcionario', [RegisteredUserController::class, 'index'])->name('adminFuncionario.index');
@@ -56,7 +56,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/funcionario/{id}', [FuncionarioController::class, 'show'])->name('adminFuncionario.show');
     Route::get('/admin/funcionario/edit/{id}', [FuncionarioController::class, 'edit'])->name('adminFuncionario.edit');
     Route::put('/admin/funcionario/{id}', [FuncionarioController::class, 'update'])->name('adminFuncionario.update');
-
+    Route::get('/admin/funcionario/{id}', [FuncionarioController::class, 'destroy'])->name('adminFuncionario.destroy');
 });
 
 require __DIR__.'/auth.php';

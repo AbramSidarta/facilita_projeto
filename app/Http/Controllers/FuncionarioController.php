@@ -14,6 +14,18 @@ class FuncionarioController extends Controller
         return view('admin.funcionario.home', compact(['funcionarios', 'total']));
     }
 
+    public function destroy($id)
+    {
+        $funcionarios = User::findOrFail($id)->delete();
+        if ($funcionarios) {
+            session()->flash('success', 'Deletado com Sucesso');
+            return redirect(route('adminFuncionario.home'));
+        } else {
+            session()->flash('error', 'Ocorreu algum problema');
+            return redirect(route('adminFuncionario.home', ['id'=> $funcionarios->id]));
+        }
+    }
+
     public function create()
     {
         return view('admin.funcionario.create');

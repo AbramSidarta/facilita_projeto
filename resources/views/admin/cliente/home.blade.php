@@ -37,7 +37,8 @@
                                     <td class="text-center align-middle">
                                         <div class="btn-group" role="group" aria-label="Basic example">
                                             <span class="p-2">
-                                                <a href="{{ route('adminCliente.show', $cliente->id) }}" type="button" class="btn bg-secondary text-white fs-6">Ver Mais</a>
+                                            <a style=" background-color: #FF8A00;border: 2px solid #FF8A00;" href="{{ route('adminCliente.edit', $cliente->id) }}" class=" btn text-white ">Editar</a>
+                                            <a href="{{ route('adminCliente.destroy', ['id'=>$cliente->id]) }}" type="button" class="btn btn-danger">Delete</a>
                                             </span>
                                         </div>
                                     </td>

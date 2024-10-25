@@ -13,6 +13,18 @@ class ClienteController extends Controller
         return view('admin.cliente.home', compact(['clientes', 'total']));
     }
 
+    public function destroy($id)
+    {
+        $clientes = Cliente::findOrFail($id)->delete();
+        if ($clientes) {
+            session()->flash('success', 'Deletado com Sucesso');
+            return redirect(route('adminCliente.index'));
+        } else {
+            session()->flash('error', 'Ocorreu algum problema');
+            return redirect(route('adminCliente.index', ['id'=> $clientes->id]));
+        }
+    }
+
     public function create()
     {
         return view('admin.cliente.create');
