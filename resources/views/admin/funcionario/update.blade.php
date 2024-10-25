@@ -41,12 +41,13 @@
                             <h6 class="m-0">Niveis de acesso:</h6>
                             <div class="row ms-1">
                                 <div class="col ">
-                                    <select id="funcao" name="funcao" class="form-control pe-5" required >
-                                    <option value="">Selecione uma Categoria</option>
-                                    <option value="1" {{ $funcionario->funcao === '1' ? 'selected' : '' }}>1</option>
-                                    <option value="2" {{  $funcionario->funcao === '2' ? 'selected' : '' }}>2</option>
-                                    <option value="3" {{ $funcionario->funcao === '3' ? 'selected' : '' }}>3</option>
-                                    <option value="4" {{  $funcionario->funcao === '4' ? 'selected' : '' }}>4</option>
+                                    <select id="usertype" name="usertype" class="form-control pe-5" required >
+                                    <option value="" disabled selected>Selecione uma Categoria</option>
+                                    <option value="guiche" {{ $funcionario->usertype === 'guiche' ? 'selected' : '' }}>guiche</option>
+                                    <option value="impressao" {{  $funcionario->usertype === 'impressao' ? 'selected' : '' }}>impressao</option>
+                                    <option value="producao" {{ $funcionario->usertype === 'producao' ? 'selected' : '' }}>producao</option>
+                                    <option value="caixa" {{  $funcionario->usertype === 'caixa' ? 'selected' : '' }}>caixa</option>
+                                    <option value="admin" {{  $funcionario->usertype === 'admin' ? 'selected' : '' }}>admin</option>
                                     </select>
                                 </div>
                             </div>
@@ -55,7 +56,7 @@
                         <div class="row mb-3">
                             <div class="col-11">
                                 <label class="ms-2 mb-2" for="">Nome</label>
-                                <input type="text" name="nome" class="form-control" placeholder="Nome" id="nome" placeholder="Nome do Cliente" value="{{$funcionario->nome}}" required>
+                                <input type="text" name="name" class="form-control" placeholder="Nome" id="name" placeholder="Nome do Cliente" value="{{$funcionario->name}}" required>
                                 @error('nome')
                                 <span class="text-danger">{{$message}}</span>
                                 @enderror
@@ -74,7 +75,7 @@
                         <div class="row mb-3">
                             <div class="col-6" >
                                 <label class="ms-2 mb-2" for="">senha</label>
-                                <input type="text" name="senha" class="form-control" placeholder="Telefone" id="senha" placeholder="Telefone do Cliente" value="{{$funcionario->senha}}" required>
+                                <input type="text" name="password" class="form-control" placeholder="Telefone" id="password" placeholder="Telefone do Cliente" value="{{$funcionario->senha}}" required>
                                 @error('senha')
                                 <span class="text-danger">{{$message}}</span>
                                 @enderror

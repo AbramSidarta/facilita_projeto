@@ -13,12 +13,12 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('adminOrdemDeServico.index')" :active="request()->routeIs('adminOrdemDeServico.index')">
-                        {{ __('Ordens de serviço') }}
+                        {{ __('Ordens De Serviço') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('adminOrdemDeServico.entregues')" :active="request()->routeIs('adminOrdemDeServico.entregues')">
-                        {{ __('Lista entregues') }}
+                        {{ __('Lista Entregues') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -31,8 +31,8 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex me-5">
-                    <x-nav-link :href="route('adminFuncionario.index')" :active="request()->routeIs('adminFuncionario.index')">
-                        {{ __('Cadastrar funcionario') }}
+                    <x-nav-link :href="route('adminFuncionario.home')" :active="request()->routeIs('adminFuncionario.home')">
+                        {{ __('Funcionarios') }}
                     </x-nav-link>
                 </div>
 
@@ -50,9 +50,6 @@
                     </x-slot>
 
                     <x-slot name="content">
-                        <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('Profile') }}
-                        </x-dropdown-link>
 
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">

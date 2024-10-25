@@ -44,7 +44,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td class="text-center" colspan="4">Produto não encontrado</td>
+                                    <td class="text-center" colspan="4">Nenhum cliente encontrado</td>
                                 </tr>
                             @endforelse
                         </tbody>

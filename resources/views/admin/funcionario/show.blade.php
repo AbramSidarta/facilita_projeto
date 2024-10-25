@@ -6,7 +6,7 @@
                 {{ __('Vizualizar Funcionario') }}
             </span>
             
-            <a style="background-color: #ADB5BD;border: 2px solid #ADB5BD;" href="{{ route('adminFuncionario.index') }}" class="btn btn-primary text-dark">Voltar</a>
+            <a style="background-color: #ADB5BD;border: 2px solid #ADB5BD;" href="{{ route('adminFuncionario.home') }}" class="btn btn-primary text-dark">Voltar</a>
             
         </div>
        
@@ -32,7 +32,7 @@
                             <h4 class="m-0">Niveis de acesso:</h4>
                             <div class="row ms-1">
                                 <div class="col border-2 rounded ms-3" style="border: 2px solid ##dee2e6;">
-                                    <h4 class="m-0 p-1 ">{{ $funcionario->funcao}}</h4>
+                                    <h4 class="m-0 p-1 ">{{ $funcionario->usertype}}</h4>
                                 </div>
                             </div>
                         </div>
@@ -40,7 +40,7 @@
                         <div class="row mb-3 mt-3">
                             <div class="col-8 d-flex flex-row d-flex align-items-center">
                                 <label class="mx-2" for="">Nome:</label>
-                                <p class="m-0 border-bottom border-dark  col-10">{{ $funcionario->nome }}
+                                <p class="m-0 border-bottom border-dark  col-10">{{ $funcionario->name }}
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -53,7 +53,7 @@
                         <div class="row mb-3">
                             <div class="col-6 d-flex flex-row d-flex align-items-center">
                                 <label class="mx-2" for="">Senha:</label>
-                                <p class="m-0 border-bottom border-dark  col">{{ $funcionario->senha }}
+                                <p class="m-0 border-bottom border-dark  col">{{ $funcionario->password }}
                                
                             </div>
                         </div>

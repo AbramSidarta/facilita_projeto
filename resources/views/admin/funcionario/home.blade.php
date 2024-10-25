@@ -22,23 +22,28 @@
                     <table class="table table-hover">
                         <thead class="table-primary">
                             <tr>
+                                <th class="text-center">Codigo De Acesso</th>
                                 <th class="text-center">Nome</th>
-                                <th class="text-center">Nivel da Função</th>
+                                <th class="text-center">Função</th>
+                                <th class="text-center">CPF</th>
                                 <th class="text-center">Ações</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($Users as $User)
+                            @forelse ($funcionarios as $funcionario)
                                 <tr>
-                                    <td class="text-center align-middle">{{ $funcionario->nome }}</td>
-                                    <td class="text-center align-middle">{{ $funcionario->funcao }}</td> <!-- Corrigido para a coluna correta -->
+                                    <td class="text-center align-middle">{{ $funcionario->id }}</td>
+                                    <td class="text-center align-middle">{{ $funcionario->name }}</td>
+                                    <td class="text-center align-middle">{{ $funcionario->usertype }}</td>
+                                    <td class="text-center align-middle">{{ $funcionario->cpf }}</td>
                                     <td class="text-center align-middle">
+                                        <a style=" background-color: #FF8A00;border: 2px solid #FF8A00;" href="{{ route('adminFuncionario.edit', $funcionario->id) }}" class="btn text-white ">Editar</a>
                                         <a href="{{ route('adminFuncionario.show', $funcionario->id) }}" class="btn btn-secondary">Ver Mais</a>
                                     </td>
                                 </tr>
                             @empty
                                 <tr>
-                                    <td class="text-center" colspan="3">Nenhum cliente encontrado</td> <!-- Corrigido para 3 colunas -->
+                                    <td class="text-center" colspan="3">Nenhum Funcionario Encontrado</td> <!-- Corrigido para 3 colunas -->
                                 </tr>
                             @endforelse
                         </tbody>

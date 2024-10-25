@@ -12,8 +12,6 @@ Route::get('/', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-
-
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -50,13 +48,14 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::put('/admin/cliente/{id}', [ClienteController::class, 'update'])->name('adminCliente.update');
 
 
-     //funcionarios
-     Route::get('/admin/funcionario', [RegisteredUserController ::class, 'index'])->name('adminFuncionario.index');
-     Route::get('/admin/funcionario/create', [FuncionarioController::class, 'create'])->name('adminFuncionario.create');
-     Route::post('/admin/funcionario/', [FuncionarioController::class, 'store'])->name('adminFuncionario.store');
-     Route::get('/admin/funcionario/{id}', [FuncionarioController::class, 'show'])->name('adminFuncionario.show');
-     Route::get('/admin/funcionario/edit/{id}', [FuncionarioController::class, 'edit'])->name('adminFuncionario.edit');
-     Route::put('/admin/funcionario/{id}', [FuncionarioController::class, 'update'])->name('adminFuncionario.update');
+    //funcionarios
+    Route::get('/admin/funcionario', [RegisteredUserController::class, 'index'])->name('adminFuncionario.index');
+    Route::get('/admin/funcionario', [FuncionarioController::class, 'index'])->name('adminFuncionario.home');
+    Route::get('/admin/funcionario/create', [FuncionarioController::class, 'create'])->name('adminFuncionario.create');
+    Route::post('/admin/funcionario/', [FuncionarioController::class, 'store'])->name('adminFuncionario.store');
+    Route::get('/admin/funcionario/{id}', [FuncionarioController::class, 'show'])->name('adminFuncionario.show');
+    Route::get('/admin/funcionario/edit/{id}', [FuncionarioController::class, 'edit'])->name('adminFuncionario.edit');
+    Route::put('/admin/funcionario/{id}', [FuncionarioController::class, 'update'])->name('adminFuncionario.update');
 
 });
 

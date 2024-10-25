@@ -1,15 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Funcionario;
+use App\Models\User;
 use Illuminate\Http\Request;
+
 
 class FuncionarioController extends Controller
 {
     public function index()
     {
-        $funcionarios = Funcionario::whereIn('funcao', ['1', '2', '3', '4'])->orderBy('id','desc')->get();
-        $total = Funcionario::count();
+        $funcionarios = User::whereIn('usertype', ['guiche', 'impressao', 'producao', 'caixa','admin',])->orderByRaw("FIELD(usertype, 'guiche', 'impressao', 'producao', 'caixa','admin')")->get();
+        $total = User::count();
         return view('admin.funcionario.home', compact(['funcionarios', 'total']));
     }
 
@@ -20,43 +21,43 @@ class FuncionarioController extends Controller
 
     public function show($id)
     {
-        $funcionario = Funcionario::findOrFail($id);
+        $funcionario = User::findOrFail($id);
         return view('admin.funcionario.show', compact('funcionario'));
     }
 
     public function edit($id)
     {
-        $funcionario = Funcionario::findOrFail($id);
+        $funcionario = User::findOrFail($id);
         return view('admin.funcionario.update', compact('funcionario'));
     }
 
     public function update(Request $request, $id)
     {
         $validation = $request->validate([
-            'nome' => 'required',
+            'name' => 'required',
             'cpf'  => 'required',
-            'senha'  => 'required',
+            'password'  => 'required',
             
         ]);
 
-        $funcionario = Funcionario::findOrFail($id);
-        $nome = $request->nome;
+        $funcionario = User::findOrFail($id);
+        $name = $request->name;
         $cpf = $request->cpf;
-        $senha = $request->senha;
-        $funcao = $request->funcao;
+        $password = $request->password;
+        $usertype = $request->usertype;
 
 
-        $funcionario->nome = $nome;
+        $funcionario->name = $name;
         $funcionario->cpf = $cpf;
-        $funcionario->senha = $senha;
-        $funcionario->funcao = $funcao;
+        $funcionario->password = $password;
+        $funcionario->usertype = $usertype;
 
 
 
         $data = $funcionario->save();
         if ($data) {
             session()->flash('success', 'Funcionário Atualizado com Sucesso');
-            return redirect(route('adminFuncionario.show',['id'=> $funcionario->id]));
+            return redirect(route('adminFuncionario.home',['id'=> $funcionario->id]));
         } else {
             session()->flash('error', 'Ocorreu algum problema');
             return redirect(route('adminFuncionario.update'));
@@ -73,10 +74,10 @@ class FuncionarioController extends Controller
         ]);
 
 
-        $data = Funcionario::create($validation);
+        $data = User::create($validation);
         if ($data) {
             session()->flash('success', 'Ordem add Successfully');
-            return redirect(route('adminFuncionario.index'));
+            return redirect(route('adminFuncionario.home'));
         } else {
             session()->flash('error','Some problem occure');
             return redirect(route('adminFuncionario.create'));

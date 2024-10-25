@@ -4,7 +4,7 @@
             <span class="font-semibold text-xl text-gray-800 leading-tight">
                 {{ __('Cadastrar Funcionario') }}
             </span>
-            <a style="background-color: #ADB5BD;border: 2px solid #ADB5BD;" href="{{ route('adminFuncionario.index') }}" class="btn btn-primary text-dark">Voltar</a>
+            <a style="background-color: #ADB5BD;border: 2px solid #ADB5BD;" href="{{ route('adminFuncionario.home') }}" class="btn btn-primary text-dark">Voltar</a>
         </div>
        
     </x-slot>
