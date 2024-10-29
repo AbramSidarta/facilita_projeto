@@ -9,7 +9,10 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <h1 class="mb-4">Lista de Ordens Entregues</h1>
+                    <div class="d-flex align-items-center justify-content-between mb-3">
+                        <h1 class="mb-0">Lista de Ordens Entregues</h1>
+                        <input type="text" id="search" data-page="entregues" placeholder="Buscar ordens de serviço..." class="form-control w-25" />
+                    </div>
                     @if (Session::has('success'))
                         <div class="alert alert-success" role="alert">
                             {{ Session::get('success') }}
@@ -53,4 +56,5 @@
             </div>
         </div>
     </div>
+    <script src="{{ asset('js/input_search.js') }}"></script>
 </x-app-layout>

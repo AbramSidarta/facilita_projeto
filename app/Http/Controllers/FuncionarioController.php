@@ -14,6 +14,24 @@ class FuncionarioController extends Controller
         return view('admin.funcionario.home', compact(['funcionarios', 'total']));
     }
 
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+
+        $funcionarios = User::where(function ($queryBuilder) use ($query) {
+            $queryBuilder->where('name', 'like', "%{$query}%")
+                        ->orWhere('usertype', 'like', "%{$query}%")
+                        ->orWhere('cpf', 'like', "%{$query}%")
+                        ->orWhere('id', 'like', "%{$query}%");
+        })
+        ->orderBy('id', 'desc')
+        ->get();
+
+        return response()->json($funcionarios);
+    }
+
+
+
     public function destroy($id)
     {
         $funcionarios = User::findOrFail($id)->delete();

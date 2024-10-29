@@ -28,7 +28,7 @@
                         <span class="col-12 d-flex row">
                             <h1 class="col-8">Editar Cliente</h1>
                             <div class="col-4 d-flex align-items-center">
-                                <a style="background-color: #DC1C2E;border: 2px solid #DC1C2E;"  href="{{ route('adminCliente.show',['id'=> $cliente->id])}}" class="btn btn-primary me-3">Cancelar</a>
+                                <a style="background-color: #DC1C2E;border: 2px solid #DC1C2E;"  href="{{ route('adminCliente.index',['id'=> $cliente->id])}}" class="btn btn-primary me-3">Cancelar</a>
                                 <div class="row">
                                     <div class="d-grid">
                                         <button style="background-color: #198754;border: 2px solid #198754;" href="" class="btn btn-primary">Pronto</button>

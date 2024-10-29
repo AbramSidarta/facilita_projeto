@@ -9,10 +9,12 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <div class="d-flex align-items-center justify-content-between">
+                    <div class="d-flex align-items-center justify-content-between mb-3">
                         <h1 class="mb-0">Lista das Ordens de Serviços</h1>
-                        <a href="{{route('adminOrdemDeServico.create') }}" class="btn btn-primary">Adicionar ordem</a>
+                        <input type="text" id="search" data-page="home" placeholder="Buscar status,clientes ou serviços" class="form-control w-25" />
+                        <a href="{{ route('adminOrdemDeServico.create') }}" class="btn btn-primary">Adicionar ordem</a>
                     </div>
+                   
                     <hr />
                     @if (Session::has('success'))
                         <div class="alert alert-success" role="alert">
@@ -92,4 +94,6 @@
             </div>
         </div>
     </div>
+    <script src="{{ asset('js/input_search.js') }}"></script>
+    
 </x-app-layout>

@@ -11,6 +11,7 @@
                 <div class="p-6 text-gray-900">
                     <div class="d-flex align-items-center justify-content-between">
                         <h1 class="mb-0">Lista dos funcionarios</h1>
+                        <input type="text" id="search-funcionario" placeholder="Buscar clientes..." class="form-control w-25" />
                         <a href="{{ route('register') }}" class="btn btn-primary">Cadastrar Funcionario</a>
                     </div>
                     <hr />
@@ -52,4 +53,5 @@
             </div>
         </div>
     </div>
+    <script src="{{ asset('js/input_search.js') }}"></script>
 </x-app-layout>

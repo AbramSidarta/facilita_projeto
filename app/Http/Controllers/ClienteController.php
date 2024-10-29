@@ -13,6 +13,32 @@ class ClienteController extends Controller
         return view('admin.cliente.home', compact(['clientes', 'total']));
     }
 
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+    
+        $clientes = Cliente::where(function ($queryBuilder) use ($query) {
+            $queryBuilder->where('name', 'like', "%{$query}%")
+                         ->orWhere('endereco', 'like', "%{$query}%")
+                         ->orWhere('telefone', 'like', "%{$query}%");
+        })
+        ->orderBy('id', 'desc')
+        ->get()
+        ->map(function($cliente) {
+            return [
+                'id' => $cliente->id,
+                'name' => $cliente->name,
+                'endereco' => $cliente->endereco,
+                'telefone' => $cliente->telefone,
+                'editUrl' => route('adminCliente.edit', $cliente->id),  // URL de edição
+                'deleteUrl' => route('adminCliente.destroy', $cliente->id),  // URL de deleção
+            ];
+        });
+    
+        return response()->json($clientes);
+    }
+    
+
     public function destroy($id)
     {
         $clientes = Cliente::findOrFail($id)->delete();
@@ -67,7 +93,7 @@ class ClienteController extends Controller
         $data = $cliente->save();
         if ($data) {
             session()->flash('success', 'Funcionário Atualizado com Sucesso');
-            return redirect(route('adminCliente.show',['id'=> $cliente->id]));
+            return redirect(route('adminCliente.index',['id'=> $cliente->id]));
         } else {
             session()->flash('error', 'Ocorreu algum problema');
             return redirect(route('adminCliente.update'));

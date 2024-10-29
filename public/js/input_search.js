@@ -1,0 +1,151 @@
+document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.getElementById('search');
+
+    if (searchInput) {
+        searchInput.addEventListener('input', function() {
+            let query = this.value;
+            let page = this.getAttribute('data-page'); // Obtém o valor da página
+
+            fetch(`/search-orders?query=${query}&page=${page}`)
+                .then(response => response.json())
+                .then(data => {
+                    const tbody = document.querySelector('table tbody');
+                    tbody.innerHTML = ''; // Limpa a tabela
+
+                    if (data.length === 0) {
+                        tbody.innerHTML = '<tr><td class="text-center" colspan="6">Produto não encontrado</td></tr>';
+                        return;
+                    }
+
+                    data.forEach(ordem => {
+                        const tr = document.createElement('tr');
+                        tr.innerHTML = `
+                            <td class="align-middle">${ordem.id}</td>
+                            <td class="align-middle">${ordem.cliente}</td>
+                            <td class="align-middle">${ordem.servico}</td>
+                            <td class="align-middle">${ordem.data_de_entrega} ${ordem.hora_de_entrega}</td>
+                            <td class="align-middle">
+                                <span class="px-3 py-2 rounded ${getStatusClass(ordem.status)}">
+                                    ${ordem.status.charAt(0).toUpperCase() + ordem.status.slice(1)}
+                                </span>
+                            </td>
+                            <td class="align-middle">
+                                <div class="btn-group" role="group">
+                                    <a href="/ordens/${ordem.id}" class="btn bg-secondary text-white fs-6">Ver Mais</a>
+                                </div>
+                            </td>
+                        `;
+                        tbody.appendChild(tr);
+                    });
+                })
+                .catch(error => {
+                    console.error('Erro ao buscar ordens:', error);
+                });
+        });
+    }
+
+    function getStatusClass(status) {
+        switch (status) {
+            case 'Pendente': return 'bg-danger text-white';
+            case 'Impressão': return 'bg-warning text-dark';
+            case 'Produção': return 'bg-primary text-white';
+            case 'Concluído': return 'bg-success text-white';
+            case 'Entregue': return 'bg-success text-white'; // Para ordens entregues
+            default: return 'bg-secondary text-white';
+        }
+    }
+});
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.getElementById('search-client');
+
+    if (searchInput) {
+        searchInput.addEventListener('input', function() {
+            let query = this.value;
+
+            fetch(`/search-clientes?query=${query}`)
+                .then(response => response.json())
+                .then(data => {
+                    const tbody = document.querySelector('table tbody');
+                    tbody.innerHTML = ''; // Limpa a tabela
+
+                    if (data.length === 0) {
+                        tbody.innerHTML = '<tr><td class="text-center" colspan="4">Nenhum cliente encontrado</td></tr>';
+                        return;
+                    }
+
+                    data.forEach(cliente => {
+                        const tr = document.createElement('tr');
+                        tr.innerHTML = `
+                            <td class="text-center align-middle">${cliente.name}</td>
+                            <td class="text-center align-middle">${cliente.endereco}</td>
+                            <td class="text-center align-middle">${cliente.telefone}</td>
+                            <td class="text-center align-middle">
+                                <div class="btn-group" role="group">
+                                    <span class="p-2">
+                                        <a style="background-color: #FF8A00; border: 2px solid #FF8A00;" 
+                                           href="${cliente.editUrl}" class="btn text-white">Editar</a>
+                                        <a href="${cliente.deleteUrl}?_method=DELETE" class="btn btn-danger">Delete</a>
+                                    </span>
+                                </div>
+                            </td>
+                        `;
+                        tbody.appendChild(tr);
+                    });
+                })
+                .catch(error => {
+                    console.error('Erro ao buscar clientes:', error);
+                });
+        });
+    }
+});
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.getElementById('search-funcionario');
+
+    if (searchInput) {
+        searchInput.addEventListener('input', function() {
+            let query = this.value;
+
+            fetch(`/search-funcionarios?query=${query}`)
+                .then(response => response.json())
+                .then(data => {
+                    const tbody = document.querySelector('table tbody');
+                    tbody.innerHTML = ''; // Limpa a tabela
+
+                    if (data.length === 0) {
+                        tbody.innerHTML = '<tr><td class="text-center" colspan="4">Nenhum funcionario encontrado</td></tr>';
+                        return;
+                    }
+
+                    data.forEach(funcionario => {
+                        const tr = document.createElement('tr');
+                        tr.innerHTML = `
+                            <td class="text-center align-middle">${funcionario.id}</td>
+                            <td class="text-center align-middle">${funcionario.name}</td>
+                            <td class="text-center align-middle">${funcionario.usertype}</td>
+                            <td class="text-center align-middle">${funcionario.cpf}</td>
+                            <td class="text-center align-middle">
+                                <div class="btn-group" role="group">
+                                    <span class="p-2">
+                                       <a style=" background-color: #FF8A00;border: 2px solid #FF8A00;" href="{{ route('adminFuncionario.edit', $funcionario->id) }}" class="btn text-white ">Editar</a>
+                                        <a href="{{ route('adminFuncionario.destroy', ['id'=>$funcionario->id]) }}" type="button" class="btn btn-danger">Delete</a>
+                                    </span>
+                                </div>
+                            </td>
+                        `;
+                        tbody.appendChild(tr);
+                    });
+                })
+                .catch(error => {
+                    console.error('Erro ao buscar funcionarios:', error);
+                });
+        });
+    }
+});
+
+

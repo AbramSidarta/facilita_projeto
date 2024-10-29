@@ -28,6 +28,29 @@ class OrdemDeServicoController extends Controller
         return view('admin.ordemdeservico.entregues', compact(['ordemdeservicos', 'total']));
     }
 
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+        $page = $request->input('page');
+
+        // Define a consulta com base na página
+        $ordens = OrdemDeServico::where(function ($queryBuilder) use ($query) {
+            $queryBuilder->where('cliente', 'like', "%{$query}%")
+                        ->orWhere('servico', 'like', "%{$query}%")
+                        ->orWhere('status', 'like', "%{$query}%"); // Adiciona a busca pelo status
+        });
+
+        if ($page === 'entregues') {
+            $ordens = $ordens->where('status', 'Entregue');
+        } else {
+            $ordens = $ordens->whereIn('status', ['Pendente', 'Impressão', 'Produção', 'Concluído']);
+        }
+
+        $ordens = $ordens->orderBy('id', 'asc')->get();
+
+        return response()->json($ordens);
+    }
+
     public function create()
     {
         return view('admin.ordemdeservico.create');

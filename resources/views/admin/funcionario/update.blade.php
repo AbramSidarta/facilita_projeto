@@ -28,7 +28,7 @@
                         <span class="col-12 d-flex row">
                             <h1 class="col-8">Editar Funcionario</h1>
                             <div class="col-4 d-flex align-items-center">
-                                <a style="background-color: #DC1C2E;border: 2px solid #DC1C2E;"  href="{{ route('adminFuncionario.show',['id'=> $funcionario->id])}}" class="btn btn-primary me-3">Cancelar</a>
+                                <a style="background-color: #DC1C2E;border: 2px solid #DC1C2E;"  href="{{ route('adminFuncionario.home',['id'=> $funcionario->id])}}" class="btn btn-primary me-3">Cancelar</a>
                                 <div class="row">
                                     <div class="d-grid">
                                         <button style="background-color: #198754;border: 2px solid #198754;" href="" class="btn btn-primary">Pronto</button>
@@ -56,7 +56,7 @@
                         <div class="row mb-3">
                             <div class="col-11">
                                 <label class="ms-2 mb-2" for="">Nome</label>
-                                <input type="text" name="name" class="form-control" placeholder="Nome" id="name" placeholder="Nome do Cliente" value="{{$funcionario->name}}" required>
+                                <input type="text" name="name" class="form-control"  id="name" placeholder="Nome do Funcionario" value="{{$funcionario->name}}" required>
                                 @error('nome')
                                 <span class="text-danger">{{$message}}</span>
                                 @enderror
@@ -66,7 +66,7 @@
                         <div class="row mb-3">
                             <div class="col-11">
                                 <label class="ms-2 mb-2" for="">CPF</label>
-                                <input type="text" name="cpf" class="form-control" placeholder="Endereço" id="cpf" placeholder="Endereço do Cliente" value="{{$funcionario->cpf}}" required>
+                                <input type="text" name="cpf" class="form-control" id="cpf" placeholder="CPF do Cliente" value="{{$funcionario->cpf}}" required>
                                 @error('cpf')
                                 <span class="text-danger">{{$message}}</span>
                                 @enderror
@@ -75,7 +75,7 @@
                         <div class="row mb-3">
                             <div class="col-6" >
                                 <label class="ms-2 mb-2" for="">senha</label>
-                                <input type="text" name="password" class="form-control" placeholder="Telefone" id="password" placeholder="Telefone do Cliente" value="{{$funcionario->senha}}" required>
+                                <input type="text" name="password" class="form-control" id="password" placeholder="Senha" value="{{$funcionario->password}}" required>
                                 @error('senha')
                                 <span class="text-danger">{{$message}}</span>
                                 @enderror

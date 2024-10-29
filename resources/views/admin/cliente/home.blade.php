@@ -11,7 +11,8 @@
                 <div class="p-6 text-gray-900">
                     <div class="d-flex align-items-center justify-content-between">
                         <h1 class="mb-0">Lista dos clientes</h1>
-                        <a href="{{ route('adminCliente.create') }}" class="btn btn-primary">Cadastrar Cliente</a>
+                            <input type="text" id="search-client" placeholder="Buscar clientes..." class="form-control w-25" />
+                            <a href="{{ route('adminCliente.create') }}" class="btn btn-primary">Cadastrar Cliente</a>
                     </div>
                     <hr />
                     @if (Session::has('success'))
@@ -54,4 +55,5 @@
             </div>
         </div>
     </div>
+    <script src="{{ asset('js/input_search.js') }}"></script>
 </x-app-layout>
