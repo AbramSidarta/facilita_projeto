@@ -305,24 +305,23 @@
                                 </div>
                             </div>
                             <div class="col-12 d-flex justify-content-between mt-5 ">
-                                <div class="d-flex flex-row mb-3">
-                                    
+                
                                     <div class="col-9 ">
                                         <div class="col-8">
-                                            <p class="m-0 border-bottom border-dark  col-12 d-flex justify-content-center"></p>
+                                            <p class="m-0 border-bottom border-dark  col-12 d-flex justify-content-center mt-4"> </p>
                                         </div>
-                                        <div class="">
-                                            <p>Serviço Autorizado pelo cliente</p>
+                                        <div class="col-8">
+                                            <h4 class=" d-flex justify-content-center">Serviço Autorizado pelo cliente</h4>
                                             
-                                            <p>DECLARADO TER LIDO. CORRIGIDO TANTO TEXTUALMENTE QUANTO VISUALMENTE MEU SERVIÇO </p>
+                                            <p>Declaro Ter Lido. Corrigido Tanto Textualmente Quando Visualmante Meu Serviço   </p>
                                         </div>
                                     </div>
                                     <div class="col-3 ">
                                         <p class="m-0 border-bottom border-dark  col-12 d-flex justify-content-center">{{ $ordemServico->nome_funcionario}}</p>
-                                       <h2>Funcionario</h2>
+                                       <h4 class=" d-flex justify-content-center">Funcionario(a)</h4>
                                       
                                         
-                                    </div>
+
                                 </div>
                             </div>
                         </div>
