@@ -25,7 +25,18 @@ class FuncionarioController extends Controller
                         ->orWhere('id', 'like', "%{$query}%");
         })
         ->orderBy('id', 'desc')
-        ->get();
+        ->get()
+        ->map(function($funcionario) {
+            return[
+                'id' => $funcionario->id,
+                'name' => $funcionario->name,
+                'usertype' => $funcionario->usertype,
+                'cpf' => $funcionario->cpf,
+                'editUrl' => route('adminFuncionario.edit', $funcionario->id),  // URL de edição
+                'deleteUrl' => route('adminFuncionario.destroy', $funcionario->id),  // URL de de
+            ];
+        });
+       
 
         return response()->json($funcionarios);
     }

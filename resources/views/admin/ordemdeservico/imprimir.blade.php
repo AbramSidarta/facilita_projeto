@@ -1,18 +1,36 @@
-<x-app-layout>
-    <x-slot name="header">
-        <div class="d-flex justify-content-between d-flex align-items-center"   >
-            <span class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Visualizar Ordem de Serviço') }}
-            </span>
-            @if ($ordemServico->status !== 'Entregue')
-                <a style="background-color: #ADB5BD;border: 2px solid #ADB5BD;" href="{{ route('adminOrdemDeServico.index') }}" class="btn btn-primary text-dark">Voltar</a>
-            @else
-                <a style="background-color: #ADB5BD;border: 2px solid #ADB5BD;" href="{{ route('adminOrdemDeServico.entregues') }}" class="btn btn-primary text-dark">Voltar</a>
-            @endif
-        </div>
-       
-    </x-slot>
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 
+        <title>{{ config('app.name', 'Laravel') }}</title>
+
+        <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.bunny.net">
+        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+        <!-- Scripts -->    
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+        <script scr="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+        
+        </head>
+    <body class="font-sans antialiased">
+        <div class="min-h-screen bg-gray-100">
+            
+
+            <!-- Page Heading -->
+            @isset($header)
+                <header class="bg-white shadow">
+                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                        {{ $header }}
+                    </div>
+                </header>
+            @endisset
+
+            <!-- Page Content -->
+            <main>
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -27,17 +45,11 @@
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-between d-flex align-items-center">
-                                    <a style="background-color: #DC1C2E;border: 2px solid #DC1C2E;"  href="{{ route('adminOrdemDeServico.destroy',['id'=> $ordemServico->id])  }}" class="btn btn-primary me-3">Deletar</a>
-                                    <a style="background-color: #094081;border: 2px solid #094081;"  href="{{ route('adminOrdemDeServico.print',['id'=> $ordemServico->id])  }}" class="btn btn-primary me-3">Imprimir</a>
-                                    <div class="row">
-                                        <div class="d-grid">
-                                            @if ($ordemServico->status !== 'Entregue')
-                                                <a href="{{ route('adminOrdemDeServico.edit', ['id' => $ordemServico->id]) }}" 
-                                                style="  background-color: #FF8A00; border: 2px solid #FF8A00;" 
-                                                class="btn text-white">Editar</a>
-                                            @endif
-                                        </div>
-                                    </div>
+                                @if ($ordemServico->status !== 'Entregue')
+                                    <a style="background-color: #ADB5BD;border: 2px solid #ADB5BD;" href="{{ route('adminOrdemDeServico.index') }}" class="btn btn-primary text-dark">Voltar</a>
+                                @else
+                                    <a style="background-color: #ADB5BD;border: 2px solid #ADB5BD;" href="{{ route('adminOrdemDeServico.entregues') }}" class="btn btn-primary text-dark">Voltar</a>
+                                @endif
                                 </div>
                             </div>
 
@@ -292,14 +304,24 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12 form-floating d-flex justify-content-end mt-5 me-4">
-                                <div class="row mb-3">
-                                    <div class="col me-5 ">
+                            <div class="col-12 d-flex justify-content-between mt-5 ">
+                                <div class="d-flex flex-row mb-3">
+                                    
+                                    <div class="col-9 ">
+                                        <div class="col-8">
+                                            <p class="m-0 border-bottom border-dark  col-12 d-flex justify-content-center"></p>
+                                        </div>
+                                        <div class="">
+                                            <p>Serviço Autorizado pelo cliente</p>
+                                            
+                                            <p>DECLARADO TER LIDO. CORRIGIDO TANTO TEXTUALMENTE QUANTO VISUALMENTE MEU SERVIÇO </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-3 ">
+                                        <p class="m-0 border-bottom border-dark  col-12 d-flex justify-content-center">{{ $ordemServico->nome_funcionario}}</p>
+                                       <h2>Funcionario</h2>
                                       
                                         
-                                        <p class="m-0 border-bottom border-dark  col-12 d-flex justify-content-center">{{ $ordemServico->nome_funcionario}}</p>
-                                        <h2>Funcionario</h2>
-                                     
                                     </div>
                                 </div>
                             </div>
@@ -315,5 +337,8 @@
 
     <script src="{{ asset('js/input_image.js') }}"></script>
     <script src="{{ asset('js/mascara.js') }}"></script>
-</x-app-layout>
-        
+
+    </main>
+        </div>
+    </body>
+</html>

@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             </td>
                             <td class="align-middle">
                                 <div class="btn-group" role="group">
-                                    <a href="/ordens/${ordem.id}" class="btn bg-secondary text-white fs-6">Ver Mais</a>
+                                    <a href="/admin/ordemdeservico${ordem.id}" class="btn bg-secondary text-white fs-6">Ver Mais</a>
                                 </div>
                             </td>
                         `;
@@ -132,8 +132,9 @@ document.addEventListener('DOMContentLoaded', () => {
                             <td class="text-center align-middle">
                                 <div class="btn-group" role="group">
                                     <span class="p-2">
-                                       <a style=" background-color: #FF8A00;border: 2px solid #FF8A00;" href="{{ route('adminFuncionario.edit', $funcionario->id) }}" class="btn text-white ">Editar</a>
-                                        <a href="{{ route('adminFuncionario.destroy', ['id'=>$funcionario->id]) }}" type="button" class="btn btn-danger">Delete</a>
+                                      <a style="background-color: #FF8A00; border: 2px solid #FF8A00;" 
+                                           href="${funcionario.editUrl}" class="btn text-white">Editar</a>
+                                        <a href="${funcionario.deleteUrl}?_method=DELETE" class="btn btn-danger">Delete</a>
                                     </span>
                                 </div>
                             </td>
