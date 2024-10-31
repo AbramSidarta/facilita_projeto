@@ -32,7 +32,7 @@
             <!-- Page Content -->
             <main>
         <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="width: 555px;">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" >
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900">
                             <div class="d-flex justify-content-between d-flex align-items-center">
@@ -279,8 +279,8 @@
                                     <h4 class="m-0 ">LAYOUT:</h4>
                                 </div>
                                 <div class="border border-dark-subtle mt-3">
-                                    <div class="d-flex justify-content-center " id="layout">
-                                        <img class="m-3  h-40" id="preview" src="{{ asset('uploads/ordemdeservico/' . $ordemServico->layout) }}" alt="Nenhuma imagem selecionada ">
+                                    <div class="d-flex justify-content-center " style="height: 300px" id="layout">
+                                        <img class="m-3  img-fluid" id="preview" src="{{ asset('uploads/ordemdeservico/' . $ordemServico->layout) }}" alt="Nenhuma imagem selecionada ">
                                     </div>
                                 </div>
                                 
