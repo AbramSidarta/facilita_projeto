@@ -32,18 +32,11 @@
             <!-- Page Content -->
             <main>
         <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="width: 555px;">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900">
                             <div class="d-flex justify-content-between d-flex align-items-center">
-                                <div class="d-flex flex-row d-flex align-items-center">
-                                    <h3 class="m-0">Estados da ordem de serviço:</h3>
-                                    <div class="row ms-1">
-                                        <div class="col border-2 rounded ms-3" style="border: 2px solid ##dee2e6;">
-                                            <h4 class="m-0 p-1 ">{{ $ordemServico->status}}</h4>
-                                        </div>
-                                    </div>
-                                </div>
+                               
                                 <div class="d-flex justify-content-between d-flex align-items-center">
                                 @if ($ordemServico->status !== 'Entregue')
                                     <a style="background-color: #ADB5BD;border: 2px solid #ADB5BD;" href="{{ route('adminOrdemDeServico.index') }}" class="btn btn-primary text-dark">Voltar</a>
@@ -51,28 +44,38 @@
                                     <a style="background-color: #ADB5BD;border: 2px solid #ADB5BD;" href="{{ route('adminOrdemDeServico.entregues') }}" class="btn btn-primary text-dark">Voltar</a>
                                 @endif
                                 </div>
+                                <button style= "background-color: #094081;border: 2px solid #094081;" class="btn btn-primary me-3" onclick="window.print()">Imprimir Página</button>
                             </div>
 
                             <hr />
                             <div class="row mb-3">
-                                <div class="col-12 d-flex justify-content-between align-items-center border border-black">
-                                    <div class="col-4">
+                                <div class="col-12 d-flex align-items-center border border-black">
+                                    <div class="col-2">
                                         <x-application-logo class="block h-20 p-2 fill-current text-gray-800 " />
                                     </div>
-                                    <div class=" ml-4 d-flex flex-row mt-3 col-4">
-                                        
-                                        <label class=" pe-3 ms-3"for="floatingInput">CÓD. ARTE:</label>
-                                        <p class="m-0 border-bottom border-dark  col-4 d-flex justify-content-center">{{ $ordemServico->id }}</p>
+                                    <div class="col-10">
+                                        <div class="mt-3 d-flex flex-row d-flex justify-content-between">
+                                            <h2>ordem de serviço</h2>
+                                            <h3 class="me-5">1 via</h3>
+                                        </div>
+                                        <div class="d-flex flex-row mb-3 justify-content-between">
+                                            <div class=" ml-4 d-flex flex-row mt-3 col-4">
+                                                
+                                                <label class=" pe-3 ms-3"for="floatingInput">CÓD. ARTE:</label>
+                                                <p class="m-0 border-bottom border-dark  col-4 d-flex justify-content-center">{{ $ordemServico->id }}</p>
+                                            </div>
+                                            <div class=" d-flex flex-row ml-4 mt-3  me-5 col-4" >
+                                            
+                                                <label class=" pe-3 ms-3"for="floatingInput">ORC DE VENDA:</label>
+                                                <p class="m-0 border-bottom border-dark  col-4 d-flex justify-content-center">{{ $ordemServico->ORC_venda }}</p>
+                                                
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class=" d-flex flex-row ml-4 mt-3  me-5 col-4" >
-                                       
-                                        <label class=" pe-3 ms-3"for="floatingInput">ORC DE VENDA:</label>
-                                        <p class="m-0 border-bottom border-dark  col-4 d-flex justify-content-center">{{ $ordemServico->ORC_venda }}</p>
-                                        
-                                    </div>
+                                   
                                 </div>
                                
-                                <div class="col-6 mt-4 border border-black ">
+                                <div class="col-6  border border-black ">
                                     <div class="row mb-3 mt-4">
                                         <div class=" d-flex flex-row col align-items-center">
                                             <label class="  mx-2  "for="">Cliente:</label>
@@ -164,7 +167,7 @@
                                         </div>
                                     </div>
                                 </div>              
-                            <div class="mt-4 p-0 flex-wrap col-6 form-floating d-flex d-flex justify-content-evenly flex-wrap">
+                            <div class=" p-0 flex-wrap col-6 form-floating d-flex d-flex justify-content-evenly flex-wrap">
                                 <div class="col-12 row d-flex justify-content-evenly border border-success border-bottom-0 ">
                                     <h5 class="col-12 d-flex justify-content-center text-bg-success align-items-center">PRAZO DA IMPRESSÃO</h5>
                                     <div class="row mb-3 col-6 align-items-center">
@@ -239,7 +242,7 @@
                                 </div>   
                             </div>
                         
-                            <div class="p-0 mt-4">
+                            <div class="p-0 ">
                                 <div class="border border-black">
                                     <h4 style="background-color: #9B9A9C;" class="d-flex justify-content-center col-12">OBSERVAÇÃO:</h4>
                                     <div class="row mb-3">
@@ -277,7 +280,7 @@
                                 </div>
                                 <div class="border border-dark-subtle mt-3">
                                     <div class="d-flex justify-content-center " id="layout">
-                                        <img class="m-3 " id="preview" src="{{ asset('uploads/ordemdeservico/' . $ordemServico->layout) }}" alt="Nenhuma imagem selecionada ">
+                                        <img class="m-3  h-40" id="preview" src="{{ asset('uploads/ordemdeservico/' . $ordemServico->layout) }}" alt="Nenhuma imagem selecionada ">
                                     </div>
                                 </div>
                                 
@@ -319,9 +322,70 @@
                                     <div class="col-3 ">
                                         <p class="m-0 border-bottom border-dark  col-12 d-flex justify-content-center">{{ $ordemServico->nome_funcionario}}</p>
                                        <h4 class=" d-flex justify-content-center">Funcionario(a)</h4>
-                                      
-                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 d-flex align-items-center border border-black">
+                                <div class="d-flex flex-column col-8 mb-3">
+                                    <h3>2 Via</h3>
+                                    <div class="row mb-3 mt-4">
+                                        <div class=" d-flex flex-row col align-items-center">
+                                            <label class="  mx-2  "for="">Cliente:</label>
+                                            <p class="m-0 border-bottom border-dark  col-10">{{ $ordemServico->cliente }}</p>
+                                        </div>
+                                    </div>
 
+                                    <div class="row mb-3">
+                                        <div class=" d-flex flex-row  col d-flex align-items-center">
+                                            <label class="  mx-2"for="">Serviço:</label>
+                                            <p class="m-0 border-bottom border-dark  col-10">{{ $ordemServico->servico}}</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex flex-row">
+                                        <div class="d-flex  align-items-center">
+                                            <label class="  mx-2">D.E:</label>
+                                            <p class="m-0">{{ date('d/m/Y', strtotime($ordemServico->data_de_entrega)) }}</p>
+                                        </div>
+                                        <div class="d-flex flex-row ms-3">
+                                            <label class=" d-flex justify-content-center">HORA ENTREGA:</label>
+                                            <p class="d-flex justify-content-center m-0 border-bottom border-dark  ">{{ $ordemServico->hora_de_entrega}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class=" ml-4 d-flex flex-row mt-3 ">     
+                                        <label class=" pe-3 ms-3"for="floatingInput">CÓD. ARTE:</label>
+                                        <p class="m-0 border-bottom border-dark  col-4 d-flex justify-content-center">{{ $ordemServico->id }}</p>
+                                    </div>
+                                    <div class="d-flex flex-row mt-3 ml-3 ">
+                                        <p>Pago:</p>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input border border-black rounded-0 opacity-100" type="radio" name="pago" id="pago_sim" value="sim" 
+                                                {{ $ordemServico->pago == 'sim' ? 'checked' : '' }} disabled>
+                                            <label class="form-check-label opacity-100" for="pago_sim">Sim</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input border border-black rounded-0 opacity-100" type="radio" name="pago" id="pago_nao" value="nao" 
+                                                {{ $ordemServico->pago == 'nao' ? 'checked' : '' }} disabled>
+                                            <label class="form-check-label opacity-100" for="pago_nao">Não</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input border border-black rounded-0 opacity-100" type="radio" name="pago" id="pago_50" value="50%" 
+                                                {{ $ordemServico->pago == '50%' ? 'checked' : '' }} disabled>
+                                            <label class="form-check-label  opacity-100" for="pago_50">50%</label>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex flex-column ">
+                                       <div>
+                                            <p class="m-0 border-bottom border-dark  col-12 d-flex justify-content-center" >{{ $ordemServico->nome_funcionario}}</p>
+                                       </div>
+                                       <div class="d-flex justify-content-center">
+                                            <p >Funcionario(A)</p>
+                                       </div>
+                                        
+                                    </div>
+                                   
                                 </div>
                             </div>
                         </div>
