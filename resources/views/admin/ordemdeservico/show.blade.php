@@ -264,7 +264,7 @@
                                     <h4 class="m-0 ">LAYOUT:</h4>
                                 </div>
                                 <div class="border border-dark-subtle mt-3">
-                                    <div class="d-flex justify-content-center " id="layout">
+                                    <div class="d-flex justify-content-center" style="height: 300px" id="layout">
                                         <img class="m-3 " id="preview" src="{{ asset('uploads/ordemdeservico/' . $ordemServico->layout) }}" alt="Nenhuma imagem selecionada ">
                                     </div>
                                 </div>
