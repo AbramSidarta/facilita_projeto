@@ -252,7 +252,7 @@
                                             <h4 class="m-0 ">LAYOUT:</h4>
                                         </div>
                                         <div class="border border-dark-subtle mt-3">
-                                            <div class="d-flex justify-content-center " style="height: 300px" id="layout">
+                                            <div class="d-flex justify-content-center " style="height: 200px" id="layout">
                                                 <img class="m-3  img-fluid" id="preview" src="{{ asset('uploads/ordemdeservico/' . $ordemServico->layout) }}" alt="Nenhuma imagem selecionada ">
                                             </div>
                                         </div>
@@ -291,75 +291,75 @@
                                         <h4 class=" d-flex justify-content-center">Funcionario(a)</h4>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-12 d-flex align-items-center border border-black">
-                                <div class="d-flex flex-column col-8 mb-3">
-                                    <h3>2 Via</h3>
-                                    <div class="row mb-3 mt-4">
-                                        <div class=" d-flex flex-row col align-items-center">
-                                            <label class="  mx-2  "for="">Cliente:</label>
-                                            <p class="m-0 border-bottom border-dark  col-10">{{ $ordemServico->cliente }}</p>
+                                <div class="col-12 d-flex align-items-center border border-black px-2 ">
+                                    <div class="d-flex flex-column col-8 mb-3">
+                                        <h3 class="ms-4 mt-2">2 Via</h3>
+                                        <div class="row mb-3 mt-2">
+                                            <div class=" d-flex flex-row col align-items-center">
+                                                <label class="  mx-2  "for="">Cliente:</label>
+                                                <p class="m-0 border-bottom border-dark  col-10">{{ $ordemServico->cliente }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class=" d-flex flex-row  col d-flex align-items-center">
+                                                <label class="  mx-2"for="">Serviço:</label>
+                                                <p class="m-0 border-bottom border-dark  col-10">{{ $ordemServico->servico}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex flex-row">
+                                            <div class="d-flex  align-items-center">
+                                                <label class="  mx-2">D.E:</label>
+                                                <p class="d-flex justify-content-center m-0 border-bottom border-dark  ">{{ date('d/m/Y', strtotime ($ordemServico->data_de_entrega))}}</p>
+                                            </div>
+                                            <div class="d-flex flex-row ms-3">
+                                                <label class=" d-flex justify-content-center">HORA ENTREGA:</label>
+                                                <p class="d-flex justify-content-center m-0 border-bottom border-dark  ">{{ $ordemServico->hora_de_entrega}}</p>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="row mb-3">
-                                        <div class=" d-flex flex-row  col d-flex align-items-center">
-                                            <label class="  mx-2"for="">Serviço:</label>
-                                            <p class="m-0 border-bottom border-dark  col-10">{{ $ordemServico->servico}}</p>
+                                    <div class="col-4">
+                                        <div class=" ml-4 d-flex flex-row mt-3 d-flex justify-content-center ">
+                                            <label class=" pe-3 ms-3"for="floatingInput">CÓD. ARTE:</label>
+                                            <p class="m-0 border-bottom border-dark  col-4 d-flex justify-content-center">{{ $ordemServico->id }}</p>
                                         </div>
+                                        <div class="d-flex flex-row mt-3 ml-3 d-flex justify-content-center">
+                                            <p>Pago:</p>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input border border-black rounded-0 opacity-100" type="radio" name="pago" id="pago_sim" value="sim" 
+                                                    {{ $ordemServico->pago == 'sim' ? 'checked' : '' }} disabled>
+                                                <label class="form-check-label opacity-100" for="pago_sim">Sim</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input border border-black rounded-0 opacity-100" type="radio" name="pago" id="pago_nao" value="nao" 
+                                                    {{ $ordemServico->pago == 'nao' ? 'checked' : '' }} disabled>
+                                                <label class="form-check-label opacity-100" for="pago_nao">Não</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input border border-black rounded-0 opacity-100" type="radio" name="pago" id="pago_50" value="50%" 
+                                                    {{ $ordemServico->pago == '50%' ? 'checked' : '' }} disabled>
+                                                <label class="form-check-label  opacity-100" for="pago_50">50%</label>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex flex-column ">
+                                            <div >
+                                                <p class="m-0 border-bottom border-dark  col-12 d-flex justify-content-center" >{{ $ordemServico->nome_funcionario}}</p>
+                                            </div>
+                                            <div class="d-flex justify-content-center">
+                                                <p >Funcionario(A)</p>
+                                            </div>
+                                        </div>        
                                     </div>
-                                    <div class="d-flex flex-row">
-                                        <div class="d-flex  align-items-center">
-                                            <label class="  mx-2">D.E:</label>
-                                            <p class="m-0">{{ date('d/m/Y', strtotime($ordemServico->data_de_entrega)) }}</p>
-                                        </div>
-                                        <div class="d-flex flex-row ms-3">
-                                            <label class=" d-flex justify-content-center">HORA ENTREGA:</label>
-                                            <p class="d-flex justify-content-center m-0 border-bottom border-dark  ">{{ $ordemServico->hora_de_entrega}}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    <div class=" ml-4 d-flex flex-row mt-3 ">     
-                                        <label class=" pe-3 ms-3"for="floatingInput">CÓD. ARTE:</label>
-                                        <p class="m-0 border-bottom border-dark  col-4 d-flex justify-content-center">{{ $ordemServico->id }}</p>
-                                    </div>
-                                    <div class="d-flex flex-row mt-3 ml-3 ">
-                                        <p>Pago:</p>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input border border-black rounded-0 opacity-100" type="radio" name="pago" id="pago_sim" value="sim" 
-                                                {{ $ordemServico->pago == 'sim' ? 'checked' : '' }} disabled>
-                                            <label class="form-check-label opacity-100" for="pago_sim">Sim</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input border border-black rounded-0 opacity-100" type="radio" name="pago" id="pago_nao" value="nao" 
-                                                {{ $ordemServico->pago == 'nao' ? 'checked' : '' }} disabled>
-                                            <label class="form-check-label opacity-100" for="pago_nao">Não</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input border border-black rounded-0 opacity-100" type="radio" name="pago" id="pago_50" value="50%" 
-                                                {{ $ordemServico->pago == '50%' ? 'checked' : '' }} disabled>
-                                            <label class="form-check-label  opacity-100" for="pago_50">50%</label>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex flex-column ">
-                                        <div>
-                                            <p class="m-0 border-bottom border-dark  col-12 d-flex justify-content-center" >{{ $ordemServico->nome_funcionario}}</p>
-                                        </div>
-                                        <div class="d-flex justify-content-center">
-                                            <p >Funcionario(A)</p>
-                                        </div>
-                                    </div>        
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            <!-- Alpine Plugins -->
-            <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/mask@3.x.x/dist/cdn.min.js"></script>
-            <!-- Alpine Core -->
-            <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-            <script src="{{ asset('js/input_image.js') }}"></script>
-            <script src="{{ asset('js/mascara.js') }}"></script>
+                <!-- Alpine Plugins -->
+                <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/mask@3.x.x/dist/cdn.min.js"></script>
+                <!-- Alpine Core -->
+                <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+                <script src="{{ asset('js/input_image.js') }}"></script>
+                <script src="{{ asset('js/mascara.js') }}"></script>
             </main>
         </div>
     </body>

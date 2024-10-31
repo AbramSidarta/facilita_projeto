@@ -59,6 +59,7 @@ class OrdemDeServicoController extends Controller
     public function imprimir($id)
     {
         $ordemServico = OrdemDeServico::findOrFail($id);
+         
         return view('admin.ordemdeservico.imprimir', compact('ordemServico'));
     }
     
