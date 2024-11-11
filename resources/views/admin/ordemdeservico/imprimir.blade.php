@@ -12,6 +12,7 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
         <script scr="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
@@ -26,13 +27,23 @@
             <!-- Page Content -->
             <main>
                 <div class="py-12">
-                    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" >
+                    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 " >
+                        <div class="d-flex justify-content-center  no-print">
+                            <div class="bg-white shadow-sm sm:rounded-lg m-4 p-4 max-w-sm col-4">
+                                <h2>Guia de impressão </h2>
+                                <li>Tipo da Folha: A5</li>
+                                <li>Escala 50%</li>
+                                <li>Paginas por Folha: 1</li>
+                                <li>Margens: Nenhum</li>
+                                <li>Sem Cabeçalhos </li>
+                            </div>
+                        </div>
                         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                             <div class="p-6 text-gray-900">
                                 <div class="d-flex justify-content-between d-flex align-items-center">    
                                     <div class="d-flex justify-content-between d-flex align-items-center">
                                         @if ($ordemServico->status !== 'Entregue')
-                                            <a style="background-color: #ADB5BD;border: 2px solid #ADB5BD;" href="{{ route('adminOrdemDeServico.index') }}" class="btn btn-primary text-dark">Voltar</a>
+                                            <a style="background-color: #ADB5BD;border: 2px solid #ADB5BD;" href="{{ route('adminOrdemDeServico.show',['id'=> $ordemServico->id])}}" class="btn btn-primary text-dark">Voltar</a>
                                         @else
                                             <a style="background-color: #ADB5BD;border: 2px solid #ADB5BD;" href="{{ route('adminOrdemDeServico.entregues') }}" class="btn btn-primary text-dark">Voltar</a>
                                         @endif
@@ -95,8 +106,8 @@
                                             <div class="col-6 form-floating d-flex justify-content-between d-flex align-items-center">
                                                 <span>Pago:</span>
                                                 <div class="form-check form-check-inline">
-                                                    <input class="form-check-input border border-black rounded-0 opacity-100" type="radio" name="pago" id="pago_sim" value="sim" 
-                                                            {{ $ordemServico->pago == 'sim' ? 'checked' : '' }} disabled>
+                                                    <input class="form-check-input  border border-black  rounded-0 opacity-100" type="radio" name="pago" id="pago_sim" value="sim" 
+                                                    {{ $ordemServico->pago == 'sim' ? 'checked' : '' }} disabled>
                                                     <label class="form-check-label opacity-100" for="pago_sim">Sim</label>
                                                 </div>
                                                 <div class="form-check form-check-inline">

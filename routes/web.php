@@ -26,7 +26,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
  
     Route::get('admin/dashboard', [HomeController::class, 'index']);
  
-    Route::get('/admin/ordemdeservico/imprimir/{id}', [OrdemDeServicoController::class, 'imprimir'])->name('adminOrdemDeServico.print');
+    Route::get('/admin/ordemdeservico/imprimir{id}', [OrdemDeServicoController::class, 'imprimir'])->name('adminOrdemDeServico.print');
     // Rota para listar ordens de serviço pendentes, impressão, produção e concluído
     Route::get('/admin/ordemdeservico', [OrdemDeServicoController::class, 'index'])->name('adminOrdemDeServico.index');
     // Rota para listar ordens de serviço entregues
