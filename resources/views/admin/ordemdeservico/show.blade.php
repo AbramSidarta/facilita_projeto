@@ -28,7 +28,7 @@
                                 </div>
                                 <div class="d-flex justify-content-between d-flex align-items-center">
                                     <a style="background-color: #DC1C2E;border: 2px solid #DC1C2E;"  href="{{ route('adminOrdemDeServico.destroy',['id'=> $ordemServico->id])  }}" class="btn btn-primary me-3">Deletar</a>
-                                    <a style="background-color: #094081;border: 2px solid #094081;"  href="{{ route('adminOrdemDeServico.print',['id'=> $ordemServico->id])  }}" class="btn btn-primary me-3">Imprimir</a>
+                                    <button style= "background-color: #094081;border: 2px solid #094081;" class="btn btn-primary me-3" onclick="window.print()">Imprimir</button>
                                     <div class="row">
                                         <div class="d-grid">
                                             @if ($ordemServico->status !== 'Entregue')
@@ -60,7 +60,7 @@
                                     </div>
                                 </div>
                                
-                                <div class="col-6 mt-4 border border-black ">
+                                <div class="col-6 border border-black ">
                                     <div class="row mb-3 mt-4">
                                         <div class=" d-flex flex-row col align-items-center">
                                             <label class="  mx-2  "for="">Cliente:</label>
@@ -99,17 +99,17 @@
                                         <div class="col-6 form-floating d-flex justify-content-between d-flex align-items-center">
                                             <span>Pago:</span>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input border border-black rounded-0 opacity-100" type="radio" name="pago" id="pago_sim" value="sim" 
+                                                <input class="form-check-input border border-black rounded-0 opacity-100" type="radio" name="pago1" id="pago_sim" value="sim" 
                                                     {{ $ordemServico->pago == 'sim' ? 'checked' : '' }} disabled>
                                                 <label class="form-check-label opacity-100" for="pago_sim">Sim</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input border border-black rounded-0 opacity-100" type="radio" name="pago" id="pago_nao" value="nao" 
+                                                <input class="form-check-input border border-black rounded-0 opacity-100" type="radio" name="pago1" id="pago_nao" value="nao" 
                                                     {{ $ordemServico->pago == 'nao' ? 'checked' : '' }} disabled>
                                                 <label class="form-check-label opacity-100" for="pago_nao">Não</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input border border-black rounded-0 opacity-100" type="radio" name="pago" id="pago_50" value="50%" 
+                                                <input class="form-check-input border border-black rounded-0 opacity-100" type="radio" name="pago1" id="pago_50" value="50%" 
                                                     {{ $ordemServico->pago == '50%' ? 'checked' : '' }} disabled>
                                                 <label class="form-check-label  opacity-100" for="pago_50">50%</label>
                                             </div>
@@ -152,7 +152,7 @@
                                         </div>
                                     </div>
                                 </div>              
-                            <div class="mt-4 p-0 flex-wrap col-6 form-floating d-flex d-flex justify-content-evenly flex-wrap">
+                            <div class=" p-0 flex-wrap col-6 form-floating d-flex d-flex justify-content-evenly flex-wrap">
                                 <div class="col-12 row d-flex justify-content-evenly border border-success border-bottom-0 ">
                                     <h5 class="col-12 d-flex justify-content-center text-bg-success align-items-center">PRAZO DA IMPRESSÃO</h5>
                                     <div class="row mb-3 col-6 align-items-center">
@@ -227,7 +227,7 @@
                                 </div>   
                             </div>
                         
-                            <div class="p-0 mt-4">
+                            <div class="p-0 ">
                                 <div class="border border-black">
                                     <h4 style="background-color: #9B9A9C;" class="d-flex justify-content-center col-12">OBSERVAÇÃO:</h4>
                                     <div class="row mb-3">
@@ -292,17 +292,81 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12 form-floating d-flex justify-content-end mt-5 me-4">
-                                <div class="row mb-3">
-                                    <div class="col me-5 ">
-                                      
-                                        
+                            
+                            <div class="col-12 d-flex justify-content-between mt-5 ">
+                                    <div class="col-9 ">
+                                        <div class="col-8">
+                                            <p class="m-0 border-bottom border-dark  col-12 d-flex justify-content-center mt-4"> </p>
+                                        </div>
+                                        <div class="col-8">
+                                            <h4 class=" d-flex justify-content-center">Serviço Autorizado pelo cliente</h4>
+                                            <p>Declaro Ter Lido. Corrigido Tanto Textualmente Quando Visualmante Meu Serviço</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-3 ">
                                         <p class="m-0 border-bottom border-dark  col-12 d-flex justify-content-center">{{ $ordemServico->nome_funcionario}}</p>
-                                        <h2>Funcionario</h2>
-                                     
+                                        <h4 class=" d-flex justify-content-center">Funcionario(a)</h4>
                                     </div>
                                 </div>
-                            </div>
+                            <div class="col-12 d-flex align-items-center border border-black px-2 ">
+                                    <div class="d-flex flex-column col-8 mb-3">
+                                        <h3 class="ms-4 mt-2">2 Via</h3>
+                                        <div class="row mb-3 mt-2">
+                                            <div class=" d-flex flex-row col align-items-center">
+                                                <label class="  mx-2  "for="">Cliente:</label>
+                                                <p class="m-0 border-bottom border-dark  col-10">{{ $ordemServico->cliente }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class=" d-flex flex-row  col d-flex align-items-center">
+                                                <label class="  mx-2"for="">Serviço:</label>
+                                                <p class="m-0 border-bottom border-dark  col-10">{{ $ordemServico->servico}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex flex-row">
+                                            <div class="d-flex  align-items-center">
+                                                <label class="  mx-2">D.E:</label>
+                                                <p class="d-flex justify-content-center m-0 border-bottom border-dark  ">{{ date('d/m/Y', strtotime ($ordemServico->data_de_entrega))}}</p>
+                                            </div>
+                                            <div class="d-flex flex-row ms-3">
+                                                <label class=" d-flex justify-content-center">HORA ENTREGA:</label>
+                                                <p class="d-flex justify-content-center m-0 border-bottom border-dark  ">{{ $ordemServico->hora_de_entrega}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class=" ml-4 d-flex flex-row mt-3 d-flex justify-content-center ">
+                                            <label class=" pe-3 ms-3"for="floatingInput">CÓD. ARTE:</label>
+                                            <p class="m-0 border-bottom border-dark  col-4 d-flex justify-content-center">{{ $ordemServico->id }}</p>
+                                        </div>
+                                        <div class="d-flex flex-row mt-3 ml-3 d-flex justify-content-center">
+                                            <p>Pago:</p>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input border border-black rounded-0 opacity-100" type="radio" name="pago2" id="pago_sim" value="sim" 
+                                                    {{ $ordemServico->pago == 'sim' ? 'checked' : '' }} disabled>
+                                                <label class="form-check-label opacity-100" for="pago_sim">Sim</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input border border-black rounded-0 opacity-100" type="radio" name="pago2" id="pago_nao" value="nao" 
+                                                    {{ $ordemServico->pago == 'nao' ? 'checked' : '' }} disabled>
+                                                <label class="form-check-label opacity-100" for="pago_nao">Não</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input border border-black rounded-0 opacity-100" type="radio" name="pago2" id="pago_50" value="50%" 
+                                                    {{ $ordemServico->pago == '50%' ? 'checked' : '' }} disabled>
+                                                <label class="form-check-label  opacity-100" for="pago_50">50%</label>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex flex-column ">
+                                            <div >
+                                                <p class="m-0 border-bottom border-dark  col-12 d-flex justify-content-center" >{{ $ordemServico->nome_funcionario}}</p>
+                                            </div>
+                                            <div class="d-flex justify-content-center">
+                                                <p >Funcionario(A)</p>
+                                            </div>
+                                        </div>        
+                                    </div>
+                                </div>
                         </div>
                 </div>
             </div>

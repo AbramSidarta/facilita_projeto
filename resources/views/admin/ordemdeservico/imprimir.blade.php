@@ -28,16 +28,6 @@
             <main>
                 <div class="py-12">
                     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 " >
-                        <div class="d-flex justify-content-center  no-print">
-                            <div class="bg-white shadow-sm sm:rounded-lg m-4 p-4 max-w-sm col-4">
-                                <h2>Guia de impressão </h2>
-                                <li>Tipo da Folha: A5</li>
-                                <li>Escala 50%</li>
-                                <li>Paginas por Folha: 1</li>
-                                <li>Margens: Nenhum</li>
-                                <li>Sem Cabeçalhos </li>
-                            </div>
-                        </div>
                         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                             <div class="p-6 text-gray-900">
                                 <div class="d-flex justify-content-between d-flex align-items-center">    
@@ -106,17 +96,17 @@
                                             <div class="col-6 form-floating d-flex justify-content-between d-flex align-items-center">
                                                 <span>Pago:</span>
                                                 <div class="form-check form-check-inline">
-                                                    <input class="form-check-input  border border-black  rounded-0 opacity-100" type="radio" name="pago" id="pago_sim" value="sim" 
+                                                    <input class="form-check-input  border border-black  rounded-0 opacity-100" type="radio" name="pago1" id="pago_sim" value="sim" 
                                                     {{ $ordemServico->pago == 'sim' ? 'checked' : '' }} disabled>
                                                     <label class="form-check-label opacity-100" for="pago_sim">Sim</label>
                                                 </div>
                                                 <div class="form-check form-check-inline">
-                                                    <input class="form-check-input border border-black rounded-0 opacity-100" type="radio" name="pago" id="pago_nao" value="nao" 
+                                                    <input class="form-check-input border border-black rounded-0 opacity-100" type="radio" name="pago1" id="pago_nao" value="nao" 
                                                             {{ $ordemServico->pago == 'nao' ? 'checked' : '' }} disabled>
                                                     <label class="form-check-label opacity-100" for="pago_nao">Não</label>
                                                 </div>
                                                 <div class="form-check form-check-inline">
-                                                    <input class="form-check-input border border-black rounded-0 opacity-100" type="radio" name="pago" id="pago_50" value="50%" 
+                                                    <input class="form-check-input border border-black rounded-0 opacity-100" type="radio" name="pago1" id="pago_50" value="50%" 
                                                             {{ $ordemServico->pago == '50%' ? 'checked' : '' }} disabled>
                                                     <label class="form-check-label  opacity-100" for="pago_50">50%</label>
                                                 </div>
@@ -336,17 +326,17 @@
                                         <div class="d-flex flex-row mt-3 ml-3 d-flex justify-content-center">
                                             <p>Pago:</p>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input border border-black rounded-0 opacity-100" type="radio" name="pago" id="pago_sim" value="sim" 
+                                                <input class="form-check-input border border-black rounded-0 opacity-100" type="radio" name="pago2" id="pago_sim" value="sim" 
                                                     {{ $ordemServico->pago == 'sim' ? 'checked' : '' }} disabled>
                                                 <label class="form-check-label opacity-100" for="pago_sim">Sim</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input border border-black rounded-0 opacity-100" type="radio" name="pago" id="pago_nao" value="nao" 
+                                                <input class="form-check-input border border-black rounded-0 opacity-100" type="radio" name="pago2" id="pago_nao" value="nao" 
                                                     {{ $ordemServico->pago == 'nao' ? 'checked' : '' }} disabled>
                                                 <label class="form-check-label opacity-100" for="pago_nao">Não</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input border border-black rounded-0 opacity-100" type="radio" name="pago" id="pago_50" value="50%" 
+                                                <input class="form-check-input border border-black rounded-0 opacity-100" type="radio" name="pago2" id="pago_50" value="50%" 
                                                     {{ $ordemServico->pago == '50%' ? 'checked' : '' }} disabled>
                                                 <label class="form-check-label  opacity-100" for="pago_50">50%</label>
                                             </div>
