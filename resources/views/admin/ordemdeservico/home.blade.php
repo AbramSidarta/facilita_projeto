@@ -11,7 +11,7 @@
                 <div class="p-6 text-gray-900">
                     <div class="d-flex align-items-center justify-content-between mb-3">
                         <h1 class="mb-0">Lista das Ordens de Serviços</h1>
-                        <input type="text" id="search" data-page="home" placeholder="Buscar status,clientes ou serviços" class="form-control w-25" />
+                        <input type="text" id="search" data-page="home" placeholder="Buscar Status, Clientes ou Serviços" class="form-control w-25" />
                         <a href="{{ route('adminOrdemDeServico.create') }}" class="btn btn-primary">Adicionar ordem</a>
                     </div>
                    
