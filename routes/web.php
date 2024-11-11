@@ -7,6 +7,7 @@ use App\Http\Controllers\OrdemDeServicoController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\FuncionarioController;
 use App\Http\Controllers\RegisteredUserController ;
+use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return view('dashboard');
@@ -62,6 +63,11 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/funcionario/edit/{id}', [FuncionarioController::class, 'edit'])->name('adminFuncionario.edit');
     Route::put('/admin/funcionario/{id}', [FuncionarioController::class, 'update'])->name('adminFuncionario.update');
     Route::get('/admin/funcionario/{id}', [FuncionarioController::class, 'destroy'])->name('adminFuncionario.destroy');
+    // routes/web.php
+
+
+    Route::get('/login/{id}', [UserController::class, 'getUserName']);
+
 });
 
 // routes/search
