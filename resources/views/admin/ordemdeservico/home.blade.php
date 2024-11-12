@@ -134,17 +134,6 @@
             </div>
         </div>
     @endif
-
-    
-    <!-- Script para abrir o modal automaticamente -->
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            @if ($ordensVencidas->isNotEmpty())
-                $('#ordensVencidasModal').modal('show');
-            @endif
-        });
-    </script>
-    
     <script src="{{ asset('js/input_search.js') }}"></script>
-    
+    <script src="{{ asset('js/ordens_vencidas.js') }}"></script>
 </x-app-layout>
