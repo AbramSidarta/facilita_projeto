@@ -66,10 +66,10 @@ Route::middleware(['auth', 'admin'])->group(function () {
     // routes/web.php
 
 
-    Route::get('/login/{id}', [UserController::class, 'getUserName']);
+   
 
 });
-
+Route::get('/login/{id}', [UserController::class, 'getUserName']);
 // routes/search
 
 require __DIR__.'/auth.php';

@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Pagina das Ordens admin ') }}
+            {{ __('Pagina das Ordens de Serviço') }}
         </h2>
     </x-slot>
 
@@ -12,7 +12,7 @@
                     <div class="d-flex align-items-center justify-content-between mb-3">
                         <h1 class="mb-0">Lista das Ordens de Serviços</h1>
                         <input type="text" id="search" data-page="home" placeholder="Buscar Status, Clientes ou Serviços" class="form-control w-25" />
-                        <a href="{{ route('adminOrdemDeServico.create') }}" class="btn btn-primary">Adicionar ordem</a>
+                        <a href="{{ route('adminOrdemDeServico.create') }}" class="btn btn-primary">Adicionar Ordem</a>
                     </div>
                    
                     <hr />
@@ -85,7 +85,7 @@
                             </tr>
                             @empty
                             <tr>
-                                <td class="text-center" colspan="6">Produto não encontrado</td>
+                                <td class="text-center" colspan="6">Nenhuma Ordem Encontrada</td>
                             </tr>
                             @endforelse
                         </tbody>
