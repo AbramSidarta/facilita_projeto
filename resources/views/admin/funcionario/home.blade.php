@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Lista de Funcionarios ') }}
+            {{ __('Lista de Funcionário') }}
         </h2>
     </x-slot>
 
@@ -10,9 +10,9 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <div class="d-flex align-items-center justify-content-between">
-                        <h1 class="mb-0">Lista dos funcionarios</h1>
-                        <input type="text" id="search-funcionario" placeholder="Buscar clientes..." class="form-control w-25" />
-                        <a href="{{ route('register') }}" class="btn btn-primary">Cadastrar Funcionario</a>
+                        <h1 class="mb-0">Lista dos Funcionário</h1>
+                        <input type="text" id="search-funcionario" placeholder="Buscar Funcionário..." class="form-control w-25" />
+                        <a href="{{ route('register') }}" class="btn btn-primary">Cadastrar Funcionário</a>
                     </div>
                     <hr />
                     @if (Session::has('success'))
