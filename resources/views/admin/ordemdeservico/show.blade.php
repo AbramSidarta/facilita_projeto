@@ -4,6 +4,13 @@
             <span class="font-semibold text-xl text-gray-800 leading-tight">
                 {{ __('Visualizar Ordem de Serviço') }}
             </span>
+
+            @if (Session::has('success'))
+                <div class="alert alert-success" role="alert">
+                    {{ Session::get('success') }}
+                </div>
+            @endif
+
             @if ($ordemServico->status !== 'Entregue')
                 <a style="background-color: #ADB5BD;border: 2px solid #ADB5BD;" href="{{ route('adminOrdemDeServico.index') }}" class="btn btn-primary text-dark">Voltar</a>
             @else
@@ -13,13 +20,13 @@
        
     </x-slot>
 
-        <div class="py-12">
+        <div class="py-3">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900">
                             <div class="d-flex justify-content-between d-flex align-items-center">
                                 <div class="d-flex flex-row d-flex align-items-center">
-                                    <h3 class="m-0">Estados da ordem de serviço:</h3>
+                                    <h3 class="m-0">Estados da Ordem de Serviço:</h3>
                                     <div class="row ms-1">
                                         <div class="col border-2 rounded ms-3" style="border: 2px solid ##dee2e6;">
                                             <h4 class="m-0 p-1 ">{{ $ordemServico->status}}</h4>
@@ -246,20 +253,6 @@
                             </div>
 
                             <div class="border border-dark  ">             
-                                @if (session('success'))
-                                    <p>{{ session('success') }}</p>
-                                    <div id="image-preview">
-                                        <img src="{{ asset('storage/' . session('path')) }}" alt="Imagem carregada">
-                                    </div>
-                                @endif
-
-                                @if ($errors->any())
-                                    <ul>
-                                        @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
-                                @endif
                                 <div class="col d-flex flex-row  d-flex align-items-center mt-3">
                                     <h4 class="m-0 ">LAYOUT:</h4>
                                 </div>
@@ -295,12 +288,12 @@
                             
                             <div class="col-12 d-flex justify-content-between mt-5 ">
                                     <div class="col-9 ">
-                                        <div class="col-8">
+                                        <div class="col-10">
                                             <p class="m-0 border-bottom border-dark  col-12 d-flex justify-content-center mt-4"> </p>
                                         </div>
-                                        <div class="col-8">
+                                        <div class="col-10">
                                             <h4 class=" d-flex justify-content-center">Serviço Autorizado pelo cliente</h4>
-                                            <p>Declaro Ter Lido. Corrigido Tanto Textualmente Quando Visualmante Meu Serviço</p>
+                                            <p class=" d-flex justify-content-center">Declaro Ter Lido. Corrigido Tanto Textualmente Quando Visualmante Meu Serviço</p>
                                         </div>
                                     </div>
                                     <div class="col-3 ">
@@ -329,7 +322,7 @@
                                                 <p class="d-flex justify-content-center m-0 border-bottom border-dark  ">{{ date('d/m/Y', strtotime ($ordemServico->data_de_entrega))}}</p>
                                             </div>
                                             <div class="d-flex flex-row ms-3">
-                                                <label class=" d-flex justify-content-center">HORA ENTREGA:</label>
+                                                <label class=" d-flex justify-content-center mx-2">HORA ENTREGA:</label>
                                                 <p class="d-flex justify-content-center m-0 border-bottom border-dark  ">{{ $ordemServico->hora_de_entrega}}</p>
                                             </div>
                                         </div>
@@ -340,7 +333,7 @@
                                             <p class="m-0 border-bottom border-dark  col-4 d-flex justify-content-center">{{ $ordemServico->id }}</p>
                                         </div>
                                         <div class="d-flex flex-row mt-3 ml-3 d-flex justify-content-center">
-                                            <p>Pago:</p>
+                                            <p class="mx-2">Pago:</p>
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input border border-black rounded-0 opacity-100" type="radio" name="pago2" id="pago_sim" value="sim" 
                                                     {{ $ordemServico->pago == 'sim' ? 'checked' : '' }} disabled>
@@ -362,7 +355,7 @@
                                                 <p class="m-0 border-bottom border-dark  col-12 d-flex justify-content-center" >{{ $ordemServico->nome_funcionario}}</p>
                                             </div>
                                             <div class="d-flex justify-content-center">
-                                                <p >Funcionario(A)</p>
+                                                <p >Funcionario(a)</p>
                                             </div>
                                         </div>        
                                     </div>

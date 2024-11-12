@@ -110,7 +110,7 @@
                                     <div class="row mb-3">
                                         <div class="col-6 d-flex justify-content-between align-items-center">
                                             <label class=" col-3 mx-2">Valor R$:</label>
-                                            <input type="text" name="valor" class="form-control " id="valor" placeholder="Valor R$" value="{{$ordemServico->valor}}" required>
+                                            <input type="text" name="valor" class="form-control " id="valor" placeholder="Valor R$" value="{{$ordemServico->valor}}" onInput="mascaraMoeda(event);" required>
                                             @error('valor')
                                                 <span class="text-danger">{{$message}}</span>
                                             @enderror
@@ -135,7 +135,7 @@
                                     <div class="row mb-3">
                                         <div class="col d-flex justify-content-between align-items-center">
                                             <label class="  mx-2">Falta:</label>
-                                            <input type="text" name="falta" class="form-control " id="falta" placeholder="Falta" value="{{$ordemServico->falta}}" required>
+                                            <input type="text" name="falta" class="form-control " id="falta" placeholder="Falta" value="{{$ordemServico->falta}}" onInput="mascaraMoeda(event);" required>
                                         </div>
                                     </div>
                                     <div style="border: 2px solid #094081;" class="col-13 row d-flex justify-content-evenly  ">
@@ -167,7 +167,7 @@
                                             <div class="row mb-3 col-6 d-flex align-items-center">
                                                 <div>
                                                     <label class="mx-2 mb-2">HORA ENTREGA:</label>
-                                                    <input type="text " name="hora_de_entrega" class=" form-control " id="hora_de_entrega" placeholder="Hora de entrega" value="{{($ordemServico->hora_de_entrega)}}" required>
+                                                    <input type="time" name="hora_de_entrega" class=" form-control " id="hora_de_entrega" placeholder="Hora de entrega" value="{{($ordemServico->hora_de_entrega)}}" required>
                                                     @error('hora_de_entrega:')
                                                         <span class="text-danger">{{$message}}</span>
                                                     @enderror
@@ -191,7 +191,7 @@
                                     <div class="row mb-3 col-6 align-items-center">
                                         <div class="col">
                                             <label class="  ms-3">HORA ENTREGA:</label>
-                                            <input type="text" name="prazo_da_impressao_hora" class="form-control" id="prazo_da_impressao_hora" placeholder="Hora de entrega da impressão" value="{{($ordemServico->prazo_da_impressao_hora)}}" required>
+                                            <input type="time" name="prazo_da_impressao_hora" class="form-control" id="prazo_da_impressao_hora" placeholder="Hora de entrega da impressão" value="{{($ordemServico->prazo_da_impressao_hora)}}" required>
                                             @error('prazo_da_impressao_hora')
                                                 <span class="text-danger">{{$message}}</span>
                                             @enderror
@@ -212,7 +212,7 @@
                                     <div class="row mb-3 col-6 align-items-center ">
                                         <div class="">
                                             <label class="ms-3" for="">HORA REC. </label>
-                                            <input type="text" name="hora_do_recebimento_do_controle" class="form-control " id="hora_do_recebimento_do_controle" placeholder="Hora do recebimento" value="{{( $ordemServico->hora_do_recebimento_do_controle)}}" required>
+                                            <input type="time" name="hora_do_recebimento_do_controle" class="form-control " id="hora_do_recebimento_do_controle" placeholder="Hora do recebimento" value="{{( $ordemServico->hora_do_recebimento_do_controle)}}" required>
                                             @error('hora_do_recebimento_do_controle')
                                                 <span class="text-danger">{{$message}}</span>
                                             @enderror

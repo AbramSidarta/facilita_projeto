@@ -155,7 +155,7 @@
                                         <div class="row mb-3 col-6 d-flex align-items-center">
                                             <div>
                                                 <label class="mx-2 mb-2">HORA ENTREGA:</label>
-                                                <input type="text " name="hora_de_entrega" class=" form-control " id="hora_de_entrega" placeholder="Hora de entrega" value="{{old('hora_de_entrega')}}"required>
+                                                <input type="time" name="hora_de_entrega" class=" form-control " id="hora_de_entrega" placeholder="Hora de entrega" value="{{old('hora_de_entrega')}}"required>
                                                 @error('hora_de_entrega:')
                                                     <span class="text-danger">{{$message}}</span>
                                                 @enderror
@@ -179,7 +179,7 @@
                                     <div class="row mb-3 col-6 align-items-center">
                                         <div class="col">
                                             <label class="  ms-3">HORA ENTREGA:</label>
-                                            <input type="text" name="prazo_da_impressao_hora" class="form-control" id="prazo_da_impressao_hora" placeholder="Hora de entrega da impressão" value="{{old('prazo_da_impressao_hora')}}"required>
+                                            <input type="time" name="prazo_da_impressao_hora" class="form-control" id="prazo_da_impressao_hora" placeholder="Hora de entrega da impressão" value="{{old('prazo_da_impressao_hora')}}"required>
                                             @error('prazo_da_impressao_hora')
                                                 <span class="text-danger">{{$message}}</span>
                                             @enderror
@@ -200,7 +200,7 @@
                                     <div class="row mb-3 col-6 align-items-center ">
                                         <div class="">
                                             <label class="ms-3" for="">HORA REC. </label>
-                                            <input type="text" name="hora_do_recebimento_do_controle" class="form-control " id="hora_do_recebimento_do_controle" placeholder="Hora do recebimento" value="{{old('hora_do_recebimento_do_controle')}}"required>
+                                            <input type="time" name="hora_do_recebimento_do_controle" class="form-control " id="hora_do_recebimento_do_controle" placeholder="Hora do recebimento" value="{{old('hora_do_recebimento_do_controle')}}"required>
                                             @error('hora_do_recebimento_do_controle')
                                                 <span class="text-danger">{{$message}}</span>
                                             @enderror
@@ -317,7 +317,7 @@
                         <div class="col-12 form-floating d-flex justify-content-end mt-5 me-4">
                             <div class="row mb-3">
                                 <div class="col me-5 ">
-                                    <input type="text" name="nome_funcionario" class="form-control floatingInput" id="nome_funcionario" placeholder="Nome do funcionario" value="{{old('nome_funcionario')}}"required>
+                                    <input type="text" name="nome_funcionario" class="form-control floatingInput" id="nome_funcionario" placeholder="Nome do funcionario" value="{{ Auth::user()->name }}"required>
                                     <h2 class="d-flex justify-content-center">Funcionario</h2>
                                     @error('nome_funcionario')
                                         <span class="text-danger">{{$message}}</span>

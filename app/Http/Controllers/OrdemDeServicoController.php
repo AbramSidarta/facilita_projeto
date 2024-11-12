@@ -231,10 +231,10 @@ class OrdemDeServicoController extends Controller
 
         $data = OrdemDeServico::create(array_merge($request->all(), ['layout' => $layoutFile]));
         if ($data) {
-            session()->flash('success', 'Ordem add Successfully');
+            session()->flash('success', 'Pedido adicionado com sucesso');
             return redirect(route('adminOrdemDeServico.index'));
         } else {
-            session()->flash('error','Some problem occure');
+            session()->flash('error','Algum problema ocorreu');
             return redirect(route('admin.OrdemDeServico.create'));
         }
     }

@@ -39,7 +39,8 @@
                                 <td class="align-middle">{{ $ordemdeservico->cliente }}</td>
                                 <td class="align-middle">{{ $ordemdeservico->servico }}</td>
                                 <td class="align-middle">
-                                    {{ $ordemdeservico->data_de_entrega }} {{ $ordemdeservico->hora_de_entrega }}
+                                {{ date('d/m/Y', strtotime($ordemdeservico->data_de_entrega)) }} 
+                                {{ $ordemdeservico->hora_de_entrega }}
                                 </td>
                                 <td class="align-middle">
                                     @php
