@@ -102,7 +102,7 @@
                                 <div class="row mb-3">
                                     <div class="col-6 d-flex justify-content-between align-items-center">
                                         <label class=" col-3 mx-2">Valor R$:</label>
-                                        <input type="text" name="valor" class="form-control " id="valor" placeholder="Valor R$" value="{{old('valor')}}" required>
+                                        <input type="text" name="valor" class="form-control " id="valor" placeholder="Valor R$" value="{{old('valor')}}" onInput="mascaraMoeda(event);" required>
                                         @error('valor')
                                             <span class="text-danger">{{$message}}</span>
                                         @enderror
@@ -126,7 +126,7 @@
                                 <div class="row mb-3">
                                     <div class="col d-flex justify-content-between align-items-center">
                                         <label class="  mx-2">Falta:</label>
-                                        <input type="text" name="falta" class="form-control " id="falta" placeholder="Falta" value="{{old('falta')}}" required>
+                                        <input type="text" name="falta" class="form-control " id="falta" placeholder="Falta" value="{{old('falta')}}" onInput="mascaraMoeda(event);" required>
                                     </div>
                                 </div>
                                 <div style="border: 2px solid #094081;" class="col-13 row d-flex justify-content-evenly">

@@ -1,27 +1,21 @@
 //Mascaras De Preço
-function formatPrice(value) {
-    // Remove tudo que não é dígito
-    let cleanedValue = value.replace(/\D/g, '');
-
-    // Adiciona a vírgula como separador decimal
-    cleanedValue = cleanedValue.replace(/(\d{2})$/, ',$1');
-    
-    // Adiciona o ponto como separador de milhar
-    cleanedValue = cleanedValue.replace(/(\d)(?=(\d{3})+(\D|$))/g, '$1.');
-
-    // Adiciona o prefixo "R$"
-    return cleanedValue;
+const mascaraMoeda = (event) => {
+    const onlyDigits = event.target.value
+        .split("")
+        .filter(s => /\d/.test(s))
+        .join("")
+        .padStart(3, "0");
+    const digitsFloat = onlyDigits.slice(0, -2) + "." + onlyDigits.slice(-2);
+    event.target.value = maskCurrency(digitsFloat);
 }
 
-document.getElementById('valor').addEventListener('input', function(event) {
-    const input = event.target;
-    input.value = formatPrice(input.value);
-});
-
-document.getElementById('falta').addEventListener('input', function(event) {
-    const input = event.target;
-    input.value = formatPrice(input.value);
-});
+// Função de formatação de valor em moeda
+const maskCurrency = (valor, locale = 'pt-BR', currency = 'BRL') => {
+    return new Intl.NumberFormat(locale, {
+        style: 'currency',
+        currency
+    }).format(valor);
+}
 
 //Mascaras De Horas
 function formatTime(value) {
@@ -32,7 +26,6 @@ function formatTime(value) {
     if (cleanedValue.length > 2) {
         cleanedValue = cleanedValue.slice(0, 2) + ':' + cleanedValue.slice(2, 4);
     }
-
 
     if (cleanedValue.length === 5) {
         const [hours, minutes] = cleanedValue.split(':').map(Number);
