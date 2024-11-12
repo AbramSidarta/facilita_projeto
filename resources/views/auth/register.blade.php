@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="d-flex justify-content-between d-flex align-items-center"   >
             <span class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Cadastrar Funcionario') }}
+                {{ __('Cadastrar Funcionário') }}
             </span>
             <a style="background-color: #ADB5BD;border: 2px solid #ADB5BD;" href="{{ route('adminFuncionario.home') }}" class="btn btn-primary text-dark">Voltar</a>
         </div>
@@ -12,7 +12,7 @@
     <x-guest-layout>
          <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
          <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
-        <h1 class="mb-0">Cadastrar Funcionario</h1>
+        <h1 class="mb-0">Cadastrar Funcionário</h1>
         
         <hr>
         <form method="POST" action="{{ route('register') }}">
@@ -28,7 +28,7 @@
             <div class="mt-4">
                 <x-input-label for="usertype" :value="__('Função')" />
                 <select id="usertype" name="usertype" class="block mt-1 w-full" required>
-                    <option value="" disabled selected>-- Selecione a função do funcionario --</option>
+                    <option value="" disabled selected>-- Selecione a função do funcionário --</option>
                     <option value="guiche" {{ old('usertype') === 'guiche' ? 'selected' : '' }}>Guichê</option>
                     <option value="impressao" {{ old('usertype') === 'impressao' ? 'selected' : '' }}>Impreessão</option>
                     <option value="producao" {{ old('usertype') === 'producao' ? 'selected' : '' }}>Produção</option>

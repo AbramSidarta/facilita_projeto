@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 
 
@@ -72,38 +73,46 @@ class FuncionarioController extends Controller
         return view('admin.funcionario.update', compact('funcionario'));
     }
 
+   
+    
     public function update(Request $request, $id)
     {
+        // Validação dos dados recebidos do formulário
         $validation = $request->validate([
             'name' => 'required',
             'cpf'  => 'required',
-            'password'  => 'required',
-            
+            'password'  => 'nullable|string|min:8|confirmed',  // Senha opcional, mas se fornecida, deve ser confirmada
         ]);
 
+        // Encontrar o funcionário pelo ID
         $funcionario = User::findOrFail($id);
-        $name = $request->name;
-        $cpf = $request->cpf;
-        $password = $request->password;
-        $usertype = $request->usertype;
 
+        // Atualizando os campos obrigatórios
+        $funcionario->name = $request->name;
+        $funcionario->cpf = $request->cpf;
+        $funcionario->usertype = $request->usertype;
 
-        $funcionario->name = $name;
-        $funcionario->cpf = $cpf;
-        $funcionario->password = $password;
-        $funcionario->usertype = $usertype;
+        // Verificar se a senha foi fornecida e, se for o caso, criptografar e salvar
+        if ($request->filled('password')) {
+            // Criptografar a senha
+            $funcionario->password = Hash::make($request->password);
+        }
 
-
-
+        // Salvar os dados atualizados
         $data = $funcionario->save();
+
+        // Verificar se a atualização foi bem-sucedida
         if ($data) {
             session()->flash('success', 'Funcionário Atualizado com Sucesso');
-            return redirect(route('adminFuncionario.home',['id'=> $funcionario->id]));
+            return redirect(route('adminFuncionario.home', ['id' => $funcionario->id]));
         } else {
             session()->flash('error', 'Ocorreu algum problema');
             return redirect(route('adminFuncionario.update'));
         }
+        dd($request->all());
+
     }
+    
 
     public function store(Request $request)
     {

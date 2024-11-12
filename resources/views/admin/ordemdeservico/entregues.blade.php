@@ -11,7 +11,7 @@
                 <div class="p-6 text-gray-900">
                     <div class="d-flex align-items-center justify-content-between mb-3">
                         <h1 class="mb-0">Lista de Ordens Entregues</h1>
-                        <input type="text" id="search" data-page="entregues" placeholder="Buscar ordens de serviço..." class="form-control w-25" />
+                        <input type="text" id="search" data-page="entregues" placeholder="Buscar Ordens de Serviço..." class="form-control w-25" />
                     </div>
                     @if (Session::has('success'))
                         <div class="alert alert-success" role="alert">
@@ -36,7 +36,8 @@
                                     <td class="align-middle">{{ $ordemdeservico->cliente }}</td>
                                     <td class="align-middle">{{ $ordemdeservico->servico }}</td>
                                     <td class="align-middle">
-                                        {{ $ordemdeservico->data_de_entrega }} {{ $ordemdeservico->hora_de_entrega }}
+                                    {{ date('d/m/Y', strtotime($ordemdeservico->data_de_entrega)) }}
+                                    {{ $ordemdeservico->hora_de_entrega }}
                                     </td>
                                     <td class="align-middle">
                                         <span class=" px-3 py-2 rounded text-white bg-success">Entregue</span>

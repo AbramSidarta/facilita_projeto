@@ -26,7 +26,7 @@
                         @csrf
                         @method('PUT')
                         <span class="col-12 d-flex row">
-                            <h1 class="col-8">Editar Funcionario</h1>
+                            <h1 class="col-8">Editar Funcionário</h1>
                             <div class="col-4 d-flex align-items-center">
                                 <a style="background-color: #DC1C2E;border: 2px solid #DC1C2E;"  href="{{ route('adminFuncionario.home',['id'=> $funcionario->id])}}" class="btn btn-primary me-3">Cancelar</a>
                                 <div class="row">
@@ -37,51 +37,52 @@
                             </div>
                         </span>
                         <hr />
-                        <div class="d-flex flex-row d-flex align-items-center  d-flex justify-content-end">
-                            <h6 class="m-0">Niveis de acesso:</h6>
-                            <div class="row ms-1">
-                                <div class="col ">
-                                    <select id="usertype" name="usertype" class="form-control pe-5" required >
-                                    <option value="" disabled selected>Selecione uma Categoria</option>
-                                    <option value="guiche" {{ $funcionario->usertype === 'guiche' ? 'selected' : '' }}>guiche</option>
-                                    <option value="impressao" {{  $funcionario->usertype === 'impressao' ? 'selected' : '' }}>impressao</option>
-                                    <option value="producao" {{ $funcionario->usertype === 'producao' ? 'selected' : '' }}>producao</option>
-                                    <option value="caixa" {{  $funcionario->usertype === 'caixa' ? 'selected' : '' }}>caixa</option>
-                                    <option value="admin" {{  $funcionario->usertype === 'admin' ? 'selected' : '' }}>admin</option>
-                                    </select>
+                        <div class="col-12 d-flex row">
+                            <div class="col-6 mb-3">
+                                <div class="">
+                                    <label class=" mb-2" for="">Nome</label>
+                                    <input type="text" name="name" class="form-control"  id="name" placeholder="Nome do Funcionario" value="{{$funcionario->name}}" required>
+                                    @error('nome')
+                                    <span class="text-danger">{{$message}}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-6 mb-3">
+                                <div class="">
+                                    <label class="m-0 mb-2">Niveis de acesso:</label>
+                                    <div class="">
+                                        <select id="usertype" name="usertype" class="form-control pe-5" required >
+                                        <option value="" disabled selected>Selecione uma Categoria</option>
+                                        <option value="guiche" {{ $funcionario->usertype === 'guiche' ? 'selected' : '' }}>Guiche</option>
+                                        <option value="impressao" {{  $funcionario->usertype === 'impressao' ? 'selected' : '' }}>Impressao</option>
+                                        <option value="producao" {{ $funcionario->usertype === 'producao' ? 'selected' : '' }}>Producao</option>
+                                        <option value="caixa" {{  $funcionario->usertype === 'caixa' ? 'selected' : '' }}>Caixa</option>
+                                        <option value="admin" {{  $funcionario->usertype === 'admin' ? 'selected' : '' }}>Admin</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="row mb-3">
-                            <div class="col-11">
-                                <label class="ms-2 mb-2" for="">Nome</label>
-                                <input type="text" name="name" class="form-control"  id="name" placeholder="Nome do Funcionario" value="{{$funcionario->name}}" required>
-                                @error('nome')
-                                <span class="text-danger">{{$message}}</span>
-                                @enderror
+        
+                        <div class="mt-2" x-data="{ cpf : ' ' }">
+                            <x-input-label for="cpf" :value="__('CPF')" />
+                            <x-text-input id="cpf" x-mask="999.999.999-99" class="block mt-1 w-full" type="text" name="cpf" :value="old('cpf')" required autocomplete="cpf" placeholder="CPF do Cliente" value="{{$funcionario->cpf}}" />
+                            <x-input-error :messages="$errors->get('cpf')" class="mt-2" />
+                        </div>
+                       
+                        <div class="row mb-3 d-flex row mt-3">
+                            <div class="col-6">
+                                <x-input-label for="password" :value="__('Senha')" />
+                                <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" autocomplete="new-password" />
+                                <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                            </div>
+                            <div class="col-6">
+                                <x-input-label for="password_confirmation" :value="__('Confirmar Senha')" />
+                                <x-text-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" autocomplete="new-password" />
+                                <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                             </div>
                         </div>
-                        
-                        <div class="row mb-3">
-                            <div class="col-11">
-                                <label class="ms-2 mb-2" for="">CPF</label>
-                                <input type="text" name="cpf" class="form-control" id="cpf" placeholder="CPF do Cliente" value="{{$funcionario->cpf}}" required>
-                                @error('cpf')
-                                <span class="text-danger">{{$message}}</span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-6" >
-                                <label class="ms-2 mb-2" for="">senha</label>
-                                <input type="text" name="password" class="form-control" id="password" placeholder="Senha" value="{{$funcionario->password}}" required>
-                                @error('senha')
-                                <span class="text-danger">{{$message}}</span>
-                                @enderror
-                            </div>
-                        </div>
- 
+                       
                         
                    
                 </div>

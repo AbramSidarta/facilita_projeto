@@ -25,11 +25,13 @@
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
+                <!--
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('adminCliente.index')" :active="request()->routeIs('adminCliente.index')">
                         {{ __('Clientes') }}
                     </x-nav-link>
                 </div>
+                -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex me-5">
                     <x-nav-link :href="route('adminFuncionario.home')" :active="request()->routeIs('adminFuncionario.home')">
                         {{ __('Funcionário') }}

@@ -3,7 +3,7 @@
     <x-slot name="header">
         <div class="d-flex justify-content-between d-flex align-items-center"   >
             <span class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Cadastrar Funcionario') }}
+                {{ __('Cadastrar Funcionário') }}
             </span>
             <a style="background-color: #ADB5BD;border: 2px solid #ADB5BD;" href="{{ route('adminFuncionario.index') }}" class="btn btn-primary text-dark">Voltar</a>
         </div>
