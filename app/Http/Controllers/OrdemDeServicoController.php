@@ -9,12 +9,19 @@ class OrdemDeServicoController extends Controller
 {
     public function index()
     {
+        // Filtrando as ordens de serviço para exibir na página
         $ordemdeservicos = OrdemDeServico::whereIn('status', ['Pendente', 'Impressão', 'Produção', 'Concluído'])
             ->orderBy('id', 'asc')
             ->get();
+
+        // Filtrando apenas ordens de serviço vencidas que não estão com status "Entregue"
+        $ordensVencidas = OrdemDeServico::where('data_de_entrega', '<', now())
+            ->where('status', '<>', 'Entregue') // Exclui as com status "Entregue"
+            ->get();
+
         $total = OrdemDeServico::count();
-        
-        return view('admin.ordemdeservico.home', compact(['ordemdeservicos', 'total']));
+
+        return view('admin.ordemdeservico.home', compact(['ordemdeservicos', 'total', 'ordensVencidas']));
     }
 
     // Método para listar ordens de serviço entregues

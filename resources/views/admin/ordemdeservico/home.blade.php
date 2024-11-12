@@ -95,6 +95,56 @@
             </div>
         </div>
     </div>
+
+    @if ($ordensVencidas->isNotEmpty())
+        <div class="modal fade" id="ordensVencidasModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Ordens de Serviço Vencidas</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>CÓD.Arte</th>
+                                    <th>Cliente</th>
+                                    <th>Serviços</th>
+                                    <th>Data e Hora de Entrega</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($ordensVencidas as $ordem)
+                                    <tr>
+                                        <td>{{ $ordem->id }}</td>
+                                        <td>{{ $ordem->cliente }}</td>
+                                        <td>{{ $ordem->servico }}</td>
+                                        <td>{{ date('d/m/Y H:i', strtotime($ordem->data_de_entrega . ' ' . $ordem->hora_de_entrega)) }}</td>
+                                        <td>{{ ucfirst($ordem->status) }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
+
+    
+    <!-- Script para abrir o modal automaticamente -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            @if ($ordensVencidas->isNotEmpty())
+                $('#ordensVencidasModal').modal('show');
+            @endif
+        });
+    </script>
+    
     <script src="{{ asset('js/input_search.js') }}"></script>
     
 </x-app-layout>
