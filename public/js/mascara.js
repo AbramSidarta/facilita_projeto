@@ -1,5 +1,4 @@
-
-//datas
+//Mascaras De Preço
 function formatPrice(value) {
     // Remove tudo que não é dígito
     let cleanedValue = value.replace(/\D/g, '');
@@ -24,8 +23,7 @@ document.getElementById('falta').addEventListener('input', function(event) {
     input.value = formatPrice(input.value);
 });
 
-//Horas
-
+//Mascaras De Horas
 function formatTime(value) {
     // Remove todos os caracteres não numéricos
     let cleanedValue = value.replace(/\D/g, '');
