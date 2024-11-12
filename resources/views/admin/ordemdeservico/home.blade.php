@@ -72,6 +72,9 @@
                                     <span class="px-3 py-2 rounded {{ $statusClass }} {{ $statusTextClass }}">
                                             {{ ucfirst($ordemdeservico->status) }}
                                     </span>
+                                    <span class="px-3 py-2 rounded bg-dark	text-white ">
+                                            {{ ucfirst($ordemdeservico->status) }}
+                                    </span>
                                 </td>
 
                                 
@@ -124,7 +127,8 @@
                                         <td>{{ $ordem->cliente }}</td>
                                         <td>{{ $ordem->servico }}</td>
                                         <td>{{ date('d/m/Y H:i', strtotime($ordem->data_de_entrega . ' ' . $ordem->hora_de_entrega)) }}</td>
-                                        <td>{{ ucfirst($ordem->status) }}</td>
+                                        <td>{{ ucfirst($ordem->status) }}
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>

@@ -191,7 +191,7 @@ class OrdemDeServicoController extends Controller
 
         $data = $ordemServico->save();
         if ($data) {
-            session()->flash('success', 'Funcionário Atualizado com Sucesso');
+            session()->flash('success', 'Ordem Atualizada com Sucesso');
             return redirect(route('adminOrdemDeServico.show',['id'=> $ordemServico->id]));
         } else {
             session()->flash('error', 'Ocorreu algum problema');
