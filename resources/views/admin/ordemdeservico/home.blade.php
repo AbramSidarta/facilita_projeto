@@ -113,6 +113,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
+                    <h5 class="d-flex justify-content-center me-4 m-0 m-3">Para listar todas as Ordens de Serviços atrasadas, pesquise: Atrasado</h5>
                     <div class="modal-body">
                         <table class="table table-hover">
                             <thead>
@@ -135,7 +136,7 @@
                                             @php
                                                 $statusClass = '';
                                                 $statusTextClass = '';
-                                                switch($ordemdeservico->status) {
+                                                switch($ordem->status) {
                                                     case 'Pendente':
                                                         $statusClass = 'bg-danger';
                                                         $statusTextClass = 'text-white'; // Bootstrap text color for better contrast
@@ -159,7 +160,7 @@
                                             @endphp
 
                                             <span class="px-3 py-2 rounded  {{ $statusClass }} {{ $statusTextClass }}">
-                                                    {{ ucfirst($ordemdeservico->status) }}
+                                                    {{ ucfirst($ordem->status) }}
                                             </span>
                                         </td>
                                     </tr>

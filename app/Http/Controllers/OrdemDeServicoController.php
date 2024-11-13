@@ -45,8 +45,16 @@ class OrdemDeServicoController extends Controller
             $queryBuilder->where('cliente', 'like', "%{$query}%")
                         ->orWhere('servico', 'like', "%{$query}%")
                         ->orWhere('status', 'like', "%{$query}%"); // Adiciona a busca pelo status
+                        
         });
 
+        $ordens = $ordens->orWhere(function ($queryBuilder) use ($query) {
+            // Verifica se a palavra "atrasado" está presente na query
+            if (str_contains(strtolower($query), 'atrasado')) {
+                $queryBuilder->where('data_de_entrega', '<', now())
+                             ->where('status', '<>', 'Entregue');
+            }
+        });
         if ($page === 'entregues') {
             $ordens = $ordens->where('status', 'Entregue');
         } else {

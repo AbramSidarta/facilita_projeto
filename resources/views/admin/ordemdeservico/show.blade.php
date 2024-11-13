@@ -234,14 +234,14 @@
                                 </div>   
                             </div>
                         
-                            <div class="p-0 ">
+                            <div class="p-0">
                                 <div class="border border-black">
                                     <h4 style="background-color: #9B9A9C;" class="d-flex justify-content-center col-12">OBSERVAÇÃO:</h4>
                                     <div class="row mb-3">
                                         <div class="col form-floating mx-2">
                                             @foreach (explode("\n", $ordemServico->observacoes_pedido) as $linha)
-                                                <p class="m-0 border-bottom border-dark" >
-                                                {{ strtoupper(e($linha)) }}
+                                                <p class="m-0 border-bottom border-dark">
+                                                    {{ mb_strtoupper(e($linha), 'UTF-8') }}
                                                 </p>
                                             @endforeach
                                             @error('observacoes_pedido')
@@ -251,6 +251,7 @@
                                     </div>
                                 </div>
                             </div>
+
 
                             <div class="border border-dark  ">             
                                 <div class="col d-flex flex-row  d-flex align-items-center mt-3">
