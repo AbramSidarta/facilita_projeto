@@ -19,6 +19,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     data.forEach(ordem => {
                         const tr = document.createElement('tr');
+                        
+                        // Verifica se a ordem está atrasada (mas não está "Entregue")
+                        const agora = new Date();
+                        const dataEntrega = new Date(ordem.data_de_entrega);
+                        const atrasado = ordem.status !== 'Entregue' && dataEntrega < agora;  // Compara se a data de entrega é anterior à data atual e não está "Entregue"
+
                         tr.innerHTML = `
                             <td class="align-middle">${ordem.id}</td>
                             <td class="align-middle">${ordem.cliente}</td>
@@ -28,6 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <span class="px-3 py-2 rounded ${getStatusClass(ordem.status)}">
                                     ${ordem.status.charAt(0).toUpperCase() + ordem.status.slice(1)}
                                 </span>
+                                ${atrasado ? `<span class="px-3 py-2 mx-1 rounded bg-dark text-white">Atrasado</span>` : ''}
                             </td>
                             <td class="align-middle">
                                 <div class="btn-group" role="group">
@@ -35,6 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 </div>
                             </td>
                         `;
+                        
                         tbody.appendChild(tr);
                     });
                 })
@@ -55,6 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
+
 
 
 

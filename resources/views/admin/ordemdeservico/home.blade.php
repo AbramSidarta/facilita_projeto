@@ -69,12 +69,16 @@
                                         }
                                     @endphp
 
-                                    <span class="px-3 py-2 rounded {{ $statusClass }} {{ $statusTextClass }}">
+                                    <span class="px-3 py-2 rounded  {{ $statusClass }} {{ $statusTextClass }}">
                                             {{ ucfirst($ordemdeservico->status) }}
                                     </span>
-                                    <span class="px-3 py-2 rounded bg-dark	text-white ">
-                                            {{ ucfirst($ordemdeservico->status) }}
-                                    </span>
+                                    @if ($ordemdeservico->data_de_entrega <= now())
+                                        <span class="px-3 py-2 mx-1 rounded bg-dark	text-white ">
+                                                Atrasado 
+                                        </span>
+                                    @endif
+
+                                  
                                 </td>
 
                                 

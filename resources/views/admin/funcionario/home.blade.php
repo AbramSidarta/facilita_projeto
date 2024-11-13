@@ -39,7 +39,7 @@
                                     <td class="text-center align-middle">{{ $funcionario->cpf }}</td>
                                     <td class="text-center align-middle">
                                         <a style=" background-color: #FF8A00;border: 2px solid #FF8A00;" href="{{ route('adminFuncionario.edit', $funcionario->id) }}" class="btn text-white ">Editar</a>
-                                        <a href="{{ route('adminFuncionario.destroy', ['id'=>$funcionario->id]) }}" type="button" class="btn btn-danger">Delete</a>
+                                        <a href="{{ route('adminFuncionario.destroy', ['id'=>$funcionario->id]) }}" type="button" onclick="return confirm('Você tem certeza?')" class="btn btn-danger">Deletar</a>
                                     </td>
                                 </tr>
                             @empty
