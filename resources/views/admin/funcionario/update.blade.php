@@ -53,11 +53,11 @@
                                     <div class="">
                                         <select id="usertype" name="usertype" class="form-control pe-5" required >
                                         <option value="" disabled selected>Selecione uma Categoria</option>
-                                        <option value="guiche" {{ $funcionario->usertype === 'guiche' ? 'selected' : '' }}>Guiche</option>
-                                        <option value="impressao" {{  $funcionario->usertype === 'impressao' ? 'selected' : '' }}>Impressao</option>
-                                        <option value="producao" {{ $funcionario->usertype === 'producao' ? 'selected' : '' }}>Producao</option>
-                                        <option value="caixa" {{  $funcionario->usertype === 'caixa' ? 'selected' : '' }}>Caixa</option>
-                                        <option value="admin" {{  $funcionario->usertype === 'admin' ? 'selected' : '' }}>Admin</option>
+                                        <option value="Guichê" {{ $funcionario->usertype === 'Guichê' ? 'selected' : '' }}>Guichê</option>
+                                        <option value="Impressão" {{  $funcionario->usertype === 'Impressão' ? 'selected' : '' }}>Impressão</option>
+                                        <option value="Produção" {{ $funcionario->usertype === 'Produção' ? 'selected' : '' }}>Produção</option>
+                                        <option value="Caixa" {{  $funcionario->usertype === 'Caixa' ? 'selected' : '' }}>Caixa</option>
+                                        <option value="Admin" {{  $funcionario->usertype === 'Admin' ? 'selected' : '' }}>Admin</option>
                                         </select>
                                     </div>
                                 </div>

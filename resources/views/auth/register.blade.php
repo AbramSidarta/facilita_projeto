@@ -29,11 +29,11 @@
                 <x-input-label for="usertype" :value="__('Função')" />
                 <select id="usertype" name="usertype" class="block mt-1 w-full" required>
                     <option value="" disabled selected>-- Selecione a função do funcionário --</option>
-                    <option value="guiche" {{ old('usertype') === 'guiche' ? 'selected' : '' }}>Guichê</option>
-                    <option value="impressao" {{ old('usertype') === 'impressao' ? 'selected' : '' }}>Impreessão</option>
-                    <option value="producao" {{ old('usertype') === 'producao' ? 'selected' : '' }}>Produção</option>
-                    <option value="caixa" {{ old('usertype') === 'caixa' ? 'selected' : '' }}>Caixa</option>
-                    <option value="admin" {{ old('usertype') === 'admin' ? 'selected' : '' }}>Admin</option>
+                    <option value="Guichê" {{ old('usertype') === 'Guichê' ? 'selected' : '' }}>Guichê</option>
+                    <option value="Impressão" {{ old('usertype') === 'Impressão' ? 'selected' : '' }}>Impreessão</option>
+                    <option value="Produção" {{ old('usertype') === 'Produção' ? 'selected' : '' }}>Produção</option>
+                    <option value="Caixa" {{ old('usertype') === 'Caixa' ? 'selected' : '' }}>Caixa</option>
+                    <option value="Admin" {{ old('usertype') === 'Admin' ? 'selected' : '' }}>Admin</option>
                     <!-- Adicione mais opções conforme necessário -->
                 </select>
                 <x-input-error :messages="$errors->get('usertype')" class="mt-2" />

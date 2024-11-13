@@ -37,7 +37,7 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'cpf' => ['required', 'string', 'max:14', 'unique:'.User::class], // Adicione validação para CPF
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'usertype' => 'required|in:guiche,impressao,producao,caixa,admin',
+            'usertype' => 'required|in:Guichê,Impressão,Produção,Caixa,Admin',
         ]);
 
         $user = User::create([
