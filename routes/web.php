@@ -9,25 +9,17 @@ use App\Http\Controllers\FuncionarioController;
 use App\Http\Controllers\RegisteredUserController ;
 use App\Http\Controllers\UserController;
 
-Route::get('/', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+Route::middleware(['auth', 'verified'])->group(function (){
+    Route::get('/', [OrdemDeServicoController::class, 'index'])->name('adminOrdemDeServico.index');
+    Route::get('/admin', [OrdemDeServicoController::class, 'index'])->name('adminOrdemDeServico.index');
+    Route::get('/admin/ordemdeservico', [OrdemDeServicoController::class, 'index'])->name('adminOrdemDeServico.index');
+    
 });
 
 Route::middleware(['auth', 'admin'])->group(function () {
- 
-    Route::get('admin/dashboard', [HomeController::class, 'index']);
- 
-    Route::get('/admin/ordemdeservico/imprimir{id}', [OrdemDeServicoController::class, 'imprimir'])->name('adminOrdemDeServico.print');
+
     // Rota para listar ordens de serviço pendentes, impressão, produção e concluído
     Route::get('/admin/ordemdeservico', [OrdemDeServicoController::class, 'index'])->name('adminOrdemDeServico.index');
     // Rota para listar ordens de serviço entregues
