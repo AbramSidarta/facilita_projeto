@@ -131,7 +131,36 @@
                                         <td>{{ $ordem->cliente }}</td>
                                         <td>{{ $ordem->servico }}</td>
                                         <td>{{ date('d/m/Y H:i', strtotime($ordem->data_de_entrega . ' ' . $ordem->hora_de_entrega)) }}</td>
-                                        <td>{{ ucfirst($ordem->status) }}
+                                        <td>
+                                            @php
+                                                $statusClass = '';
+                                                $statusTextClass = '';
+                                                switch($ordemdeservico->status) {
+                                                    case 'Pendente':
+                                                        $statusClass = 'bg-danger';
+                                                        $statusTextClass = 'text-white'; // Bootstrap text color for better contrast
+                                                        break;
+                                                    case 'Impressão':
+                                                        $statusClass = 'bg-warning';
+                                                        $statusTextClass = 'text-dark';
+                                                        break;
+                                                    case 'Produção':
+                                                        $statusClass = 'bg-primary';
+                                                        $statusTextClass = 'text-white';
+                                                        break;
+                                                    case 'Concluido':
+                                                        $statusClass = 'bg-success';
+                                                        $statusTextClass = 'text-white';
+                                                        break;
+                                                    default:
+                                                        $statusClass = 'bg-secondary';
+                                                        $statusTextClass = 'text-white';
+                                                }
+                                            @endphp
+
+                                            <span class="px-3 py-2 rounded  {{ $statusClass }} {{ $statusTextClass }}">
+                                                    {{ ucfirst($ordemdeservico->status) }}
+                                            </span>
                                         </td>
                                     </tr>
                                 @endforeach
