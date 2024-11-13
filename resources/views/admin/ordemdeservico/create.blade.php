@@ -19,21 +19,35 @@
                     <form action="{{ route('adminOrdemDeServico.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                         <div class="d-flex justify-content-between d-flex align-items-center">
-                            <div class="d-flex flex-row d-flex align-items-center">
-                                <h3 class="m-0">Estados da Ordem de Serviço:</h3>
-                                <div class="row ms-1">
-                                    <div class="col ">
-                                        <select id="status" name="status" class="form-control pe-5" required >
+                        <div class="d-flex flex-row align-items-center">
+                            <h3 class="m-0">Estados da Ordem de Serviço:</h3>
+                            <div class="row ms-1">
+                                <div class="col">
+                                    <select id="status" name="status" class="form-control pe-5" required>
                                         <option value="">Selecione uma Categoria</option>
+                                        @php
+                                            $userType = Auth::user()->usertype;
+                                        @endphp
+
+                                        @if(in_array($userType, ['Guichê', 'Impressão', 'Produção', 'Caixa', 'Admin']))
                                             <option value="Pendente" {{ old('status') === 'Pendente' ? 'selected' : '' }}>Pendente</option>
                                             <option value="Impressão" {{ old('status') === 'Impressão' ? 'selected' : '' }}>Impressão</option>
                                             <option value="Produção" {{ old('status') === 'Produção' ? 'selected' : '' }}>Produção</option>
+                                        @endif
+
+                                        @if(in_array($userType, ['Impressão', 'Produção', 'Caixa', 'Admin']))
                                             <option value="Concluido" {{ old('status') === 'Concluido' ? 'selected' : '' }}>Concluído</option>
+                                        @endif
+
+                                        @if(in_array($userType, ['Caixa', 'Admin']))
                                             <option value="Entregue" {{ old('status') === 'Entregue' ? 'selected' : '' }}>Entregue</option>
-                                        </select>
-                                    </div>
+                                        @endif
+
+                                    </select>
                                 </div>
                             </div>
+                        </div>
+
                             <div class="d-flex justify-content-between d-flex align-items-center">
                                 <a style="background-color: #094081;border: 2px solid #094081;"  onclick="window.print()" class="btn btn-primary me-3">Imprimir</a>
                                 <div class="row">

@@ -15,14 +15,6 @@ Route::middleware(['auth', 'verified'])->group(function (){
     Route::get('/', [OrdemDeServicoController::class, 'index'])->name('adminOrdemDeServico.index');
     Route::get('/admin', [OrdemDeServicoController::class, 'index'])->name('adminOrdemDeServico.index');
     Route::get('/admin/ordemdeservico', [OrdemDeServicoController::class, 'index'])->name('adminOrdemDeServico.index');
-    
-});
-
-Route::middleware(['auth', 'admin'])->group(function () {
-
-    // Rota para listar ordens de serviço pendentes, impressão, produção e concluído
-    Route::get('/admin/ordemdeservico', [OrdemDeServicoController::class, 'index'])->name('adminOrdemDeServico.index');
-    // Rota para listar ordens de serviço entregues
     Route::get('/admin/ordemdeservico/entregues', [OrdemDeServicoController::class, 'entregues'])->name('adminOrdemDeServico.entregues');
     // routes/search    
     Route::get('/search-orders', [OrdemDeServicoController::class, 'search'])->name('OrdemDeServicoSearch.orders');
@@ -44,6 +36,10 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::put('/admin/cliente/{id}', [ClienteController::class, 'update'])->name('adminCliente.update');
     Route::get('/admin/cliente/{id}', [ClienteController::class, 'destroy'])->name('adminCliente.destroy');
 
+});
+
+Route::middleware(['auth', 'admin'])->group(function () {
+   
     //funcionarios
     
     Route::get('/search-funcionarios', [FuncionarioController::class, 'search']);
@@ -61,8 +57,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
    
 
 });
-Route::get('/login/{id}', [UserController::class, 'getUserName']);
-// routes/search
+
+
 
 require __DIR__.'/auth.php';
 

@@ -30,7 +30,7 @@
                 <select id="usertype" name="usertype" class="block mt-1 w-full" required>
                     <option value="" disabled selected>-- Selecione a função do funcionário --</option>
                     <option value="Guichê" {{ old('usertype') === 'Guichê' ? 'selected' : '' }}>Guichê</option>
-                    <option value="Impressão" {{ old('usertype') === 'Impressão' ? 'selected' : '' }}>Impreessão</option>
+                    <option value="Impressão" {{ old('usertype') === 'Impressão' ? 'selected' : '' }}>Impressão</option>
                     <option value="Produção" {{ old('usertype') === 'Produção' ? 'selected' : '' }}>Produção</option>
                     <option value="Caixa" {{ old('usertype') === 'Caixa' ? 'selected' : '' }}>Caixa</option>
                     <option value="Admin" {{ old('usertype') === 'Admin' ? 'selected' : '' }}>Admin</option>

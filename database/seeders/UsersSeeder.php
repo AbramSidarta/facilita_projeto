@@ -17,7 +17,7 @@ class UsersSeeder extends Seeder
             'name' => 'Admin',
             'cpf' => '1',
             'password' => bcrypt('12345678'),
-            'usertype' => 'admin',
+            'usertype' => 'Admin',
         ]);
     }
 }

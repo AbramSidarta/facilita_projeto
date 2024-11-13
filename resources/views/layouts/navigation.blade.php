@@ -32,12 +32,13 @@
                     </x-nav-link>
                 </div>
                 -->
+                @if ( Auth::user()->usertype == 'Admin')
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex me-5">
                     <x-nav-link :href="route('adminFuncionario.home')" :active="request()->routeIs('adminFuncionario.home')">
                         {{ __('Funcionário') }}
                     </x-nav-link>
                 </div>
-
+                @endif
                 <x-dropdown class="" align="right" width="48">
                     <x-slot name="trigger">
                         <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">

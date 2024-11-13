@@ -26,14 +26,38 @@
                                     <h3 class="m-0">Estados da ordem de serviço:</h3>
                                     <div class="row ms-1">
                                         <div class="col ">
-                                            <select id="status" name="status" class="form-control pe-5" required >
-                                            <option value="">Selecione uma Categoria</option>
-                                            <option value="Pendente" {{ $ordemServico->status === 'Pendente' ? 'selected' : '' }}>Pendente</option>
-                                            <option value="Impressão" {{  $ordemServico->status === 'Impressão' ? 'selected' : '' }}>Impressão</option>
-                                            <option value="Produção" {{ $ordemServico->status === 'Produção' ? 'selected' : '' }}>Produção</option>
-                                            <option value="Concluido" {{  $ordemServico->status === 'Concluido' ? 'selected' : '' }}>Concluído</option>
-                                            <option value="Entregue" {{  $ordemServico->status === 'Entregue' ? 'selected' : '' }}>Entregue</option>
-                                            </select>
+                                            @php
+                                                $userType = Auth::user()->usertype;
+                                            @endphp
+
+                                            @if($userType == 'Guichê' && $ordemServico->status === 'Concluido')
+                                                <select id="status" name="status" class="form-control pe-5" required disabled >
+                                                <option value="">Selecione uma Categoria</option>
+                                                    <option value="Pendente" {{ $ordemServico->status === 'Pendente' ? 'selected' : '' }}>Pendente</option>
+                                                    <option value="Impressão" {{ $ordemServico->status === 'Impressão' ? 'selected' : '' }}>Impressão</option>
+                                                    <option value="Produção" {{ $ordemServico->status === 'Produção' ? 'selected' : '' }}>Produção</option>
+                                                    <option value="Concluido" {{ $ordemServico->status === 'Concluido' ? 'selected' : '' }}>Concluído</option>
+                                                    <option value="Entregue" {{ $ordemServico->status === 'Entregue' ? 'selected' : '' }}>Entregue</option>
+                                                </select>
+                                            @else
+                                                <select id="status" name="status" class="form-control pe-5" required >
+                                                <option value="">Selecione uma Categoria</option>
+                                                @if(in_array($userType, ['Guichê', 'Impressão', 'Produção', 'Caixa', 'Admin']))
+                                                    <option value="Pendente" {{ $ordemServico->status === 'Pendente' ? 'selected' : '' }}>Pendente</option>
+                                                    <option value="Impressão" {{ $ordemServico->status === 'Impressão' ? 'selected' : '' }}>Impressão</option>
+                                                    <option value="Produção" {{ $ordemServico->status === 'Produção' ? 'selected' : '' }}>Produção</option>
+                                                    
+                                                @endif
+
+                                                @if(in_array($userType, ['Impressão', 'Produção', 'Caixa', 'Admin']))
+                                                    <option value="Concluido" {{ $ordemServico->status === 'Concluido' ? 'selected' : '' }}>Concluído</option>
+                                                @endif
+
+                                                @if(in_array($userType, ['Caixa', 'Admin']))
+                                                    <option value="Entregue" {{ $ordemServico->status === 'Entregue' ? 'selected' : '' }}>Entregue</option>
+                                                @endif
+                                                </select>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
