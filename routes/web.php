@@ -1,13 +1,10 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrdemDeServicoController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\FuncionarioController;
-use App\Http\Controllers\RegisteredUserController ;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\RegisteredUserController;
 
 Route::middleware(['auth', 'verified'])->group(function (){
     // routes/loginRealizado
