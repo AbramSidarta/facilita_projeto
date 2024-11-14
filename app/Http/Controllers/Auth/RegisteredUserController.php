@@ -18,14 +18,10 @@ class RegisteredUserController extends Controller
     /**
      * Display the registration view.
      */
-
-
-
     public function create(): View
     {
         return view('auth.register');
     }
-
     /**
      * Handle an incoming registration request.
      *
@@ -39,14 +35,12 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'usertype' => 'required|in:Guichê,Impressão,Produção,Caixa,Admin',
         ]);
-
         $user = User::create([
             'name' => $request->name,
             'cpf' => $request->cpf, // Armazene o CPF
             'password' => Hash::make($request->password),
             'usertype' => $request->usertype, // Adicione isso
         ]);
-
         event(new Registered($user));
 
         return redirect(route('adminFuncionario.home'));

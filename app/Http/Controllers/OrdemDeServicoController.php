@@ -13,12 +13,10 @@ class OrdemDeServicoController extends Controller
         $ordemdeservicos = OrdemDeServico::whereIn('status', ['Pendente', 'Impressão', 'Produção', 'Concluído'])
             ->orderBy('id', 'asc')
             ->get();
-
         // Filtrando apenas ordens de serviço vencidas que não estão com status "Entregue"
         $ordensVencidas = OrdemDeServico::where('data_de_entrega', '<', now())
             ->where('status', '<>', 'Entregue') // Exclui as com status "Entregue"
             ->get();
-
         $total = OrdemDeServico::count();
 
         return view('admin.ordemdeservico.home', compact(['ordemdeservicos', 'total', 'ordensVencidas']));
@@ -44,8 +42,7 @@ class OrdemDeServicoController extends Controller
         $ordens = OrdemDeServico::where(function ($queryBuilder) use ($query) {
             $queryBuilder->where('cliente', 'like', "%{$query}%")
                         ->orWhere('servico', 'like', "%{$query}%")
-                        ->orWhere('status', 'like', "%{$query}%"); // Adiciona a busca pelo status
-                        
+                        ->orWhere('status', 'like', "%{$query}%"); // Adiciona a busca pelo status 
         });
 
         $ordens = $ordens->orWhere(function ($queryBuilder) use ($query) {
@@ -60,7 +57,6 @@ class OrdemDeServicoController extends Controller
         } else {
             $ordens = $ordens->whereIn('status', ['Pendente', 'Impressão', 'Produção', 'Concluído']);
         }
-
         $ordens = $ordens->orderBy('id', 'asc')->get();
 
         return response()->json($ordens);
@@ -74,7 +70,6 @@ class OrdemDeServicoController extends Controller
     public function imprimir($id)
     {
         $ordemServico = OrdemDeServico::findOrFail($id);
-         
         return view('admin.ordemdeservico.imprimir', compact('ordemServico'));
     }
     
@@ -196,7 +191,6 @@ class OrdemDeServicoController extends Controller
             $ordemServico->layout = $filename; // Atualiza o campo layout
         }
     
-
         $data = $ordemServico->save();
         if ($data) {
             session()->flash('success', 'Ordem Atualizada com Sucesso');
@@ -242,7 +236,6 @@ class OrdemDeServicoController extends Controller
             $file->move(public_path('uploads/ordemdeservico'), $filename);
             $layoutFile = $filename;
         }
-        
 
         $data = OrdemDeServico::create(array_merge($request->all(), ['layout' => $layoutFile]));
         if ($data) {
@@ -253,8 +246,6 @@ class OrdemDeServicoController extends Controller
             return redirect(route('admin.OrdemDeServico.create'));
         }
     }
-
-   
 }
 
    

@@ -18,32 +18,26 @@ class AuthenticatedSessionController extends Controller
     {
         return view('auth.login');
     }
-
     /**
      * Handle an incoming authentication request.
      */
     public function store(LoginRequest $request): RedirectResponse
     {
         $request->authenticate();
-
         $request->session()->regenerate();
-
         if ($request->user()->usertype == 'admin') {
             return redirect('admin/ordemdeservico');
         }
 
         return redirect()->intended(route('adminOrdemDeServico.index', absolute: false));
     }
-
     /**
      * Destroy an authenticated session.
      */
     public function destroy(Request $request): RedirectResponse
     {
         Auth::guard('web')->logout();
-
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
 
         return redirect('/');

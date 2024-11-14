@@ -18,7 +18,6 @@ class ConfirmablePasswordController extends Controller
     {
         return view('auth.confirm-password');
     }
-
     /**
      * Confirm the user's password.
      */
@@ -32,7 +31,6 @@ class ConfirmablePasswordController extends Controller
                 'password' => __('auth.password'),
             ]);
         }
-
         $request->session()->put('auth.password_confirmed_at', time());
 
         return redirect()->intended(route('adminOrdemDeServico.index', absolute: false));

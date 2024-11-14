@@ -17,7 +17,6 @@ class FuncionarioController extends Controller
     public function search(Request $request)
     {
         $query = $request->input('query');
-
         $funcionarios = User::where(function ($queryBuilder) use ($query) {
             $queryBuilder->where('name', 'like', "%{$query}%")
                         ->orWhere('usertype', 'like', "%{$query}%")
@@ -66,10 +65,9 @@ class FuncionarioController extends Controller
             'cpf'  => 'required',
             'password'  => 'nullable|string|min:8|confirmed',  // Senha opcional, mas se fornecida, deve ser confirmada
         ]);
-
         // Encontrar o funcionário pelo ID
         $funcionario = User::findOrFail($id);
-
+    
         // Atualizando os campos obrigatórios
         $funcionario->name = $request->name;
         $funcionario->cpf = $request->cpf;
@@ -92,7 +90,5 @@ class FuncionarioController extends Controller
             session()->flash('error', 'Ocorreu algum problema');
             return redirect(route('adminFuncionario.update'));
         }
-        dd($request->all());
-
     }
 }

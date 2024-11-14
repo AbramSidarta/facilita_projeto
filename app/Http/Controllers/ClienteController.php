@@ -38,7 +38,6 @@ class ClienteController extends Controller
         return response()->json($clientes);
     }
     
-
     public function destroy($id)
     {
         $clientes = Cliente::findOrFail($id)->delete();
@@ -55,7 +54,6 @@ class ClienteController extends Controller
     {
         return view('admin.cliente.create');
     }
-
     
     public function show($id)
     {
@@ -83,12 +81,9 @@ class ClienteController extends Controller
         $endereco = $request->endereco;
         $telefone = $request->telefone;
         
-
-
         $cliente->name = $name;
         $cliente->endereco = $endereco;
         $cliente->telefone = $telefone;
-
 
         $data = $cliente->save();
         if ($data) {
@@ -100,7 +95,6 @@ class ClienteController extends Controller
         }
     }
 
-
     public function store(Request $request)
     {
         $validation = $request->validate([
@@ -108,7 +102,6 @@ class ClienteController extends Controller
             'endereco' => 'required',
             'telefone' => 'required',
         ]);
-
 
         $data = Cliente::create($validation);
         if ($data) {
