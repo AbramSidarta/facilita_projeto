@@ -3,7 +3,7 @@
     <x-slot name="header">
         <div class="d-flex justify-content-between d-flex align-items-center"   >
             <span class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Visualizar Ordem de Serviço') }}
+                {{ __('Editar Funcionário') }}
             </span>
         </div>
     </x-slot>
