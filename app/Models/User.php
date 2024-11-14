@@ -9,7 +9,6 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
-
     /**
      * The attributes that are mass assignable.
      *
@@ -21,7 +20,6 @@ class User extends Authenticatable
         'password',
         'usertype', // Se necessário
     ];
-
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -31,7 +29,6 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
-
     /**
      * Get the attributes that should be cast.
      *

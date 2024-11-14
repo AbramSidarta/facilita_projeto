@@ -16,14 +16,12 @@ return new class extends Migration
             $table->mediumText('value');
             $table->integer('expiration');
         });
-
         Schema::create('cache_locks', function (Blueprint $table) {
             $table->string('key')->primary();
             $table->string('owner');
             $table->integer('expiration');
         });
     }
-
     /**
      * Reverse the migrations.
      */

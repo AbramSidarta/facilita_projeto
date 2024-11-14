@@ -20,13 +20,11 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
-
         Schema::create('password_reset_tokens', function (Blueprint $table) {
             $table->string('cpf')->primary(); // Mudando para CPF
             $table->string('token');
             $table->timestamp('created_at')->nullable();
         });
-
         Schema::create('sessions', function (Blueprint $table) {
             $table->string('id')->primary();
             $table->foreignId('user_id')->nullable()->index();
@@ -36,7 +34,6 @@ return new class extends Migration
             $table->integer('last_activity')->index();
         });
     }
-
     /**
      * Reverse the migrations.
      */
