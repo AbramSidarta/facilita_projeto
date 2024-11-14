@@ -4,7 +4,6 @@
             {{ __('Lista de Funcionário') }}
         </h2>
     </x-slot>
-
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -14,7 +13,7 @@
                         <input type="text" id="search-funcionario" placeholder="Buscar Funcionário..." class="form-control w-25" />
                         <a href="{{ route('register') }}" class="btn btn-primary">Cadastrar Funcionário</a>
                     </div>
-                    <hr />
+                    <hr/>
                     @if (Session::has('success'))
                         <div class="alert alert-success" role="alert">
                             {{ Session::get('success') }}
