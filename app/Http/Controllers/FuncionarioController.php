@@ -5,7 +5,6 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 
-
 class FuncionarioController extends Controller
 {
     public function index()
@@ -37,12 +36,9 @@ class FuncionarioController extends Controller
                 'deleteUrl' => route('adminFuncionario.destroy', $funcionario->id),  // URL de de
             ];
         });
-       
 
         return response()->json($funcionarios);
     }
-
-
 
     public function destroy($id)
     {
@@ -56,24 +52,11 @@ class FuncionarioController extends Controller
         }
     }
 
-    public function create()
-    {
-        return view('admin.funcionario.create');
-    }
-
-    public function show($id)
-    {
-        $funcionario = User::findOrFail($id);
-        return view('admin.funcionario.show', compact('funcionario'));
-    }
-
     public function edit($id)
     {
         $funcionario = User::findOrFail($id);
         return view('admin.funcionario.update', compact('funcionario'));
     }
-
-   
     
     public function update(Request $request, $id)
     {
@@ -112,27 +95,4 @@ class FuncionarioController extends Controller
         dd($request->all());
 
     }
-    
-
-    public function store(Request $request)
-    {
-        $validation = $request->validate([
-            'nome'  => 'required',
-            'cpf' => 'required',
-            'senha' => 'required',
-            'funcao' => 'required',
-        ]);
-
-
-        $data = User::create($validation);
-        if ($data) {
-            session()->flash('success', 'Ordem add Successfully');
-            return redirect(route('adminFuncionario.home'));
-        } else {
-            session()->flash('error','Some problem occure');
-            return redirect(route('adminFuncionario.create'));
-        }
-    }
-
-    
 }
