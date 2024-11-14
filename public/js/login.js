@@ -4,17 +4,14 @@ function somenteNumeros(event) {
     input.value = input.value.replace(/[^0-9]/g, '');  // Substitui qualquer caractere que não seja número
     buscarUsuario(); // Chama a função de busca do nome assim que o input for alterado
 }
-
 // Função para buscar o nome do usuário via Ajax
 function buscarUsuario() {
     const usuarioId = document.getElementById("usuarioId").value;
-
     // Verificar se o ID é um número válido
     if (!usuarioId) {
         document.getElementById("resultadoNome").value = "Digite um ID válido!";
         return;
     }
-
     // Usar Fetch API para fazer a requisição
     fetch(`/login/${usuarioId}`)
     .then(response => {

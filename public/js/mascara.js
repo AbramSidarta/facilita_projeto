@@ -8,7 +8,6 @@ const mascaraMoeda = (event) => {
     const digitsFloat = onlyDigits.slice(0, -2) + "." + onlyDigits.slice(-2);
     event.target.value = maskCurrency(digitsFloat);
 }
-
 // Função de formatação de valor em moeda
 const maskCurrency = (valor, locale = 'pt-BR', currency = 'BRL') => {
     return new Intl.NumberFormat(locale, {

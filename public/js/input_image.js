@@ -1,5 +1,4 @@
-//para o create 
-
+//para carregar imagem no create 
 document.getElementById('layout').addEventListener('change', function(event) {
     var input = event.target;
     var file = input.files[0];
@@ -12,13 +11,10 @@ document.getElementById('layout').addEventListener('change', function(event) {
         reader.readAsDataURL(file);
     }
 });
-
-//para o update
-
+//para carregar a imgem no edit 
 function previewImage(event) {
     const preview = document.getElementById('preview');
     const file = event.target.files[0];
-
     if (file) {
         const reader = new FileReader();
         reader.onload = function(e) {

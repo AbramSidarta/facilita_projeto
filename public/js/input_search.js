@@ -1,30 +1,24 @@
 document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('search');
-
     if (searchInput) {
         searchInput.addEventListener('input', function() {
             let query = this.value;
             let page = this.getAttribute('data-page'); // Obtém o valor da página
-
             fetch(`/search-orders?query=${query}&page=${page}`)
                 .then(response => response.json())
                 .then(data => {
                     const tbody = document.querySelector('table tbody');
                     tbody.innerHTML = ''; // Limpa a tabela
-
                     if (data.length === 0) {
                         tbody.innerHTML = '<tr><td class="text-center" colspan="6">Produto não encontrado</td></tr>';
                         return;
                     }
-
                     data.forEach(ordem => {
                         const tr = document.createElement('tr');
-                        
                         // Verifica se a ordem está atrasada (mas não está "Entregue")
                         const agora = new Date();
                         const dataEntrega = new Date(ordem.data_de_entrega);
                         const atrasado = ordem.status !== 'Entregue' && dataEntrega < agora;  // Compara se a data de entrega é anterior à data atual e não está "Entregue"
-
                         tr.innerHTML = `
                             <td class="align-middle">${ordem.id}</td>
                             <td class="align-middle">${ordem.cliente}</td>
@@ -42,7 +36,6 @@ document.addEventListener('DOMContentLoaded', () => {
                                 </div>
                             </td>
                         `;
-                        
                         tbody.appendChild(tr);
                     });
                 })
@@ -51,7 +44,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
         });
     }
-
     function getStatusClass(status) {
         switch (status) {
             case 'Pendente': return 'bg-danger text-white';
@@ -64,27 +56,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-
-
-
 document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('search-client');
-
     if (searchInput) {
         searchInput.addEventListener('input', function() {
             let query = this.value;
-
             fetch(`/search-clientes?query=${query}`)
                 .then(response => response.json())
                 .then(data => {
                     const tbody = document.querySelector('table tbody');
                     tbody.innerHTML = ''; // Limpa a tabela
-
                     if (data.length === 0) {
                         tbody.innerHTML = '<tr><td class="text-center" colspan="4">Nenhum cliente encontrado</td></tr>';
                         return;
                     }
-
                     data.forEach(cliente => {
                         const tr = document.createElement('tr');
                         tr.innerHTML = `
@@ -111,26 +96,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-
-
 document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('search-funcionario');
-
     if (searchInput) {
         searchInput.addEventListener('input', function() {
             let query = this.value;
-
             fetch(`/search-funcionarios?query=${query}`)
                 .then(response => response.json())
                 .then(data => {
                     const tbody = document.querySelector('table tbody');
                     tbody.innerHTML = ''; // Limpa a tabela
-
                     if (data.length === 0) {
                         tbody.innerHTML = '<tr><td class="text-center" colspan="4">Nenhum funcionario encontrado</td></tr>';
                         return;
                     }
-
                     data.forEach(funcionario => {
                         const tr = document.createElement('tr');
                         tr.innerHTML = `
