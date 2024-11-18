@@ -3,22 +3,22 @@ document.addEventListener('DOMContentLoaded', () => {
     if (searchInput) {
         searchInput.addEventListener('input', function() {
             let query = this.value;
-            let page = this.getAttribute('data-page'); // Obtém o valor da página
+            let page = this.getAttribute('data-page'); // Obtém a página atual
             fetch(`/search-orders?query=${query}&page=${page}`)
                 .then(response => response.json())
                 .then(data => {
                     const tbody = document.querySelector('table tbody');
                     tbody.innerHTML = ''; // Limpa a tabela
-                    if (data.length === 0) {
-                        tbody.innerHTML = '<tr><td class="text-center" colspan="6">Produto não encontrado</td></tr>';
+                    if (data.data.length === 0) {
+                        tbody.innerHTML = '<tr><td class="text-center" colspan="6">Nenhuma Ordem Encontrada</td></tr>';
                         return;
                     }
-                    data.forEach(ordem => {
+                    data.data.forEach(ordem => {
                         const tr = document.createElement('tr');
-                        // Verifica se a ordem está atrasada (mas não está "Entregue")
+                        // Verifica se a ordem está atrasada
                         const agora = new Date();
                         const dataEntrega = new Date(ordem.data_de_entrega);
-                        const atrasado = ordem.status !== 'Entregue' && dataEntrega < agora;  // Compara se a data de entrega é anterior à data atual e não está "Entregue"
+                        const atrasado = ordem.status !== 'Entregue' && dataEntrega < agora;
                         tr.innerHTML = `
                             <td class="align-middle">${ordem.id}</td>
                             <td class="align-middle">${ordem.cliente}</td>
@@ -38,12 +38,16 @@ document.addEventListener('DOMContentLoaded', () => {
                         `;
                         tbody.appendChild(tr);
                     });
+
+                    // Atualiza a navegação da página
+                    updatePagination(data);
                 })
                 .catch(error => {
                     console.error('Erro ao buscar ordens:', error);
                 });
         });
     }
+
     function getStatusClass(status) {
         switch (status) {
             case 'Pendente': return 'bg-danger text-white';
@@ -54,7 +58,14 @@ document.addEventListener('DOMContentLoaded', () => {
             default: return 'bg-secondary text-white';
         }
     }
+
+    function updatePagination(data) {
+        // Aqui você pode adicionar a lógica para mostrar os links de paginação
+        // com base nos dados de metadados retornados, como total, current_page, last_page, etc.
+    }
 });
+
+
 
 document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('search-client');

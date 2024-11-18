@@ -7,6 +7,8 @@ use App\Http\Controllers\FuncionarioController;
 use App\Http\Controllers\RegisteredUserController;
 
 Route::middleware(['auth', 'verified'])->group(function (){
+    Route::get('/search-orders', [OrdemDeServicoController::class, 'search'])->name('OrdemDeServicoSearch.orders');
+
     // routes/loginRealizado
     Route::get('/', [OrdemDeServicoController::class, 'index'])->name('adminOrdemDeServico.index');
     Route::get('/admin', [OrdemDeServicoController::class, 'index'])->name('adminOrdemDeServico.index');

@@ -32,7 +32,7 @@ return new class extends Migration
             $table->boolean('servico_externo')->nullable();
             $table->string('formas_de_pagamento')->nullable();
             $table->string('observacoes_pedido')->nullable();
-            $table->string('layout');
+            $table->string('layout')->nullable();
             $table->string('embalagem');
             $table->string('observacoes_layout')->nullable();
             $table->string('nome_funcionario');

@@ -291,7 +291,7 @@
                                     <h4 class="m-0 ">LAYOUT:</h4>
                                     <div class="row">
                                         <div class="col ms-3">
-                                            <input type="file" name="layout" class="form-control" id="layout" placeholder="Layout" value="{{old('layout')}}"required>
+                                            <input type="file" name="layout" class="form-control" id="layout" placeholder="Layout" value="{{old('layout')}}">
                                             @error('layout')
                                                 <span class="text-danger">{{$message}}</span>
                                             @enderror
@@ -299,7 +299,7 @@
                                     </div>
                                 </div>
                                 <div class="border border-dark-subtle mt-3">
-                                    <div class="d-flex justify-content-center " id="layout">
+                                    <div class="d-flex justify-content-center " style="height: 300px" id="layout">
                                         <img class="m-3 " id="preview" src="" alt="Nenhuma imagem selecionada ">
                                     </div>
                                 </div>

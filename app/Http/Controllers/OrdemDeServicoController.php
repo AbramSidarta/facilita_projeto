@@ -37,30 +37,37 @@ class OrdemDeServicoController extends Controller
     {
         $query = $request->input('query');
         $page = $request->input('page');
-
-        // Define a consulta com base na página
+    
+        // Inicia a consulta base
         $ordens = OrdemDeServico::where(function ($queryBuilder) use ($query) {
             $queryBuilder->where('cliente', 'like', "%{$query}%")
                         ->orWhere('servico', 'like', "%{$query}%")
-                        ->orWhere('status', 'like', "%{$query}%"); // Adiciona a busca pelo status 
+                        ->orWhere('status', 'like', "%{$query}%")
+                        ->orWhere('id', 'like', "%{$query}%"); // Adiciona a busca pelo Cód.Arte (id)
         });
-
-        $ordens = $ordens->orWhere(function ($queryBuilder) use ($query) {
-            // Verifica se a palavra "atrasado" está presente na query
+    
+        // Verifica se a busca é por "atrasado"
+        $ordens->orWhere(function ($queryBuilder) use ($query) {
             if (str_contains(strtolower($query), 'atrasado')) {
                 $queryBuilder->where('data_de_entrega', '<', now())
                              ->where('status', '<>', 'Entregue');
             }
         });
+    
+        // Filtra por status se necessário
         if ($page === 'entregues') {
             $ordens = $ordens->where('status', 'Entregue');
         } else {
             $ordens = $ordens->whereIn('status', ['Pendente', 'Impressão', 'Produção', 'Concluído']);
         }
-        $ordens = $ordens->orderBy('id', 'asc')->get();
-
+    
+        // Aplica a ordenação e a paginação
+        $ordens = $ordens->orderBy('id', 'asc')->paginate(10); // 10 resultados por página
+    
+        // Retorna a resposta em JSON
         return response()->json($ordens);
     }
+    
 
     public function create()
     {
@@ -223,12 +230,16 @@ class OrdemDeServicoController extends Controller
             'servico_externo' => 'nullable|boolean',
             'formas_de_pagamento' => 'nullable|string',
             'observacoes_pedido' => 'nullable|string',
-            'layout' => 'required|image|mimes:jpg,png,jpeg,gif,svg',
+            'layout' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg',
             'embalagem' => 'required',
             'observacoes_layout' => 'nullable|string',
             'nome_funcionario' => 'required',
         ]);
-
+    
+        // Defina $layoutFile como null por padrão
+        $layoutFile = null;
+    
+        // Verifique se o arquivo foi enviado
         if ($request->hasFile('layout')) {
             $file = $request->file('layout');
             $extension = $file->getClientOriginalExtension();
@@ -236,16 +247,20 @@ class OrdemDeServicoController extends Controller
             $file->move(public_path('uploads/ordemdeservico'), $filename);
             $layoutFile = $filename;
         }
-
+    
+        // Criar os dados da ordem de serviço
         $data = OrdemDeServico::create(array_merge($request->all(), ['layout' => $layoutFile]));
+    
+        // Redirecionar com mensagem de sucesso ou erro
         if ($data) {
             session()->flash('success', 'Pedido adicionado com sucesso');
             return redirect(route('adminOrdemDeServico.index'));
         } else {
-            session()->flash('error','Algum problema ocorreu');
+            session()->flash('error', 'Algum problema ocorreu');
             return redirect(route('admin.OrdemDeServico.create'));
         }
     }
+    
 }
 
    
