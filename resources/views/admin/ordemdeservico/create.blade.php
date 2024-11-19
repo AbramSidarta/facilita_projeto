@@ -302,7 +302,7 @@
                                     <div class="d-flex justify-content-center align-items-center" style="height: 300px; cursor: pointer;" id="layout" onclick="triggerFileInput()">
                                         <img class="m-3" id="preview" src="" alt="Nenhuma imagem selecionada" style="max-width: 100%; max-height: 100%; object-fit: contain;">
                                     </div>
-                                    <input type="file" id="fileInput" style="display: none;" accept="image/*" onchange="previewImage(event)">
+                                    <input type="file" id="fileInput" name="layout" style="display: none;" accept="image/*" onchange="previewImage(event)">
                                 </div>
 
                                 <script>
@@ -325,6 +325,24 @@
                                             reader.readAsDataURL(file);
                                         }
                                     }
+
+                                    // Função para capturar a imagem da área de transferência (Ctrl + V)
+                                    window.addEventListener('paste', function(event) {
+                                        const items = event.clipboardData.items;
+                                        for (let i = 0; i < items.length; i++) {
+                                            if (items[i].type.indexOf('image') === 0) {
+                                                const file = items[i].getAsFile();
+                                                const reader = new FileReader();
+
+                                                reader.onload = function(e) {
+                                                    const imgElement = document.getElementById('preview');
+                                                    imgElement.src = e.target.result;
+                                                };
+
+                                                reader.readAsDataURL(file);
+                                            }
+                                        }
+                                    });
                                 </script>
 
                                 <div class="col-6 form-floating d-flex justify-content-between d-flex align-items-center mt-3">
