@@ -329,9 +329,6 @@
                                     </div>
                                     <input type="file" id="fileInput" name="layout" style="display: none;" accept="image/*" onchange="previewImage(event)">
                                 </div>
-
-                               
-
                                 <div class="col-6 form-floating d-flex justify-content-between d-flex align-items-center mt-3">
                                     <h4 class="m-0">EMBALAGEM:</h4>
                                     <div class="form-check form-check-inline ms-2">

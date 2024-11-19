@@ -94,3 +94,81 @@ function dataURLtoBlob(dataURL) {
     return new Blob([array], { type: mime });
 }
 
+
+
+// Aciona o input de file ao clicar na área
+function triggerFileInput() {
+    document.getElementById('layout').click();
+}
+
+// Função para mostrar a imagem colocada no create
+function previewImage(event) {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = function(e) {
+        const imgElement = document.getElementById('preview');
+        imgElement.src = e.target.result;
+        imgElement.style.display = 'block'; // Exibe a imagem
+        document.getElementById('no-image-message').style.display = 'none'; // Esconde a mensagem
+    };
+
+    if (file) {
+        reader.readAsDataURL(file);
+    }
+}
+
+// Função para capturar a imagem da área de transferência (Ctrl + V)
+window.addEventListener('paste', function(event) {
+    const items = event.clipboardData.items;
+    for (let i = 0; i < items.length; i++) {
+        // Verifica se o item copiado é uma imagem
+        if (items[i].type.indexOf('image') === 0) {
+            const file = items[i].getAsFile();
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                // Exibe a imagem no preview
+                const imgElement = document.getElementById('preview');
+                imgElement.src = e.target.result;
+                imgElement.style.display = 'block'; // Exibe a imagem
+                document.getElementById('no-image-message').style.display = 'none'; // Esconde a mensagem
+
+                // Cria um 'input' para enviar a imagem no formulário
+                const dataUrl = e.target.result;
+
+                // Criando uma simulação do comportamento de input file
+                const inputFile = document.getElementById('layout');
+                const dataTransfer = new DataTransfer(); // Simula um DataTransfer para adicionar o arquivo
+
+                const blob = dataURLtoBlob(dataUrl); // Converter a DataURL para Blob
+                const file = new File([blob], 'image.png', { type: 'image/png' });
+                dataTransfer.items.add(file);
+                inputFile.files = dataTransfer.files; // Atualiza os arquivos do input
+            };
+
+            reader.readAsDataURL(file);
+        }
+    }
+});
+
+// Função para converter DataURL para Blob
+function dataURLtoBlob(dataURL) {
+    const [header, base64Data] = dataURL.split(',');
+    const mime = header.match(/:(.*?);/)[1];
+    const binary = atob(base64Data);
+    const array = new Uint8Array(binary.length);
+
+    for (let i = 0; i < binary.length; i++) {
+        array[i] = binary.charCodeAt(i);
+    }
+
+    return new Blob([array], { type: mime });
+}
+
+// Se não houver imagem prévia, mostrar a mensagem "Nenhuma imagem selecionada"
+if (!document.getElementById('preview').src) {
+    document.getElementById('no-image-message').style.display = 'block';
+}
+
+
