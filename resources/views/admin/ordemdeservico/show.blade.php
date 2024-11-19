@@ -305,6 +305,7 @@
                                 <label class="fs-5 pe-3 ms-3"for="floatingInput">CÓD. ARTE:</label>
                                 <p class="m-0 border-bottom border-dark  col-4 d-flex justify-content-center">{{ $ordemServico->id }}</p>
                             </div>
+                            
                             <div class="d-flex flex-row mt-3 ml-3 d-flex justify-content-center">
                                 <p class="mx-2">Pago:</p>
                                 <div class="form-check form-check-inline">
