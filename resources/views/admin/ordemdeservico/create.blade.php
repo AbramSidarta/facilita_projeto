@@ -330,72 +330,7 @@
                                     <input type="file" id="fileInput" name="layout" style="display: none;" accept="image/*" onchange="previewImage(event)">
                                 </div>
 
-                                <script>
-                                    // Aciona o input de file ao clicar na área
-                                    function triggerFileInput() {
-                                        document.getElementById('fileInput').click();
-                                    }
-
-                                    // Função para mostrar a imagem selecionada no input
-                                    function previewImage(event) {
-                                        const file = event.target.files[0];
-                                        const reader = new FileReader();
-
-                                        reader.onload = function(e) {
-                                            const imgElement = document.getElementById('preview');
-                                            imgElement.src = e.target.result;
-                                        };
-
-                                        if (file) {
-                                            reader.readAsDataURL(file);
-                                        }
-                                    }
-
-                                    // Função para capturar a imagem da área de transferência (Ctrl + V)
-                                    window.addEventListener('paste', function(event) {
-                                        const items = event.clipboardData.items;
-                                        for (let i = 0; i < items.length; i++) {
-                                            if (items[i].type.indexOf('image') === 0) {
-                                                const file = items[i].getAsFile();
-                                                const reader = new FileReader();
-
-                                                reader.onload = function(e) {
-                                                    // Exibe a imagem no preview
-                                                    const imgElement = document.getElementById('preview');
-                                                    imgElement.src = e.target.result;
-
-                                                    // Cria um 'input' para enviar a imagem no formulário
-                                                    const dataUrl = e.target.result;
-
-                                                    // Criando uma simulação do comportamento de input file
-                                                    const inputFile = document.getElementById('fileInput');
-                                                    const dataTransfer = new DataTransfer();
-                                                    const blob = dataURLtoBlob(dataUrl); // Converter a DataURL para Blob
-                                                    const file = new File([blob], 'image.png', { type: 'image/png' });
-                                                    dataTransfer.items.add(file);
-                                                    inputFile.files = dataTransfer.files;
-                                                };
-
-                                                reader.readAsDataURL(file);
-                                            }
-                                        }
-                                    });
-
-                                    // Função para converter DataURL para Blob
-                                    function dataURLtoBlob(dataURL) {
-                                        const [header, base64Data] = dataURL.split(',');
-                                        const mime = header.match(/:(.*?);/)[1];
-                                        const binary = atob(base64Data);
-                                        const array = new Uint8Array(binary.length);
-
-                                        for (let i = 0; i < binary.length; i++) {
-                                            array[i] = binary.charCodeAt(i);
-                                        }
-
-                                        return new Blob([array], { type: mime });
-                                    }
-                                </script>
-
+                               
 
                                 <div class="col-6 form-floating d-flex justify-content-between d-flex align-items-center mt-3">
                                     <h4 class="m-0">EMBALAGEM:</h4>
