@@ -195,27 +195,51 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div style="border: 2px solid #FF8A00;" class="col-12 row d-flex justify-content-evenly border-bottom-0 ">
-                                    <h5 style="background-color: #FF8A00;" class="col-12 d-flex justify-content-center text-white align-items-center">ESTA ABA É RESTRITAMENTE DO IMPRESSOR</h5>
-                                    <div class="col-6 row mb-3 align-items-center">
-                                        <div class="">
-                                            <label class="  ms-3">DIA REC. DO CONTROLE </label>
-                                            <input type="date" name="dia_do_recebimento_do_controle" class="form-control " id="dia_do_recebimento_do_controle" placeholder="Rec. do controle" value="{{old('dia_do_recebimento_do_controle')}}"required>
-                                            @error('dia_do_recebimento_do_controle')
-                                                <span class="text-danger">{{$message}}</span>
-                                            @enderror
+                                @if (in_array($userType, ['Impressão', 'Admin']))
+                                    <div style="border: 2px solid #FF8A00;" class="col-12 row d-flex justify-content-evenly border-bottom-0 ">
+                                        <h5 style="background-color: #FF8A00;" class="col-12 d-flex justify-content-center text-white align-items-center">ESTA ABA É RESTRITAMENTE DO IMPRESSOR</h5>
+                                        <div class="col-6 row mb-3 align-items-center">
+                                            <div class="">
+                                                <label class="  ms-3">DIA REC. DO CONTROLE </label>
+                                                <input type="date" name="dia_do_recebimento_do_controle" class="form-control " id="dia_do_recebimento_do_controle" placeholder="Rec. do controle" value="{{old('dia_do_recebimento_do_controle')}}">
+                                                @error('dia_do_recebimento_do_controle')
+                                                    <span class="text-danger">{{$message}}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3 col-6 align-items-center ">
+                                            <div class="">
+                                                <label class="ms-3" for="">HORA REC. </label>
+                                                <input type="time" name="hora_do_recebimento_do_controle" class="form-control " id="hora_do_recebimento_do_controle" placeholder="Hora do recebimento" value="{{old('hora_do_recebimento_do_controle')}}">
+                                                @error('hora_do_recebimento_do_controle')
+                                                    <span class="text-danger">{{$message}}</span>
+                                                @enderror
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="row mb-3 col-6 align-items-center ">
-                                        <div class="">
-                                            <label class="ms-3" for="">HORA REC. </label>
-                                            <input type="time" name="hora_do_recebimento_do_controle" class="form-control " id="hora_do_recebimento_do_controle" placeholder="Hora do recebimento" value="{{old('hora_do_recebimento_do_controle')}}"required>
-                                            @error('hora_do_recebimento_do_controle')
-                                                <span class="text-danger">{{$message}}</span>
-                                            @enderror
+                                @else
+                                    <div style="border: 2px solid #FF8A00;" class="col-12 row d-flex justify-content-evenly border-bottom-0 ">
+                                        <h5 style="background-color: #FF8A00;" class="col-12 d-flex justify-content-center text-white align-items-center">ESTA ABA É RESTRITAMENTE DO IMPRESSOR</h5>
+                                        <div class="col-6 row mb-3 align-items-center">
+                                            <div class="">
+                                                <label class="  ms-3">DIA REC. DO CONTROLE </label>
+                                                <input type="date" name="dia_do_recebimento_do_controle" class="form-control " id="dia_do_recebimento_do_controle" placeholder="Rec. do controle" value="{{old('dia_do_recebimento_do_controle')}}" disabled="disabled">
+                                                @error('dia_do_recebimento_do_controle')
+                                                    <span class="text-danger">{{$message}}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3 col-6 align-items-center ">
+                                            <div class="">
+                                                <label class="ms-3" for="">HORA REC. </label>
+                                                <input type="time" name="hora_do_recebimento_do_controle" class="form-control " id="hora_do_recebimento_do_controle" placeholder="Hora do recebimento" value="{{old('hora_do_recebimento_do_controle')}}" disabled="disabled">
+                                                @error('hora_do_recebimento_do_controle')
+                                                    <span class="text-danger">{{$message}}</span>
+                                                @enderror
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                @endif
                                 <div style="border: 2px solid #8F00FF;" class="col-12 row d-flex justify-content-evenly  border-bottom-0 ">
                                     <h5 style="background-color: #8F00FF;" class="col-12 d-flex justify-content-center text-white align-items-center">SERVIÇO EXTERNO</h5>
                                     <div class="col-6 form-floating d-flex justify-content-between d-flex align-items-center">
@@ -298,8 +322,9 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="border border-dark-subtle mt-3">
-                                    <div class="d-flex justify-content-center align-items-center" style="height: 300px; cursor: pointer;" id="layout" onclick="triggerFileInput()">
+                                    <div class="d-flex justify-content-center align-items-center" style="height: 300px; cursor: pointer;" id="layout-preview" onclick="triggerFileInput()">
                                         <img class="m-3" id="preview" src="" alt="Nenhuma imagem selecionada" style="max-width: 100%; max-height: 100%; object-fit: contain;">
                                     </div>
                                     <input type="file" id="fileInput" name="layout" style="display: none;" accept="image/*" onchange="previewImage(event)">
@@ -315,12 +340,12 @@
                                     function previewImage(event) {
                                         const file = event.target.files[0];
                                         const reader = new FileReader();
-                                        
+
                                         reader.onload = function(e) {
                                             const imgElement = document.getElementById('preview');
                                             imgElement.src = e.target.result;
                                         };
-                                        
+
                                         if (file) {
                                             reader.readAsDataURL(file);
                                         }
@@ -335,15 +360,42 @@
                                                 const reader = new FileReader();
 
                                                 reader.onload = function(e) {
+                                                    // Exibe a imagem no preview
                                                     const imgElement = document.getElementById('preview');
                                                     imgElement.src = e.target.result;
+
+                                                    // Cria um 'input' para enviar a imagem no formulário
+                                                    const dataUrl = e.target.result;
+
+                                                    // Criando uma simulação do comportamento de input file
+                                                    const inputFile = document.getElementById('fileInput');
+                                                    const dataTransfer = new DataTransfer();
+                                                    const blob = dataURLtoBlob(dataUrl); // Converter a DataURL para Blob
+                                                    const file = new File([blob], 'image.png', { type: 'image/png' });
+                                                    dataTransfer.items.add(file);
+                                                    inputFile.files = dataTransfer.files;
                                                 };
 
                                                 reader.readAsDataURL(file);
                                             }
                                         }
                                     });
+
+                                    // Função para converter DataURL para Blob
+                                    function dataURLtoBlob(dataURL) {
+                                        const [header, base64Data] = dataURL.split(',');
+                                        const mime = header.match(/:(.*?);/)[1];
+                                        const binary = atob(base64Data);
+                                        const array = new Uint8Array(binary.length);
+
+                                        for (let i = 0; i < binary.length; i++) {
+                                            array[i] = binary.charCodeAt(i);
+                                        }
+
+                                        return new Blob([array], { type: mime });
+                                    }
                                 </script>
+
 
                                 <div class="col-6 form-floating d-flex justify-content-between d-flex align-items-center mt-3">
                                     <h4 class="m-0">EMBALAGEM:</h4>

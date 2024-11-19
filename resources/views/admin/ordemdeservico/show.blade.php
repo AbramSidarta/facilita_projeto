@@ -20,7 +20,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <div class="d-flex justify-content-between d-flex align-items-center">
+                    <div class="d-flex justify-content-between d-flex align-items-center no-print">
                         <div class="d-flex flex-row d-flex align-items-center">
                             <h3 class="m-0">Estados da Ordem de Serviço:</h3>
                             <div class="row ms-1">
@@ -43,7 +43,7 @@
                             </div>
                         </div>
                     </div>
-                    <hr/>
+                    <hr class="no-print"/>
                     <div class="row mb-3">
                         <div class="col-12 d-flex justify-content-between align-items-center border border-black">
                             <div class="col-4">
