@@ -178,7 +178,7 @@
                                     <div class="row mb-3 col-6 align-items-center">
                                         <div class="col  d-flex justify-content-between align-items-center">
                                             <label class="  mx-2">D.E:</label>
-                                            <input type="date" name="prazo_da_impressao_data" class="form-control" id="prazo_da_impressao_data" placeholder="Data de entrega da impressão" value="{{old('prazo_da_impressao_data')}}"required>
+                                            <input type="date" name="prazo_da_impressao_data" class="form-control" id="prazo_da_impressao_data" placeholder="Data de entrega da impressão" value="{{old('prazo_da_impressao_data')}}">
                                             @error('prazo_da_impressao_data')
                                                 <span class="text-danger">{{$message}}</span>
                                             @enderror
@@ -187,7 +187,7 @@
                                     <div class="row mb-3 col-6 align-items-center">
                                         <div class="col">
                                             <label class="  ms-3">HORA ENTREGA:</label>
-                                            <input type="time" name="prazo_da_impressao_hora" class="form-control" id="prazo_da_impressao_hora" placeholder="Hora de entrega da impressão" value="{{old('prazo_da_impressao_hora')}}"required>
+                                            <input type="time" name="prazo_da_impressao_hora" class="form-control" id="prazo_da_impressao_hora" placeholder="Hora de entrega da impressão" value="{{old('prazo_da_impressao_hora')}}">
                                             @error('prazo_da_impressao_hora')
                                                 <span class="text-danger">{{$message}}</span>
                                             @enderror
