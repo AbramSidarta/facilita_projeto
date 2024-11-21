@@ -236,7 +236,7 @@
                             </div>
                             <div class="border border-dark-subtle mt-3">
                                 <div class="d-flex justify-content-center" style="height: 300px" id="layout">
-                                    <img class="m-3 "  id="preview" src="{{ asset('uploads/ordemdeservico/' . $ordemServico->layout) }}" alt="Nenhuma imagem selecionada ">
+                                    <img class="m-3 " src="{{ asset('uploads/ordemdeservico/' . $ordemServico->layout) }}" alt="Nenhuma imagem selecionada ">
                                 </div>
                             </div>
                             <div class="col-6 form-floating d-flex justify-content-between d-flex align-items-center mt-3">

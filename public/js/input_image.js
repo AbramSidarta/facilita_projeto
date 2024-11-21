@@ -13,6 +13,7 @@ document.getElementById('layout').addEventListener('change', function(event) {
 });
 
 function removeImage() {
+    if (confirm('Você tem certeza?')) {
     // Limpa o preview da imagem
     const preview = document.getElementById('preview');
     const fileInput = document.getElementById('fileInput');
@@ -24,6 +25,7 @@ function removeImage() {
     fileInput.value = ''; // Reseta o input de arquivo
     noImageMessage.style.display = 'block'; // Mostra a mensagem padrão
     removeButton.style.display = 'none'; // Esconde o botão de remoção
+    }
 }
 
 document.addEventListener('DOMContentLoaded', function () {
