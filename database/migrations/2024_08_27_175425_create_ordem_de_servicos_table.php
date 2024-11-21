@@ -14,14 +14,14 @@ return new class extends Migration
         Schema::create('ordem_de_servicos', function (Blueprint $table) {
             $table->id();
             $table->string('status');
-            $table->string('ORC_venda');
+            $table->string('ORC_venda')->nullable();
             $table->string('cliente');
             $table->string('servico');
-            $table->string('end');
-            $table->string('fone' , 20);
+            $table->string('end')->nullable();
+            $table->string('fone' , 20)->nullable();
             $table->string('valor');
             $table->string('pago');
-            $table->string('falta');
+            $table->string('falta')->nullable();
             $table->date('data_de_recebimento');
             $table->date('data_de_entrega');
             $table->string('hora_de_entrega');
@@ -29,11 +29,11 @@ return new class extends Migration
             $table->string('prazo_da_impressao_hora')->nullable();
             $table->string('dia_do_recebimento_do_controle')->nullable();
             $table->string('hora_do_recebimento_do_controle')->nullable();
-            $table->boolean('servico_externo')->nullable();
-            $table->string('formas_de_pagamento')->nullable();
-            $table->string('observacoes_pedido')->nullable();
-            $table->string('layout')->nullable();
-            $table->string('embalagem');
+            $table->boolean('servico_externo');
+            $table->string('formas_de_pagamento');
+            $table->string('observacoes_pedido');
+            $table->string('layout');
+            $table->string('embalagem')->nullable();
             $table->string('observacoes_layout')->nullable();
             $table->string('nome_funcionario');
             $table->timestamps();
