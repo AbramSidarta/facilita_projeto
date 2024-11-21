@@ -296,11 +296,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="border border-dark  ">             
+                            <div class="border border-dark">
                                 @if (session('success'))
                                     <p>{{ session('success') }}</p>
-                                    <div id="image-preview">
-                                        <img src="{{ asset('storage/' . session('path')) }}" alt="Imagem carregada">
+                                    <div id="image-preview" class="position-relative">
+                                        <img src="{{ asset('storage/' . session('path')) }}" alt="Imagem carregada" id="preview-image" style="max-width: 100%; max-height: 300px; object-fit: contain;">
+                                        <button type="button" class="btn btn-danger position-absolute top-0 end-0 m-2" onclick="removeImage()">Remover</button>
                                     </div>
                                 @endif
                                 @if ($errors->any())
@@ -310,24 +311,32 @@
                                         @endforeach
                                     </ul>
                                 @endif
-                                <div class="col d-flex flex-row d-flex align-items-center mt-3">
-                                    <h4 class="m-0">LAYOUT:</h4>
-                                    <div class="row">
-                                        <div class="col ms-3">
-                                            <input type="file" name="layout" class="form-control" id="layout" placeholder="Layout" value="{{ old('layout') }}">
-                                            @error('layout')
-                                                <span class="text-danger">{{ $message }}</span>
-                                            @enderror
+                                <div class="col-12 d-flex">
+                                    <div class="col-6 d-flex flex-row d-flex align-items-center mt-3">
+                                        <div class="d-flex justify-content-between">
+                                            <h4 class="m-0">LAYOUT:</h4>
+                                            <div class="row">
+                                                <div class="col ms-3 d-flex flex-row ">
+                                                    <input type="file" name="layout" class="form-control" id="layout" placeholder="Layout" value="{{ old('layout') }}">
+                                                    @error('layout')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
+                                    <div class="d-flex justify-content-end col-6 mt-3">
+                                        <button type="button" class="btn btn-danger " onclick="removeImage()">Remover</button>
+                                    </div>
                                 </div>
-
                                 <div class="border border-dark-subtle mt-3">
                                     <div class="d-flex justify-content-center align-items-center" style="height: 300px; cursor: pointer;" id="layout-preview" onclick="triggerFileInput()">
                                         <img class="m-3" id="preview" src="" alt="Nenhuma imagem selecionada" style="max-width: 100%; max-height: 100%; object-fit: contain;">
                                     </div>
                                     <input type="file" id="fileInput" name="layout" style="display: none;" accept="image/*" onchange="previewImage(event)">
                                 </div>
+                            </div>
                                 <div class="col-6 form-floating d-flex justify-content-between d-flex align-items-center mt-3">
                                     <h4 class="m-0">EMBALAGEM:</h4>
                                     <div class="form-check form-check-inline ms-2">

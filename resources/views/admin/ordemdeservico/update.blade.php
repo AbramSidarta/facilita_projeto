@@ -299,15 +299,22 @@
                                         @endforeach
                                     </ul>
                                 @endif
-                                <div class="col d-flex flex-row align-items-center mt-3">
-                                    <h4 class="m-0">LAYOUT:</h4>
-                                    <div class="row">
-                                        <div class="col ms-3">
-                                            <input type="file" name="layout" class="form-control" id="layout" onchange="previewImage(event)">
-                                            @error('layout')
-                                                <span class="text-danger">{{ $message }}</span>
-                                            @enderror
+                                <div class="col-12 d-flex">
+                                    <div class="col-6 d-flex flex-row align-items-center mt-3">
+                                        <div class="d-flex justify-content-between">
+                                            <h4 class="m-0">LAYOUT:</h4>
+                                            <div class="row">
+                                                <div class="col ms-3">
+                                                    <input type="file" name="layout" class="form-control" id="layout" onchange="previewImage(event)">
+                                                    @error('layout')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
+                                            </div>
                                         </div>
+                                    </div>
+                                    <div class="d-flex justify-content-end col-6 mt-3">
+                                        <button type="button" class="btn btn-danger " onclick="removeImage()">Remover</button>
                                     </div>
                                 </div>
 

@@ -11,23 +11,60 @@ document.getElementById('layout').addEventListener('change', function(event) {
         reader.readAsDataURL(file);
     }
 });
+
+function removeImage() {
+    // Limpa o preview da imagem
+    const preview = document.getElementById('preview');
+    const fileInput = document.getElementById('fileInput');
+    const noImageMessage = document.getElementById('no-image-message');
+    const removeButton = document.getElementById('removeImageButton');
+
+    preview.src = ''; // Remove a imagem do preview
+    preview.style.display = 'none'; // Esconde o preview
+    fileInput.value = ''; // Reseta o input de arquivo
+    noImageMessage.style.display = 'block'; // Mostra a mensagem padrão
+    removeButton.style.display = 'none'; // Esconde o botão de remoção
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    const preview = document.getElementById('preview');
+    const removeButton = document.getElementById('removeImageButton');
+    const noImageMessage = document.getElementById('no-image-message');
+
+    if (preview.src && preview.src !== window.location.href) {
+        preview.style.display = 'block';
+        removeButton.style.display = 'block';
+        noImageMessage.style.display = 'none';
+    } else {
+        preview.style.display = 'none';
+        removeButton.style.display = 'none';
+        noImageMessage.style.display = 'block';
+    }
+});
+
+
+
 //para carregar a imgem no edit 
 function previewImage(event) {
-    const preview = document.getElementById('preview');
     const file = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = function(e) {
+        const imgElement = document.getElementById('preview');
+        const noImageMessage = document.getElementById('no-image-message');
+        const removeButton = document.getElementById('removeImageButton');
+
+        imgElement.src = e.target.result; // Atualiza o preview
+        imgElement.style.display = 'block'; // Mostra a imagem
+        noImageMessage.style.display = 'none'; // Esconde a mensagem padrão
+        removeButton.style.display = 'block'; // Mostra o botão de remoção
+    };
+
     if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            preview.src = e.target.result; // Atualiza a imagem para a nova
-            preview.style.display = 'block'; // Garante que a imagem seja exibida
-        }
         reader.readAsDataURL(file);
-    } else {
-        // Se não houver arquivo, exiba a imagem original ou o texto padrão
-        preview.src = "{{ $ordemServico->layout ? asset('uploads/ordemdeservico/' . $ordemServico->layout) : '' }}";
-        preview.style.display = "{{ $ordemServico->layout ? '' : 'none' }}";
     }
 }
+
 
 
 // Aciona o input de file ao clicar na área
