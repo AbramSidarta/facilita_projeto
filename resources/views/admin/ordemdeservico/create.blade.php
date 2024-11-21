@@ -63,7 +63,7 @@
                                     @enderror
                                 </div>
                                 <div class=" form-floating ml-4">
-                                    <input type="text" name="ORC_venda" class="form-control floatingInput" id="ORC_venda" placeholder="ORC de venda" value="{{old('ORC_venda')}}" required>
+                                    <input type="text" name="ORC_venda" class="form-control floatingInput" id="ORC_venda" placeholder="ORC de venda" value="{{old('ORC_venda')}}">
                                     <label class="  ms-3"for="floatingInput">ORC DE VENDA</label>
                                     @error('ORC_venda')
                                         <span class="text-danger">{{$message}}</span>
