@@ -75,7 +75,7 @@
                                     @enderror
                                 </div>
                                 <div class=" form-floating ml-4">
-                                    <input type="text" name="ORC_venda" class="form-control floatingInput" id="ORC_venda" placeholder="ORC de venda" value="{{$ordemServico->ORC_venda}}" required>
+                                    <input type="text" name="ORC_venda" class="form-control floatingInput" id="ORC_venda" placeholder="ORC de venda" value="{{$ordemServico->ORC_venda}}">
                                     <label class="  ms-3"for="floatingInput">ORC DE VENDA</label>
                                     @error('ORC_venda')
                                         <span class="text-danger">{{$message}}</span>
@@ -104,7 +104,7 @@
                                 <div class="row mb-3">
                                     <div class="col d-flex justify-content-between align-items-center">
                                         <label class="  mx-2"for="">Endereço:</label>
-                                        <input type="text" name="end" class="form-control" id="end" placeholder="Endereço" value="{{$ordemServico->end}}" required>
+                                        <input type="text" name="end" class="form-control" id="end" placeholder="Endereço" value="{{$ordemServico->end}}">
                                         @error('end')
                                             <span class="text-danger">{{$message}}</span>
                                         @enderror
@@ -113,7 +113,7 @@
                                 <div class="row mb-3">
                                     <div class="col d-flex justify-content-between align-items-center" x-data="{ telefone : ' ' }">
                                         <label class="  mx-2"for="">Fone:</label>
-                                        <input type="text" name="fone" class="form-control " id="fone" placeholder="Fone" x-mask="(99) 99999-9999" value="{{$ordemServico->fone}}" required>
+                                        <input type="text" name="fone" class="form-control " id="fone" placeholder="Fone" x-mask="(99) 99999-9999" value="{{$ordemServico->fone}}">
                                         @error('fone')
                                             <span class="text-danger">{{$message}}</span>
                                         @enderror
@@ -146,7 +146,7 @@
                                 <div class="row mb-3">
                                     <div class="col d-flex justify-content-between align-items-center">
                                         <label class="  mx-2">Falta:</label>
-                                        <input type="text" name="falta" class="form-control " id="falta" placeholder="Falta" value="{{$ordemServico->falta}}" onInput="mascaraMoeda(event);" required>
+                                        <input type="text" name="falta" class="form-control " id="falta" placeholder="Falta" value="{{$ordemServico->falta}}" onInput="mascaraMoeda(event);">
                                     </div>
                                 </div>
                                 <div style="border: 2px solid #094081;" class="col-13 row d-flex justify-content-evenly  ">
@@ -299,12 +299,16 @@
                                         @endforeach
                                     </ul>
                                 @endif
+                                @csrf
+                                @method('PUT') <!-- Incluído para o método PUT -->
+
                                 <div class="col-12 d-flex">
                                     <div class="col-6 d-flex flex-row align-items-center mt-3">
                                         <div class="d-flex justify-content-between">
                                             <h4 class="m-0">LAYOUT:</h4>
                                             <div class="row">
                                                 <div class="col ms-3">
+                                                    <!-- Input de arquivo -->
                                                     <input type="file" name="layout" class="form-control" id="layout" onchange="previewImage(event)">
                                                     @error('layout')
                                                         <span class="text-danger">{{ $message }}</span>
@@ -314,38 +318,40 @@
                                         </div>
                                     </div>
                                     <div class="d-flex justify-content-end col-6 mt-3">
-                                        <button type="button" class="btn btn-danger " onclick="removeImage()">Remover</button>
+                                        <button type="button" class="btn btn-danger" id="removeImageButton" onclick="removeImage()">Remover</button>
                                     </div>
                                 </div>
 
                                 <div class="border border-dark-subtle mt-3">
+                                    <!-- Área de preview -->
                                     <div class="d-flex justify-content-center" style="height: 300px; cursor: pointer;" onclick="triggerFileInput()">
-                                        <img class="m-3" id="preview" 
+                                        <!-- Imagem de preview -->
+                                        <img 
+                                            class="m-3" 
+                                            id="preview" 
                                             src="{{ $ordemServico->layout ? asset('uploads/ordemdeservico/' . $ordemServico->layout) : '' }}" 
                                             alt="Nenhuma imagem selecionada" 
-                                            style="{{ $ordemServico->layout ? '' : 'display:none;' }}">
+                                            style="max-width: 100%; max-height: 100%; object-fit: contain; {{ $ordemServico->layout ? '' : 'display:none;' }}">
 
-                                        <!-- Mostra uma mensagem caso não tenha imagem -->
+                                        <!-- Mensagem padrão caso não tenha imagem -->
                                         <span id="no-image-message" style="{{ $ordemServico->layout ? 'display:none;' : '' }}">
                                             Nenhuma imagem selecionada
                                         </span>
                                     </div>
                                 </div>
-
-                             
                                 <div class="col-6 form-floating d-flex justify-content-between d-flex align-items-center mt-3">
                                     <h4 class="m-0">EMBALAGEM:</h4>
                                     <div class="form-check form-check-inline ms-2">
-                                        <input class="form-check-input rounded-0  border border-black " type="radio" name="embalagem" id="embalagem" value="sim"{{$ordemServico->embalagem === 'sim' ? 'checked' : '' }} required>
+                                        <input class="form-check-input rounded-0  border border-black " type="radio" name="embalagem" id="embalagem" value="sim"{{$ordemServico->embalagem === 'sim' ? 'checked' : '' }}>
                                         <label class="form-check-label" for="inlineRadio1">SIM</label>
                                     </div>
                                     <div class="form-check form-check-inline m-2">
-                                        <input class="form-check-input rounded-0 border border-black" type="radio" name="embalagem" id="embalagem" value="nao"{{ $ordemServico->embalagem === 'nao' ? 'checked' : '' }} required>
+                                        <input class="form-check-input rounded-0 border border-black" type="radio" name="embalagem" id="embalagem" value="nao"{{ $ordemServico->embalagem === 'nao' ? 'checked' : '' }}>
                                         <label class="form-check-label" for="inlineRadio1">NÃO</label>
                                     </div>
                                     <div class="col d-flex flex-row ">
                                         <h4 class="d-flex align-items-center m-0 p-2">OBS:</h4>
-                                        <input type="text" name="observacoes_layout" class="form-control " id="observacoes_layout" placeholder="Observacoes" value="{{($ordemServico->observacoes_layout )}}"{{ ($ordemServico->observacoes_layout) }}  >
+                                        <input type="text" name="observacoes_layout" class="form-control " id="observacoes_layout" placeholder="Observacoes" value="{{($ordemServico->observacoes_layout )}}"{{ ($ordemServico->observacoes_layout) }}>
                                         @error('observacoes_layout')
                                             <span class="text-danger">{{$message}}</span>
                                         @enderror
