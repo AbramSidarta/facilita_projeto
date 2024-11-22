@@ -287,8 +287,8 @@
                                     <h4  style="background-color: #9B9A9C;" class="d-flex justify-content-center col-12 ">OBSERVAÇÃO:</h4>
                                     <div class="row mb-3">
                                         <div class="col form-floating">
-                                            <textarea type="text" name="observacoes_pedido" class="form-control floatingInput" style="height: 100px" id="observacoes_pedido" placeholder="Observacoes da ordem" >{{ old('observacoes_pedido') }}</textarea required>
-                                            <label class="  ms-3"for="floatingInput">OBSERVAÇÕES</label>
+                                            <textarea name="observacoes_pedido" class="form-control floatingInput" style="height:100px" id="observacoes_pedido" placeholder="Observacoes da ordem" required>{{ old('observacoes_pedido') }}</textarea>
+                                            <label class="ms-3" for="floatingInput">OBSERVAÇÕES</label>
                                             @error('observacoes_pedido')
                                                 <span class="text-danger">{{$message}}</span>
                                             @enderror
@@ -311,7 +311,7 @@
                                         @endforeach
                                     </ul>
                                 @endif
-                                @csrf
+                               
                                 <div class="col-12 d-flex flex-row">
                                     <div class="col-6 d-flex flex-row d-flex align-items-center mt-3">
                                         <div class="d-flex justify-content-between">

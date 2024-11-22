@@ -229,12 +229,13 @@ class OrdemDeServicoController extends Controller
             'hora_do_recebimento_do_controle' => 'nullable|string',
             'servico_externo' => 'nullable|boolean',
             'formas_de_pagamento' => 'nullable|string',
-            'observacoes_pedido' => 'nullable|string',
+            'observacoes_pedido' => 'required',
             'layout' => 'required|image|mimes:jpg,png,jpeg,gif,svg',
+            'embalagem' => 'nullable',
             'observacoes_layout' => 'nullable|string',
             'nome_funcionario' => 'required',
         ]);
-    
+     
         // Defina $layoutFile como null por padrão
         $layoutFile = null;
     

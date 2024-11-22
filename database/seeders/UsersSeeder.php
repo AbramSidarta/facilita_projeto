@@ -19,11 +19,5 @@ class UsersSeeder extends Seeder
             'password' => bcrypt('12345678'),
             'usertype' => 'Admin',
         ]);
-        User::create([
-            'name' => 'clara',
-            'cpf' => '2',
-            'password' => bcrypt('12345678'),
-            'usertype' => 'caixa',
-        ]);
     }
 }

@@ -299,9 +299,6 @@
                                         @endforeach
                                     </ul>
                                 @endif
-                                @csrf
-                                @method('PUT') <!-- Incluído para o método PUT -->
-
                                 <div class="col-12 d-flex">
                                     <div class="col-6 d-flex flex-row align-items-center mt-3">
                                         <div class="d-flex justify-content-between">
