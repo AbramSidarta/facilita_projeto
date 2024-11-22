@@ -28,6 +28,20 @@ function removeImage() {
     }
 }
 
+
+document.querySelector('form').addEventListener('submit', function (event) {
+    const inputFile = document.getElementById('layout');
+    const previewImage = document.getElementById('preview');
+
+    // Verifica se há uma imagem no preview ou no input
+    if (!inputFile.files.length && (!previewImage.src || previewImage.src === window.location.href)) {
+        event.preventDefault(); // Impede o envio do formulário
+        alert('Por favor, selecione ou cole uma imagem antes de enviar.');
+    }
+});
+
+
+
 document.addEventListener('DOMContentLoaded', function () {
     const preview = document.getElementById('preview');
     const removeButton = document.getElementById('removeImageButton');

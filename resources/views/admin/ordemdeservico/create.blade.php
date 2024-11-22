@@ -311,29 +311,33 @@
                                         @endforeach
                                     </ul>
                                 @endif
+                                @csrf
                                 <div class="col-12 d-flex">
                                     <div class="col-6 d-flex flex-row d-flex align-items-center mt-3">
                                         <div class="d-flex justify-content-between">
                                             <h4 class="m-0">LAYOUT:</h4>
                                             <div class="row">
-                                                <div class="col ms-3 d-flex flex-row ">
+                                                <div class="col ms-3 d-flex flex-row">
+                                                    <!-- Input de arquivo -->
                                                     <input type="file" name="layout" class="form-control" id="layout" placeholder="Layout" value="{{ old('layout') }}" required>
                                                     @error('layout')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
-                                                
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="d-flex justify-content-end col-6 mt-3">
-                                        <button type="button" class="btn btn-danger " onclick="removeImage()">Remover</button>
+                                        <button type="button" id="removeImageButton" class="btn btn-danger" onclick="removeImage()">Remover</button>
                                     </div>
                                 </div>
                                 <div class="border border-dark-subtle mt-3">
+                                    <!-- Área para exibir o preview da imagem -->
                                     <div class="d-flex justify-content-center align-items-center" style="height: 300px; cursor: pointer;" id="layout-preview" onclick="triggerFileInput()">
-                                        <img class="m-3" id="preview" src="" alt="Nenhuma imagem selecionada" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                                        <img class="m-3" id="preview" src="" alt="Nenhuma imagem selecionada" style="max-width: 100%; max-height: 100%; object-fit: contain; display: none;">
+                                        <p id="no-image-message" style="display: block;">Nenhuma imagem selecionada</p>
                                     </div>
+                                    <!-- Input de arquivo escondido para cliques no preview -->
                                     <input type="file" id="fileInput" name="layout" style="display: none;" accept="image/*" onchange="previewImage(event)">
                                 </div>
                                 <div class="col-6 form-floating d-flex justify-content-between d-flex align-items-center mt-3">
