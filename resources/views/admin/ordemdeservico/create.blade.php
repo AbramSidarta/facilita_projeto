@@ -92,7 +92,7 @@
                                 <div class="row mb-3">
                                     <div class="col d-flex justify-content-between align-items-center">
                                         <label class="  mx-2"for="">Endereço:</label>
-                                        <input type="text" name="end" class="form-control" id="end" placeholder="Endereço" value="{{old('end')}}" required>
+                                        <input type="text" name="end" class="form-control" id="end" placeholder="Endereço" value="{{old('end')}}">
                                         @error('end')
                                             <span class="text-danger">{{$message}}</span>
                                         @enderror
@@ -101,7 +101,7 @@
                                 <div class="row mb-3">
                                     <div class="col d-flex justify-content-between align-items-center" x-data="{ telefone : ' ' }">
                                         <label class="  mx-2"for="">Fone:</label>
-                                        <input type="text" name="fone" class="form-control " id="fone" placeholder="Fone" x-mask="(99) 99999-9999" value="{{old('fone')}}"required>
+                                        <input type="text" name="fone" class="form-control " id="fone" placeholder="Fone" x-mask="(99) 99999-9999" value="{{old('fone')}}">
                                         @error('fone')
                                             <span class="text-danger">{{$message}}</span>
                                         @enderror
@@ -134,7 +134,7 @@
                                 <div class="row mb-3">
                                     <div class="col d-flex justify-content-between align-items-center">
                                         <label class="  mx-2">Falta:</label>
-                                        <input type="text" name="falta" class="form-control " id="falta" placeholder="Falta" value="{{old('falta')}}" onInput="mascaraMoeda(event);" required>
+                                        <input type="text" name="falta" class="form-control " id="falta" placeholder="Falta" value="{{old('falta')}}" onInput="mascaraMoeda(event);">
                                     </div>
                                 </div>
                                 <div style="border: 2px solid #094081;" class="col-13 row d-flex justify-content-evenly">
@@ -144,7 +144,7 @@
                                             <div class="row mb-3 ">
                                                 <div class="col d-flex justify-content-between align-items-center">
                                                     <label class="  mx-2">D.R:</label>
-                                                    <input type="date" name="data_de_recebimento" class="form-control " id="data_de_recebimento" placeholder="Data de recebimento" value='<?php echo date("Y-m-d"); ?>'>
+                                                    <input type="date" name="data_de_recebimento" class="form-control " id="data_de_recebimento" placeholder="Data de recebimento" value='<?php echo date("Y-m-d"); ?>'required>
                                                     @error('data_de_recebimento')
                                                         <span class="text-danger">{{$message}}</span>
                                                     @enderror
@@ -287,7 +287,7 @@
                                     <h4  style="background-color: #9B9A9C;" class="d-flex justify-content-center col-12 ">OBSERVAÇÃO:</h4>
                                     <div class="row mb-3">
                                         <div class="col form-floating">
-                                            <textarea type="text" name="observacoes_pedido" class="form-control floatingInput" style="height: 100px" id="observacoes_pedido" placeholder="Observacoes da ordem" >{{ old('observacoes_pedido') }}</textarea>
+                                            <textarea type="text" name="observacoes_pedido" class="form-control floatingInput" style="height: 100px" id="observacoes_pedido" placeholder="Observacoes da ordem" >{{ old('observacoes_pedido') }}</textarea required>
                                             <label class="  ms-3"for="floatingInput">OBSERVAÇÕES</label>
                                             @error('observacoes_pedido')
                                                 <span class="text-danger">{{$message}}</span>
@@ -317,7 +317,7 @@
                                             <h4 class="m-0">LAYOUT:</h4>
                                             <div class="row">
                                                 <div class="col ms-3 d-flex flex-row ">
-                                                    <input type="file" name="layout" class="form-control" id="layout" placeholder="Layout" value="{{ old('layout') }}">
+                                                    <input type="file" name="layout" class="form-control" id="layout" placeholder="Layout" value="{{ old('layout') }}" required>
                                                     @error('layout')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
@@ -336,15 +336,14 @@
                                     </div>
                                     <input type="file" id="fileInput" name="layout" style="display: none;" accept="image/*" onchange="previewImage(event)">
                                 </div>
-                            </div>
                                 <div class="col-6 form-floating d-flex justify-content-between d-flex align-items-center mt-3">
                                     <h4 class="m-0">EMBALAGEM:</h4>
                                     <div class="form-check form-check-inline ms-2">
-                                        <input class="form-check-input rounded-0  border border-black " type="radio" name="embalagem" id="embalagem" value="sim"{{ old('embalagem') === 'sim' ? 'checked' : '' }} required>
+                                        <input class="form-check-input rounded-0  border border-black " type="radio" name="embalagem" id="embalagem" value="sim"{{ old('embalagem') === 'sim' ? 'checked' : '' }}>
                                         <label class="form-check-label" for="inlineRadio1">SIM</label>
                                     </div>
                                     <div class="form-check form-check-inline m-2">
-                                        <input class="form-check-input rounded-0 border border-black" type="radio" name="embalagem" id="embalagem" value="nao"{{ old('embalagem') === 'nao' ? 'checked' : '' }} required>
+                                        <input class="form-check-input rounded-0 border border-black" type="radio" name="embalagem" id="embalagem" value="nao"{{ old('embalagem') === 'nao' ? 'checked' : '' }}>
                                         <label class="form-check-label" for="inlineRadio1">NÃO</label>
                                     </div>
                                     <div class="col d-flex flex-row ">
@@ -360,7 +359,7 @@
                         <div class="col-12 form-floating d-flex justify-content-end mt-5 me-4">
                             <div class="row mb-3">
                                 <div class="col me-5 ">
-                                    <input type="text" name="nome_funcionario" class="form-control floatingInput" id="nome_funcionario" placeholder="Nome do funcionario" value="{{ Auth::user()->name }}"required>
+                                    <input type="text" name="nome_funcionario" class="form-control floatingInput" id="nome_funcionario" placeholder="Nome do funcionario" value="{{ Auth::user()->name }}" required>
                                     <h2 class="d-flex justify-content-center">Funcionario</h2>
                                     @error('nome_funcionario')
                                         <span class="text-danger">{{$message}}</span>

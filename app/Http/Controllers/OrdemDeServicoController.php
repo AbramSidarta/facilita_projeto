@@ -212,14 +212,14 @@ class OrdemDeServicoController extends Controller
     {
         $validation = $request->validate([
             'status' => 'required|in:Pendente,Impressão,Produção,Concluido,Entregue',
-            'ORC_venda'  => 'required',
+            'ORC_venda'  => 'nullable',
             'cliente'  => 'required',
             'servico'  => 'required',
-            'end'  => 'required',
-            'fone' => 'required',
+            'end'  => 'nullable',
+            'fone' => 'nullable',
             'valor' => 'required',
             'pago' => 'required|in:sim,nao,50%',
-            'falta' => 'required|string',
+            'falta' => 'nullable|string',
             'data_de_recebimento' => 'required',
             'data_de_entrega' => 'required',
             'hora_de_entrega' => 'required',
@@ -230,8 +230,7 @@ class OrdemDeServicoController extends Controller
             'servico_externo' => 'nullable|boolean',
             'formas_de_pagamento' => 'nullable|string',
             'observacoes_pedido' => 'nullable|string',
-            'layout' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg',
-            'embalagem' => 'required',
+            'layout' => 'required|image|mimes:jpg,png,jpeg,gif,svg',
             'observacoes_layout' => 'nullable|string',
             'nome_funcionario' => 'required',
         ]);
