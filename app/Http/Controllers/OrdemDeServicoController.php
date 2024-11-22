@@ -216,7 +216,7 @@ class OrdemDeServicoController extends Controller
             'cliente'  => 'required',
             'servico'  => 'required',
             'end'  => 'nullable',
-            'fone' => 'required',
+            'fone' => 'nullable',
             'valor' => 'required',
             'pago' => 'required|in:sim,nao,50%',
             'falta' => 'nullable|string',

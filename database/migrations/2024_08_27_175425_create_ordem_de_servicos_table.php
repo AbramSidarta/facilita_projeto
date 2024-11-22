@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('cliente');
             $table->string('servico');
             $table->string('end')->nullable();
-            $table->string('fone' , 20);
+            $table->string('fone' , 20)->nullable();
             $table->string('valor');
             $table->string('pago');
             $table->string('falta')->nullable();
