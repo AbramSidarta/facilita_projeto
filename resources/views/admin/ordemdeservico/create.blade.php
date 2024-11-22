@@ -301,7 +301,7 @@
                                     <p>{{ session('success') }}</p>
                                     <div id="image-preview" class="position-relative">
                                         <img src="{{ asset('storage/' . session('path')) }}" alt="Imagem carregada" id="preview-image" style="max-width: 100%; max-height: 300px; object-fit: contain;">
-                                        <button type="button" class="btn btn-danger position-absolute top-0 end-0 m-2" onclick="removeImage()">Remover</button>
+                                        
                                     </div>
                                 @endif
                                 @if ($errors->any())
@@ -312,12 +312,12 @@
                                     </ul>
                                 @endif
                                 @csrf
-                                <div class="col-12 d-flex">
+                                <div class="col-12 d-flex flex-row">
                                     <div class="col-6 d-flex flex-row d-flex align-items-center mt-3">
                                         <div class="d-flex justify-content-between">
                                             <h4 class="m-0">LAYOUT:</h4>
                                             <div class="row">
-                                                <div class="col ms-3 d-flex flex-row">
+                                                <div class="col ms-3 d-flex flex-row ">
                                                     <!-- Input de arquivo -->
                                                     <input type="file" name="layout" class="form-control" id="layout" placeholder="Layout" value="{{ old('layout') }}" required>
                                                     @error('layout')
@@ -328,7 +328,8 @@
                                         </div>
                                     </div>
                                     <div class="d-flex justify-content-end col-6 mt-3">
-                                        <button type="button" id="removeImageButton" class="btn btn-danger" onclick="removeImage()">Remover</button>
+                                        <button type="button" id="removeImageButton" class="btn btn-danger" onclick="removeImage()" style="">Remover</button>
+                                       
                                     </div>
                                 </div>
                                 <div class="border border-dark-subtle mt-3">
