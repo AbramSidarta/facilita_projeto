@@ -25,7 +25,6 @@
                                 <th class="text-center">Codigo De Acesso</th>
                                 <th class="text-center">Nome</th>
                                 <th class="text-center">Função</th>
-                                <th class="text-center">CPF</th>
                                 <th class="text-center">Ações</th>
                             </tr>
                         </thead>
@@ -35,7 +34,6 @@
                                     <td class="text-center align-middle">{{ $funcionario->id }}</td>
                                     <td class="text-center align-middle">{{ $funcionario->name }}</td>
                                     <td class="text-center align-middle">{{ $funcionario->usertype }}</td>
-                                    <td class="text-center align-middle">{{ $funcionario->cpf }}</td>
                                     <td class="text-center align-middle">
                                         <a style=" background-color: #FF8A00;border: 2px solid #FF8A00;" href="{{ route('adminFuncionario.edit', $funcionario->id) }}" class="btn text-white ">Editar</a>
                                         <a href="{{ route('adminFuncionario.destroy', ['id'=>$funcionario->id]) }}" type="button" onclick="return confirm('Você tem certeza?')" class="btn btn-danger">Deletar</a>

@@ -31,13 +31,11 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'cpf' => ['required', 'string', 'max:14', 'unique:'.User::class], // Adicione validação para CPF
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'usertype' => 'required|in:Guichê,Impressão,Produção,Caixa,Admin',
+            'usertype' => 'required|in:Guichê,Impressão,Produção,Caixa,Admin,Design',
         ]);
         $user = User::create([
             'name' => $request->name,
-            'cpf' => $request->cpf, // Armazene o CPF
             'password' => Hash::make($request->password),
             'usertype' => $request->usertype, // Adicione isso
         ]);

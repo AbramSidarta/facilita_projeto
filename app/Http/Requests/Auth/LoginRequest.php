@@ -27,7 +27,7 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'id' => ['required', 'string'], // Campo de CPF
+            'id' => ['required', 'string'], 
             'password' => ['required', 'string'],
         ];
     }
@@ -41,12 +41,11 @@ class LoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
-        // Use CPF em vez de email para autenticação
         if (! Auth::attempt($this->only('id', 'password'), $this->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
-                'id' => trans('auth.failed'), // Altera a mensagem de erro para CPF
+                'id' => trans('auth.failed'),
             ]);
         }
 

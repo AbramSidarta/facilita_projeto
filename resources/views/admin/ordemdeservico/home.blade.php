@@ -41,39 +41,43 @@
                                     {{ $ordemdeservico->hora_de_entrega }}
                                     </td>
                                     <td class="align-middle">
-                                        @php
-                                            $statusClass = '';
-                                            $statusTextClass = '';
-                                            switch($ordemdeservico->status) {
-                                                case 'Pendente':
-                                                    $statusClass = 'bg-danger';
-                                                    $statusTextClass = 'text-white'; // Bootstrap text color for better contrast
-                                                    break;
-                                                case 'Impressão':
-                                                    $statusClass = 'bg-warning';
-                                                    $statusTextClass = 'text-dark';
-                                                    break;
-                                                case 'Produção':
-                                                    $statusClass = 'bg-primary';
-                                                    $statusTextClass = 'text-white';
-                                                    break;
-                                                case 'Concluido':
-                                                    $statusClass = 'bg-success';
-                                                    $statusTextClass = 'text-white';
-                                                    break;
-                                                default:
-                                                    $statusClass = 'bg-secondary';
-                                                    $statusTextClass = 'text-white';
-                                            }
-                                        @endphp
-                                        <span class="px-3 py-2 rounded  {{ $statusClass }} {{ $statusTextClass }}">
-                                            {{ ucfirst($ordemdeservico->status) }}
-                                        </span>
-                                        @if ($ordemdeservico->data_de_entrega <= now())
-                                            <span class="px-3 py-2 mx-1 rounded bg-dark	text-white ">
-                                                Atrasado 
+                                        <div class="d-flex flex-column align-items-start">
+                                            @php
+                                                $statusClass = '';
+                                                $statusTextClass = '';
+                                                switch($ordemdeservico->status) {
+                                                    case 'Pendente':
+                                                        $statusClass = 'bg-danger';
+                                                        $statusTextClass = 'text-white'; // Bootstrap text color for better contrast
+                                                        break;
+                                                    case 'Impressão':
+                                                        $statusClass = 'bg-warning';
+                                                        $statusTextClass = 'text-dark';
+                                                        break;
+                                                    case 'Produção':
+                                                        $statusClass = 'bg-primary';
+                                                        $statusTextClass = 'text-white';
+                                                        break;
+                                                    case 'Concluido':
+                                                        $statusClass = 'bg-success';
+                                                        $statusTextClass = 'text-white';
+                                                        break;
+                                                    default:
+                                                        $statusClass = 'bg-secondary';
+                                                        $statusTextClass = 'text-white';
+                                                }
+                                            @endphp
+                                            <span class="px-3 py-2 rounded  {{ $statusClass }} {{ $statusTextClass }}">
+                                                {{ ucfirst($ordemdeservico->status) }}
                                             </span>
-                                        @endif
+                                            @php
+                                                $dataHoraEntrega = \Carbon\Carbon::parse($ordemdeservico->data_de_entrega . ' ' . $ordemdeservico->hora_de_entrega);
+                                            @endphp
+                                            @if ($dataHoraEntrega->isPast())
+                                                <span class="px-3 py-2 mt-2 mx-1 rounded bg-dark text-white">
+                                                    Atrasado
+                                                </span>
+                                            @endif
                                     </td>
                                     <td class="align-middle">
                                         <div class="btn-group" role="group" aria-label="Basic example">

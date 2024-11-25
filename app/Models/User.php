@@ -16,7 +16,6 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'cpf', // Adicione o CPF aqui
         'password',
         'usertype', // Se necessário
     ];

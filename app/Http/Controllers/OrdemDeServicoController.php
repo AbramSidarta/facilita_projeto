@@ -4,22 +4,38 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\OrdemDeServico;
+use Carbon\Carbon;
+
 
 class OrdemDeServicoController extends Controller
 {
     public function index()
     {
         // Filtrando as ordens de serviço para exibir na página
-        $ordemdeservicos = OrdemDeServico::whereIn('status', ['Pendente', 'Impressão', 'Produção', 'Concluído'])
+        $ordemdeservicos = OrdemDeServico::whereIn('status', ['Pendente', 'Impressão', 'Produção'])
             ->orderBy('id', 'asc')
             ->get();
-        // Filtrando apenas ordens de serviço vencidas que não estão com status "Entregue"
-        $ordensVencidas = OrdemDeServico::where('data_de_entrega', '<', now())
-            ->where('status', '<>', 'Entregue') // Exclui as com status "Entregue"
+    
+        // Filtrando apenas ordens de serviço vencidas considerando data e hora
+        $ordensVencidas = OrdemDeServico::whereRaw("STR_TO_DATE(CONCAT(data_de_entrega, ' ', hora_de_entrega), '%Y-%m-%d %H:%i:%s') < ?", [now()])
+            ->whereNotIn('status', ['Entregue', 'Concluido']) // Exclui as com status "Entregue" e "Concluido"
+            ->get();
+    
+        $total = OrdemDeServico::count();
+    
+        return view('admin.ordemdeservico.home', compact(['ordemdeservicos', 'total', 'ordensVencidas']));
+    }
+    
+
+    // Método para listar ordens de serviço concluidas
+    public function concluidas()
+    {
+        $ordemdeservicos = OrdemDeServico::where('status', 'Concluido')
+            ->orderBy('id', 'desc')
             ->get();
         $total = OrdemDeServico::count();
-
-        return view('admin.ordemdeservico.home', compact(['ordemdeservicos', 'total', 'ordensVencidas']));
+        
+        return view('admin.ordemdeservico.concluidas', compact(['ordemdeservicos', 'total']));
     }
 
     // Método para listar ordens de serviço entregues
@@ -49,16 +65,21 @@ class OrdemDeServicoController extends Controller
         // Verifica se a busca é por "atrasado"
         $ordens->orWhere(function ($queryBuilder) use ($query) {
             if (str_contains(strtolower($query), 'atrasado')) {
-                $queryBuilder->where('data_de_entrega', '<', now())
-                             ->where('status', '<>', 'Entregue');
+                $queryBuilder->whereRaw("
+                    STR_TO_DATE(CONCAT(data_de_entrega, ' ', hora_de_entrega), '%Y-%m-%d %H:%i:%s') < ?
+                ", [now()])
+                ->where('status', '<>', 'Entregue');
             }
         });
+        
     
         // Filtra por status se necessário
         if ($page === 'entregues') {
             $ordens = $ordens->where('status', 'Entregue');
-        } else {
-            $ordens = $ordens->whereIn('status', ['Pendente', 'Impressão', 'Produção', 'Concluído']);
+        }elseif ($page === 'concluidas'){
+            $ordens = $ordens->where('status', 'Concluido');
+        }else {
+            $ordens = $ordens->whereIn('status', ['Pendente', 'Impressão', 'Produção']);
         }
     
         // Aplica a ordenação e a paginação
@@ -230,7 +251,7 @@ class OrdemDeServicoController extends Controller
             'servico_externo' => 'nullable|boolean',
             'formas_de_pagamento' => 'nullable|string',
             'observacoes_pedido' => 'required',
-            'layout' => 'required|image|mimes:jpg,png,jpeg,gif,svg',
+            'layout' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg',
             'embalagem' => 'nullable',
             'observacoes_layout' => 'nullable|string',
             'nome_funcionario' => 'required',
