@@ -69,9 +69,12 @@
                                         <span class="px-3 py-2 rounded  {{ $statusClass }} {{ $statusTextClass }}">
                                             {{ ucfirst($ordemdeservico->status) }}
                                         </span>
-                                        @if ($ordemdeservico->data_de_entrega <= now())
-                                            <span class="px-3 py-2 mx-1 rounded bg-dark	text-white ">
-                                                Atrasado 
+                                        @php
+                                            $dataHoraEntrega = \Carbon\Carbon::parse($ordemdeservico->data_de_entrega . ' ' . $ordemdeservico->hora_de_entrega);
+                                        @endphp
+                                        @if ($dataHoraEntrega->isPast())
+                                            <span class="px-3 py-2 mx-1 rounded bg-dark text-white">
+                                                Atrasado
                                             </span>
                                         @endif
                                     </td>

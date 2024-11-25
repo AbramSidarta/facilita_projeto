@@ -34,12 +34,7 @@
                         </select>
                         <x-input-error :messages="$errors->get('usertype')" class="mt-2" />
                     </div>
-                    <!-- CPF -->
-                    <div class="mt-4" x-data="{ cpf : ' ' }">
-                        <x-input-label for="cpf" :value="__('CPF')" />
-                        <x-text-input id="cpf" x-mask="999.999.999-99" class="block mt-1 w-full" type="text" name="cpf" :value="old('cpf')" required autocomplete="cpf" />
-                        <x-input-error :messages="$errors->get('cpf')" class="mt-2" />
-                    </div>
+                   
                     <!-- Password -->
                     <div class="mt-4">
                         <x-input-label for="password" :value="__('Password')" />

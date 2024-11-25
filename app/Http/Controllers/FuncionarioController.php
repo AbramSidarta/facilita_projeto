@@ -20,7 +20,6 @@ class FuncionarioController extends Controller
         $funcionarios = User::where(function ($queryBuilder) use ($query) {
             $queryBuilder->where('name', 'like', "%{$query}%")
                         ->orWhere('usertype', 'like', "%{$query}%")
-                        ->orWhere('cpf', 'like', "%{$query}%")
                         ->orWhere('id', 'like', "%{$query}%");
         })
         ->orderBy('id', 'desc')
@@ -30,7 +29,6 @@ class FuncionarioController extends Controller
                 'id' => $funcionario->id,
                 'name' => $funcionario->name,
                 'usertype' => $funcionario->usertype,
-                'cpf' => $funcionario->cpf,
                 'editUrl' => route('adminFuncionario.edit', $funcionario->id),  // URL de edição
                 'deleteUrl' => route('adminFuncionario.destroy', $funcionario->id),  // URL de de
             ];
@@ -62,7 +60,6 @@ class FuncionarioController extends Controller
         // Validação dos dados recebidos do formulário
         $validation = $request->validate([
             'name' => 'required',
-            'cpf'  => 'required',
             'password'  => 'nullable|string|min:8|confirmed',  // Senha opcional, mas se fornecida, deve ser confirmada
         ]);
         // Encontrar o funcionário pelo ID
@@ -70,7 +67,6 @@ class FuncionarioController extends Controller
     
         // Atualizando os campos obrigatórios
         $funcionario->name = $request->name;
-        $funcionario->cpf = $request->cpf;
         $funcionario->usertype = $request->usertype;
 
         // Verificar se a senha foi fornecida e, se for o caso, criptografar e salvar

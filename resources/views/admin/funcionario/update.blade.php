@@ -58,11 +58,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="mt-2" x-data="{ cpf : ' ' }">
-                            <x-input-label for="cpf" :value="__('CPF')" />
-                            <x-text-input id="cpf" x-mask="999.999.999-99" class="block mt-1 w-full" type="text" name="cpf" :value="old('cpf')" required autocomplete="cpf" placeholder="CPF do Cliente" value="{{$funcionario->cpf}}" />
-                            <x-input-error :messages="$errors->get('cpf')" class="mt-2" />
-                        </div>
                         <div class="row mb-3 d-flex row mt-3">
                             <div class="col-6">
                                 <x-input-label for="password" :value="__('Senha')" />
