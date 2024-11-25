@@ -26,7 +26,7 @@ class OrdemDeServicoController extends Controller
     // Método para listar ordens de serviço concluidas
     public function concluidas()
     {
-        $ordemdeservicos = OrdemDeServico::where('status', 'Concluído')
+        $ordemdeservicos = OrdemDeServico::where('status', 'Concluido')
             ->orderBy('id', 'desc')
             ->get();
         $total = OrdemDeServico::count();
@@ -70,8 +70,10 @@ class OrdemDeServicoController extends Controller
         // Filtra por status se necessário
         if ($page === 'entregues') {
             $ordens = $ordens->where('status', 'Entregue');
-        } else {
-            $ordens = $ordens->whereIn('status', ['Pendente', 'Impressão', 'Produção', 'Concluído']);
+        }elseif ($page === 'concluidas'){
+            $ordens = $ordens->where('status', 'Concluido');
+        }else {
+            $ordens = $ordens->whereIn('status', ['Pendente', 'Impressão', 'Produção']);
         }
     
         // Aplica a ordenação e a paginação
@@ -243,7 +245,7 @@ class OrdemDeServicoController extends Controller
             'servico_externo' => 'nullable|boolean',
             'formas_de_pagamento' => 'nullable|string',
             'observacoes_pedido' => 'required',
-            'layout' => 'required|image|mimes:jpg,png,jpeg,gif,svg',
+            'layout' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg',
             'embalagem' => 'nullable',
             'observacoes_layout' => 'nullable|string',
             'nome_funcionario' => 'required',

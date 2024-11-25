@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         // Verifica se a ordem está atrasada
                         const agora = new Date();
                         const dataEntrega = new Date(ordem.data_de_entrega);
-                        const atrasado = ordem.status !== 'Entregue' && dataEntrega < agora;
+                        const atrasado = ordem.status !== 'Entregue' && ordem.status !== 'Concluido' && dataEntrega < agora;
                         tr.innerHTML = `
                             <td class="align-middle">${ordem.id}</td>
                             <td class="align-middle">${ordem.cliente}</td>
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
             case 'Pendente': return 'bg-danger text-white';
             case 'Impressão': return 'bg-warning text-dark';
             case 'Produção': return 'bg-primary text-white';
-            case 'Concluído': return 'bg-success text-white';
+            case 'Concluido': return 'bg-success text-white';
             case 'Entregue': return 'bg-success text-white'; // Para ordens entregues
             default: return 'bg-secondary text-white';
         }

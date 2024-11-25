@@ -38,15 +38,15 @@
                                         @else
                                             <select id="status" name="status" class="form-control pe-5" required >
                                             <option value="">Selecione uma Categoria</option>
-                                            @if(in_array($userType, ['Guichê', 'Impressão', 'Produção', 'Caixa', 'Admin']))
+                                            @if(in_array($userType, ['Guichê', 'Impressão', 'Produção', 'Caixa', 'Admin', 'Design']))
                                                 <option value="Pendente" {{ $ordemServico->status === 'Pendente' ? 'selected' : '' }}>Pendente</option>
                                                 <option value="Impressão" {{ $ordemServico->status === 'Impressão' ? 'selected' : '' }}>Impressão</option>
                                                 <option value="Produção" {{ $ordemServico->status === 'Produção' ? 'selected' : '' }}>Produção</option>
                                             @endif
-                                            @if(in_array($userType, ['Impressão', 'Produção', 'Caixa', 'Admin']))
+                                            @if(in_array($userType, ['Impressão', 'Produção', 'Caixa', 'Admin', 'Design']))
                                                 <option value="Concluido" {{ $ordemServico->status === 'Concluido' ? 'selected' : '' }}>Concluído</option>
                                             @endif
-                                            @if(in_array($userType, ['Caixa', 'Admin']))
+                                            @if(in_array($userType, ['Caixa', 'Admin', 'Design']))
                                                 <option value="Entregue" {{ $ordemServico->status === 'Entregue' ? 'selected' : '' }}>Entregue</option>
                                             @endif
                                             </select>
@@ -316,7 +316,7 @@
                                         </div>
                                     </div>
                                     <div class="d-flex justify-content-end col-6 mt-3">
-                                        <button type="button" class="btn btn-danger" id="removeImageButton" onclick="removeImage()">Remover</button>
+                                        <button type="button" id="removeImageButton" class="btn btn-danger" onclick="removeImage()" style="">Remover</button>
                                     </div>
                                 </div>
 

@@ -28,15 +28,15 @@
                                             @php
                                                 $userType = Auth::user()->usertype;
                                             @endphp
-                                            @if(in_array($userType, ['Guichê', 'Impressão', 'Produção', 'Caixa', 'Admin']))
+                                            @if(in_array($userType, ['Guichê', 'Impressão', 'Produção', 'Caixa', 'Admin', 'Design']))
                                                 <option value="Pendente" {{ old('status') === 'Pendente' ? 'selected' : '' }}>Pendente</option>
                                                 <option value="Impressão" {{ old('status') === 'Impressão' ? 'selected' : '' }}>Impressão</option>
                                                 <option value="Produção" {{ old('status') === 'Produção' ? 'selected' : '' }}>Produção</option>
                                             @endif
-                                            @if(in_array($userType, ['Impressão', 'Produção', 'Caixa', 'Admin']))
+                                            @if(in_array($userType, ['Impressão', 'Produção', 'Caixa', 'Admin', 'Design']))
                                                 <option value="Concluido" {{ old('status') === 'Concluido' ? 'selected' : '' }}>Concluído</option>
                                             @endif
-                                            @if(in_array($userType, ['Caixa', 'Admin']))
+                                            @if(in_array($userType, ['Caixa', 'Admin', 'Design']))
                                                 <option value="Entregue" {{ old('status') === 'Entregue' ? 'selected' : '' }}>Entregue</option>
                                             @endif
                                         </select>
@@ -319,7 +319,7 @@
                                             <div class="row">
                                                 <div class="col ms-3 d-flex flex-row ">
                                                     <!-- Input de arquivo -->
-                                                    <input type="file" name="layout" class="form-control" id="layout" placeholder="Layout" value="{{ old('layout') }}" required>
+                                                    <input type="file" name="layout" class="form-control" id="layout" placeholder="Layout" value="{{ old('layout') }}">
                                                     @error('layout')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror

@@ -35,7 +35,7 @@
                     </x-nav-link>
                 </div>
                 -->
-                @if ( Auth::user()->usertype == 'Admin')
+                @if ( Auth::user()->usertype == 'Admin' || Auth::user()->usertype == 'Design')
                     <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex me-5">
                         <x-nav-link :href="route('adminFuncionario.home')" :active="request()->routeIs('adminFuncionario.home')">
                             {{ __('Funcionário') }}

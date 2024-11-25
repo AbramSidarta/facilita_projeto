@@ -16,8 +16,10 @@ class Admin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::user()->usertype != 'Admin') {
-            return redirect('adminOrdemDeServico.index');
+        // Permite acesso apenas para usuários do tipo Admin ou Design
+        if (Auth::user()->usertype !== 'Admin' && Auth::user()->usertype !== 'Design') {
+            return redirect()->route('adminOrdemDeServico.index')
+                ->with('error', 'Você não tem permissão para acessar esta página.');
         }
 
         return $next($request);
