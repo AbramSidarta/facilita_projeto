@@ -14,6 +14,7 @@ Route::middleware(['auth', 'verified'])->group(function (){
     Route::get('/admin', [OrdemDeServicoController::class, 'index'])->name('adminOrdemDeServico.index');
     Route::get('/admin/ordemdeservico', [OrdemDeServicoController::class, 'index'])->name('adminOrdemDeServico.index');
     Route::get('/admin/ordemdeservico/entregues', [OrdemDeServicoController::class, 'entregues'])->name('adminOrdemDeServico.entregues');
+    Route::get('/admin/ordemdeservico/concluidas', [OrdemDeServicoController::class, 'concluidas'])->name('adminOrdemDeServico.concluidas');
 
     // routes/Ordens    
     Route::get('/search-orders', [OrdemDeServicoController::class, 'search'])->name('OrdemDeServicoSearch.orders');

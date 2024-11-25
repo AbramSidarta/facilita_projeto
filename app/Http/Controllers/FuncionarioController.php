@@ -9,7 +9,7 @@ class FuncionarioController extends Controller
 {
     public function index()
     {
-        $funcionarios = User::whereIn('usertype', ['guiche', 'impressao', 'producao', 'caixa','admin',])->orderByRaw("FIELD(usertype, 'guiche', 'impressao', 'producao', 'caixa','admin')")->get();
+        $funcionarios = User::whereIn('usertype', ['guiche', 'impressao', 'producao', 'caixa','admin','Design'])->orderByRaw("FIELD(usertype, 'guiche', 'impressao', 'producao', 'caixa,'Design','admin')")->get();
         $total = User::count();
         return view('admin.funcionario.home', compact(['funcionarios', 'total']));
     }

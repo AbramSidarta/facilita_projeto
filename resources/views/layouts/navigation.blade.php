@@ -16,6 +16,11 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('adminOrdemDeServico.concluidas')" :active="request()->routeIs('adminOrdemDeServico.concluidas')">
+                        {{ __('Lista Concluídas') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('adminOrdemDeServico.entregues')" :active="request()->routeIs('adminOrdemDeServico.entregues')">
                         {{ __('Lista Entregues') }}
                     </x-nav-link>

@@ -28,6 +28,7 @@
                             <option value="Impressão" {{ old('usertype') === 'Impressão' ? 'selected' : '' }}>Impressão</option>
                             <option value="Produção" {{ old('usertype') === 'Produção' ? 'selected' : '' }}>Produção</option>
                             <option value="Caixa" {{ old('usertype') === 'Caixa' ? 'selected' : '' }}>Caixa</option>
+                            <option value="Design" {{ old('usertype') === 'Design' ? 'selected' : '' }}>Design</option>
                             <option value="Admin" {{ old('usertype') === 'Admin' ? 'selected' : '' }}>Admin</option>
                             <!-- Adicione mais opções conforme necessário -->
                         </select>

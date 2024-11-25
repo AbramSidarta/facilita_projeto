@@ -10,16 +10,28 @@ class OrdemDeServicoController extends Controller
     public function index()
     {
         // Filtrando as ordens de serviço para exibir na página
-        $ordemdeservicos = OrdemDeServico::whereIn('status', ['Pendente', 'Impressão', 'Produção', 'Concluído'])
+        $ordemdeservicos = OrdemDeServico::whereIn('status', ['Pendente', 'Impressão', 'Produção'])
             ->orderBy('id', 'asc')
             ->get();
         // Filtrando apenas ordens de serviço vencidas que não estão com status "Entregue"
         $ordensVencidas = OrdemDeServico::where('data_de_entrega', '<', now())
             ->where('status', '<>', 'Entregue') // Exclui as com status "Entregue"
+            ->where('status', '<>', 'Concluido') // Exclui as com status "Concluido"
             ->get();
         $total = OrdemDeServico::count();
 
         return view('admin.ordemdeservico.home', compact(['ordemdeservicos', 'total', 'ordensVencidas']));
+    }
+
+    // Método para listar ordens de serviço concluidas
+    public function concluidas()
+    {
+        $ordemdeservicos = OrdemDeServico::where('status', 'Concluído')
+            ->orderBy('id', 'desc')
+            ->get();
+        $total = OrdemDeServico::count();
+        
+        return view('admin.ordemdeservico.concluidas', compact(['ordemdeservicos', 'total']));
     }
 
     // Método para listar ordens de serviço entregues
@@ -51,6 +63,7 @@ class OrdemDeServicoController extends Controller
             if (str_contains(strtolower($query), 'atrasado')) {
                 $queryBuilder->where('data_de_entrega', '<', now())
                              ->where('status', '<>', 'Entregue');
+                             
             }
         });
     

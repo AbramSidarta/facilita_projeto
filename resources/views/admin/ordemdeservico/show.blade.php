@@ -9,10 +9,12 @@
                     {{ Session::get('success') }}
                 </div>
             @endif
-            @if ($ordemServico->status !== 'Entregue')
-                <a style="background-color: #ADB5BD;border: 2px solid #ADB5BD;" href="{{ route('adminOrdemDeServico.index') }}" class="btn btn-primary text-dark">Voltar</a>
-            @else
+            @if ($ordemServico->status === 'Entregue')
                 <a style="background-color: #ADB5BD;border: 2px solid #ADB5BD;" href="{{ route('adminOrdemDeServico.entregues') }}" class="btn btn-primary text-dark">Voltar</a>
+            @elseif ($ordemServico->status === 'Concluido')
+                <a style="background-color: #ADB5BD;border: 2px solid #ADB5BD;" href="{{ route('adminOrdemDeServico.concluidas') }}" class="btn btn-primary text-dark">Voltar</a>
+            @else
+                <a style="background-color: #ADB5BD;border: 2px solid #ADB5BD;" href="{{ route('adminOrdemDeServico.index') }}" class="btn btn-primary text-dark">Voltar</a>
             @endif
         </div>
     </x-slot>
