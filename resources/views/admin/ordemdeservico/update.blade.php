@@ -136,6 +136,7 @@
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input border border-black rounded-0" type="radio" name="pago" id="pago_nao" value="nao"  {{ $ordemServico->pago == 'nao' ? 'checked' : '' }} required>
                                             <label class="form-check-label" for="pago_nao">Não</label>
+                                            
                                         </div>
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input border border-black rounded-0" type="radio" name="pago" id="pago_50" value="50%" {{ $ordemServico->pago == '50%' ? 'checked' : '' }} required>
