@@ -31,7 +31,7 @@ return new class extends Migration
             $table->string('hora_do_recebimento_do_controle')->nullable();
             $table->boolean('servico_externo');
             $table->string('formas_de_pagamento');
-            $table->string('observacoes_pedido', 1500);
+            $table->string('observacoes_pedido', 5000);
             $table->string('layout')->nullable();
             $table->string('embalagem')->nullable();
             $table->string('observacoes_layout')->nullable();
