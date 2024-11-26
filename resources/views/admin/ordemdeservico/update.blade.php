@@ -28,7 +28,6 @@
                                         @endphp
                                         @if($userType == 'Guichê' && $ordemServico->status === 'Concluido')
                                             <select id="status" name="status" class="form-control pe-5" required disabled >
-                                            <option value="">Selecione uma Categoria</option>
                                                 <option value="Pendente" {{ $ordemServico->status === 'Pendente' ? 'selected' : '' }}>Pendente</option>
                                                 <option value="Impressão" {{ $ordemServico->status === 'Impressão' ? 'selected' : '' }}>Impressão</option>
                                                 <option value="Produção" {{ $ordemServico->status === 'Produção' ? 'selected' : '' }}>Produção</option>
@@ -37,7 +36,6 @@
                                             </select>
                                         @else
                                             <select id="status" name="status" class="form-control pe-5" required >
-                                            <option value="">Selecione uma Categoria</option>
                                             @if(in_array($userType, ['Guichê', 'Impressão', 'Produção', 'Caixa', 'Admin', 'Design']))
                                                 <option value="Pendente" {{ $ordemServico->status === 'Pendente' ? 'selected' : '' }}>Pendente</option>
                                                 <option value="Impressão" {{ $ordemServico->status === 'Impressão' ? 'selected' : '' }}>Impressão</option>
