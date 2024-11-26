@@ -15,6 +15,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 data.data.forEach(ordem => {
                     const tr = document.createElement('tr');
+                    const formatDate = (dateStr) => {
+                        const [year, month, day] = dateStr.split('-');
+                        return `${day}/${month}/${year}`;
+                    };
                     
                     // Verifica se a ordem está atrasada considerando data e hora
                     const agora = new Date();
@@ -25,7 +29,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         <td class="align-middle">${ordem.id}</td>
                         <td class="align-middle">${ordem.cliente}</td>
                         <td class="align-middle">${ordem.servico}</td>
-                        <td class="align-middle">${ordem.data_de_entrega} ${ordem.hora_de_entrega}</td>
+                        <td class="align-middle">${formatDate(ordem.data_de_entrega)} ${ordem.hora_de_entrega}</td>
+
                         <td class="align-middle">
                             <span class="px-3 py-2 rounded ${getStatusClass(ordem.status)}">
                                 ${ordem.status.charAt(0).toUpperCase() + ordem.status.slice(1)}
