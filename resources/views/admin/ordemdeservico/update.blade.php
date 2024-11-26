@@ -307,7 +307,7 @@
                                             <div class="row">
                                                 <div class="col ms-3">
                                                     <!-- Input de arquivo -->
-                                                    <input type="file" name="layout" class="form-control" id="layout" onchange="previewImage(event)">
+                                                    <input type="file" name="layout" class="form-control" id="layout">
                                                     @error('layout')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
@@ -316,7 +316,7 @@
                                         </div>
                                     </div>
                                     <div class="d-flex justify-content-end col-6 mt-3">
-                                        <button type="button" id="removeImageButton" class="btn btn-danger" onclick="removeImage()" style="">Remover</button>
+                                        <button type="button" id="removeImageButton" class="btn btn-danger" onclick="removeImage()">Remover</button>
                                     </div>
                                 </div>
 
@@ -337,6 +337,7 @@
                                         </span>
                                     </div>
                                 </div>
+
                                 <div class="col-6 form-floating d-flex justify-content-between d-flex align-items-center mt-3">
                                     <h4 class="m-0">EMBALAGEM:</h4>
                                     <div class="form-check form-check-inline ms-2">
