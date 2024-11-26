@@ -301,42 +301,50 @@
                                     </ul>
                                 @endif
                                 <div class="col-12 d-flex">
-                                    <div class="col-6 d-flex flex-row align-items-center mt-3">
-                                        <div class="d-flex justify-content-between">
-                                            <h4 class="m-0">LAYOUT:</h4>
-                                            <div class="row">
-                                                <div class="col ms-3">
-                                                    <!-- Input de arquivo -->
-                                                    <input type="file" name="layout" class="form-control" id="layout" onchange="previewImage(event)">
-                                                    @error('layout')
-                                                        <span class="text-danger">{{ $message }}</span>
-                                                    @enderror
-                                                </div>
+                                <div class="col-6 d-flex flex-row align-items-center mt-3">
+                                    <div class="d-flex justify-content-between">
+                                        <h4 class="m-0">LAYOUT:</h4>
+                                        <div class="row">
+                                            <div class="col ms-3">
+                                                <!-- Input de arquivo -->
+                                                <input type="file" name="layout" class="form-control" id="layout">
+                                                @error('layout')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="d-flex justify-content-end col-6 mt-3">
-                                        <button type="button" id="removeImageButton" class="btn btn-danger" onclick="removeImage()" style="">Remover</button>
-                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-end col-6 mt-3">
+                                    <button type="button" id="removeImageButton" class="btn btn-danger ml-3" style="visibility: hidden;" onclick="removeImage()">Remover</button>
+                                    @if($ordemServico->layout)
+                                        <label for="remover_imagem" class="btn btn-danger ms-3">
+                                            <input type="checkbox" name="remover_imagem" id="remover_imagem" value="1">
+                                            Remover Imagem
+                                        </label>
+                                    @endif
                                 </div>
 
-                                <div class="border border-dark-subtle mt-3">
-                                    <!-- Área de preview -->
-                                    <div class="d-flex justify-content-center" style="height: 300px; cursor: pointer;" onclick="triggerFileInput()">
-                                        <!-- Imagem de preview -->
-                                        <img 
-                                            class="m-3" 
-                                            id="preview" 
-                                            src="{{ $ordemServico->layout ? asset('uploads/ordemdeservico/' . $ordemServico->layout) : '' }}" 
-                                            alt="Nenhuma imagem selecionada" 
-                                            style="max-width: 100%; max-height: 100%; object-fit: contain; {{ $ordemServico->layout ? '' : 'display:none;' }}">
+                            </div>
 
-                                        <!-- Mensagem padrão caso não tenha imagem -->
-                                        <span id="no-image-message" style="{{ $ordemServico->layout ? 'display:none;' : '' }}">
-                                            Nenhuma imagem selecionada
-                                        </span>
-                                    </div>
+                            <div class="border border-dark-subtle mt-3">
+                                <!-- Área de preview -->
+                                <div class="d-flex justify-content-center" style="height: 300px; cursor: pointer;" onclick="triggerFileInput()">
+                                    <!-- Imagem de preview -->
+                                    <img 
+                                        class="m-3" 
+                                        id="preview" 
+                                        src="{{ $ordemServico->layout ? asset('uploads/ordemdeservico/' . $ordemServico->layout) : '' }}" 
+                                        alt="Nenhuma imagem selecionada" 
+                                        style="max-width: 100%; max-height: 100%; object-fit: contain; {{ $ordemServico->layout ? '' : 'display:none;' }}">
+
+                                    <!-- Mensagem padrão caso não tenha imagem -->
+                                    <span id="no-image-message" style="{{ $ordemServico->layout ? 'display:none;' : '' }}">
+                                        Nenhuma imagem selecionada
+                                    </span>
                                 </div>
+                            </div>
+
                                 <div class="col-6 form-floating d-flex justify-content-between d-flex align-items-center mt-3">
                                     <h4 class="m-0">EMBALAGEM:</h4>
                                     <div class="form-check form-check-inline ms-2">
