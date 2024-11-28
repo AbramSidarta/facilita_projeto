@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Pagina das Ordens de Serviço') }}
+            {{ __('Pagina das Ordens Para o Laser') }}
         </h2>
     </x-slot>
     <div class="py-12">
@@ -9,9 +9,8 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <div class="d-flex align-items-center justify-content-between mb-3">
-                        <h1 class="mb-0">Lista das Ordens de Serviços</h1>
-                        <input type="text" id="search" data-page="home" placeholder="Buscar Status, Clientes ou Serviços" class="form-control w-25" />
-                        <a href="{{ route('adminOrdemDeServico.create') }}" class="btn btn-primary">Adicionar Ordem</a>
+                        <h1 class="mb-0">Lista das Ordens Para Laser</h1>
+                        <input type="text" id="search" data-page="laser" placeholder="Buscar Data, Clientes ou Serviços" class="form-control w-25" />
                     </div>
                     <hr/>
                     @if (Session::has('success'))
@@ -42,32 +41,7 @@
                                     </td>
                                     <td class="align-middle">
                                         <div class="d-flex flex-column align-items-start">
-                                            @php
-                                                $statusClass = '';
-                                                $statusTextClass = '';
-                                                switch($ordemdeservico->status) {
-                                                    case 'Pendente':
-                                                        $statusClass = 'bg-danger';
-                                                        $statusTextClass = 'text-white'; // Bootstrap text color for better contrast
-                                                        break;
-                                                    case 'Impressão':
-                                                        $statusClass = 'bg-warning';
-                                                        $statusTextClass = 'text-dark';
-                                                        break;
-                                                    case 'Laser':
-                                                        $statusClass = 'backgroundColorLaser'; 
-                                                        $statusTextClass = 'text-darkLaser';
-                                                        break;
-                                                    case 'Produção':
-                                                        $statusClass = 'bg-primary';
-                                                        $statusTextClass = 'text-white';
-                                                        break;
-                                                    default:
-                                                        $statusClass = 'bg-secondary';
-                                                        $statusTextClass = 'text-white';
-                                                }
-                                            @endphp
-                                            <span class="px-3 py-2 rounded  {{ $statusClass }} {{ $statusTextClass }}">
+                                            <span style=" background-color: #fd7e14;color: #000;" class="px-3 py-2 rounded ">
                                                 {{ ucfirst($ordemdeservico->status) }}
                                             </span>
                                             @php
@@ -130,36 +104,7 @@
                                         <td>{{ $ordem->servico }}</td>
                                         <td>{{ date('d/m/Y H:i', strtotime($ordem->data_de_entrega . ' ' . $ordem->hora_de_entrega)) }}</td>
                                         <td>
-                                            @php
-                                                $statusClass = '';
-                                                $statusTextClass = '';
-                                                switch($ordem->status) {
-                                                    case 'Pendente':
-                                                        $statusClass = 'bg-danger';
-                                                        $statusTextClass = 'text-white'; // Bootstrap text color for better contrast
-                                                        break;
-                                                    case 'Impressão':
-                                                        $statusClass = 'bg-warning';
-                                                        $statusTextClass = 'text-dark';
-                                                        break;
-                                                    case 'Laser':
-                                                        $statusClass = 'backgroundColorLaser'; 
-                                                        $statusTextClass = 'text-darkLaser';
-                                                        break;
-                                                    case 'Produção':
-                                                        $statusClass = 'bg-primary';
-                                                        $statusTextClass = 'text-white';
-                                                        break;
-                                                    case 'Concluido':
-                                                        $statusClass = 'bg-success';
-                                                        $statusTextClass = 'text-white';
-                                                        break;
-                                                    default:
-                                                        $statusClass = 'bg-secondary';
-                                                        $statusTextClass = 'text-white';
-                                                }
-                                            @endphp
-                                            <span class="px-3 py-2 rounded  {{ $statusClass }} {{ $statusTextClass }}">
+                                            <span style=" background-color: #fd7e14;color: #000;" class="px-3 py-2 rounded ">
                                                 {{ ucfirst($ordem->status) }}
                                             </span>
                                         </td>

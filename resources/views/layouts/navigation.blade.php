@@ -21,6 +21,11 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('adminOrdemDeServico.laser')" :active="request()->routeIs('adminOrdemDeServico.laser')">
+                        {{ __('Lista Laser') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('adminOrdemDeServico.producao')" :active="request()->routeIs('adminOrdemDeServico.producao')">
                         {{ __('Lista Produção') }}
                     </x-nav-link>

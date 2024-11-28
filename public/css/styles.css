@@ -6,3 +6,11 @@
 #removeImageButton {
     display: block !important;
 }
+
+.backgroundColorLaser{
+    background-color: #fd7e14; /* Cor hexadecimal */
+}
+
+.text-darkLaser{
+    color: #000; /* Outra cor em hexadecimal, exemplo de texto escuro */
+}
