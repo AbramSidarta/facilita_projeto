@@ -25,5 +25,6 @@ class Kernel extends ConsoleKernel
         // Adicione aqui os comandos agendados, como o exemplo abaixo:
         $schedule->command('ordens:delete-old')->dailyAt('18:00');
         $schedule->command('backup:database')->dailyAt('18:00');
+
     }
 }
