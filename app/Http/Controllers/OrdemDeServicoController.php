@@ -42,6 +42,7 @@ class OrdemDeServicoController extends Controller
         return view('admin.ordemdeservico.Impressao', compact(['ordemdeservicos', 'total', 'ordensVencidas']));
     }
 
+
     public function laser()
     {
         $ordemdeservicos = OrdemDeServico::where('status', 'Laser')
@@ -56,6 +57,7 @@ class OrdemDeServicoController extends Controller
         
         return view('admin.ordemdeservico.laser', compact(['ordemdeservicos', 'total', 'ordensVencidas']));
     }
+
 
 
     public function producao()
@@ -96,7 +98,6 @@ class OrdemDeServicoController extends Controller
         return view('admin.ordemdeservico.entregues', compact(['ordemdeservicos', 'total']));
     }
 
-
     public function search(Request $request)
 {
     $query = $request->input('query');
@@ -119,9 +120,11 @@ class OrdemDeServicoController extends Controller
     // Inicia a consulta base
     $ordens = OrdemDeServico::where(function ($queryBuilder) use ($query, $dataCompletaFormatada, $diaMesFormatado) {
         $queryBuilder->where('cliente', 'like', "%{$query}%")
+
                     ->orWhere('servico', 'like', "%{$query}%")
                     ->orWhere('status', 'like', "%{$query}%")
                     ->orWhere('id', 'like', "%{$query}%"); // Adiciona a busca pelo Cód.Arte (id)
+
 
         // Adiciona o filtro para data completa, se estiver disponível
         if ($dataCompletaFormatada) {
@@ -151,13 +154,16 @@ class OrdemDeServicoController extends Controller
         $ordens = $ordens->where('status', 'Concluido');
     } elseif ($page === 'impressao') {
         $ordens = $ordens->where('status', 'Impressão');
+
     } elseif ($page === 'laser') {
         $ordens = $ordens->where('status', 'Laser');
+
     } elseif ($page === 'producao') {
         $ordens = $ordens->where('status', 'Produção');
     } else {
         $ordens = $ordens->whereIn('status', ['Pendente', 'Impressão', 'Produção']);
     }
+
 
     // Aplica a ordenação
     $ordens = $ordens->orderBy('id', 'asc')->get();
@@ -171,6 +177,10 @@ class OrdemDeServicoController extends Controller
     ]);
 }
 
+
+
+
+  
 
 
 
