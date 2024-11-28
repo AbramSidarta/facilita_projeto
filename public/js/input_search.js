@@ -58,6 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
         switch (status) {
             case 'Pendente': return 'bg-danger text-white';
             case 'Impressão': return 'bg-warning text-dark';
+            case 'Laser': return "backgroundColorLaser text-darkLaser";
             case 'Produção': return 'bg-primary text-white';
             case 'Concluido': return 'bg-success text-white';
             case 'Entregue': return 'bg-success text-white'; // Para ordens entregues

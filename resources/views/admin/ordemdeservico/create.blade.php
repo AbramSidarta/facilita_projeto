@@ -31,6 +31,7 @@
                                             @if(in_array($userType, ['Guichê', 'Impressão', 'Produção', 'Caixa', 'Admin', 'Design']))
                                                 <option value="Pendente" {{ old('status') === 'Pendente' ? 'selected' : '' }}>Pendente</option>
                                                 <option value="Impressão" {{ old('status') === 'Impressão' ? 'selected' : '' }}>Impressão</option>
+                                                <option value="Laser" {{ old('status') === 'Laser' ? 'selected' : '' }}>Laser</option>
                                                 <option value="Produção" {{ old('status') === 'Produção' ? 'selected' : '' }}>Produção</option>
                                             @endif
                                             @if(in_array($userType, ['Impressão', 'Produção', 'Caixa', 'Admin', 'Design']))

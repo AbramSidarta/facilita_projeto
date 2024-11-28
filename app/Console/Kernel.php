@@ -23,6 +23,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // Adicione aqui os comandos agendados, como o exemplo abaixo:
-        $schedule->command('ordens:delete-old')->daily();
+        $schedule->command('ordens:delete-old')->dailyAt('18:00');
+        $schedule->command('backup:database')->dailyAt('18:00');
+
     }
 }

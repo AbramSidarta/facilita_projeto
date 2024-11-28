@@ -12,7 +12,7 @@ class OrdemDeServicoController extends Controller
     public function index()
     {
         // Filtrando as ordens de serviço para exibir na página
-        $ordemdeservicos = OrdemDeServico::whereIn('status', ['Pendente', 'Impressão', 'Produção'])
+        $ordemdeservicos = OrdemDeServico::whereIn('status', ['Pendente', 'Impressão','Laser', 'Produção'])
             ->orderBy('id', 'asc')
             ->get();
     
@@ -41,6 +41,23 @@ class OrdemDeServicoController extends Controller
         
         return view('admin.ordemdeservico.Impressao', compact(['ordemdeservicos', 'total', 'ordensVencidas']));
     }
+
+
+    public function laser()
+    {
+        $ordemdeservicos = OrdemDeServico::where('status', 'Laser')
+            ->orderBy('id', 'desc')
+            ->get();
+
+        $ordensVencidas = OrdemDeServico::whereRaw("STR_TO_DATE(CONCAT(data_de_entrega, ' ', hora_de_entrega), '%Y-%m-%d %H:%i:%s') < ?", [now()])
+        ->where('status', 'Laser') // flitra as com status "Laser"
+        ->get();
+
+        $total = OrdemDeServico::count();
+        
+        return view('admin.ordemdeservico.laser', compact(['ordemdeservicos', 'total', 'ordensVencidas']));
+    }
+
 
 
     public function producao()
@@ -80,6 +97,7 @@ class OrdemDeServicoController extends Controller
         
         return view('admin.ordemdeservico.entregues', compact(['ordemdeservicos', 'total']));
     }
+
     public function search(Request $request)
 {
     $query = $request->input('query');
@@ -102,9 +120,11 @@ class OrdemDeServicoController extends Controller
     // Inicia a consulta base
     $ordens = OrdemDeServico::where(function ($queryBuilder) use ($query, $dataCompletaFormatada, $diaMesFormatado) {
         $queryBuilder->where('cliente', 'like', "%{$query}%")
-                     ->orWhere('servico', 'like', "%{$query}%")
-                     ->orWhere('status', 'like', "%{$query}%")
-                     ->orWhere('id', 'like', "%{$query}%"); // Adiciona a busca pelo Cód.Arte (id)
+
+                    ->orWhere('servico', 'like', "%{$query}%")
+                    ->orWhere('status', 'like', "%{$query}%")
+                    ->orWhere('id', 'like', "%{$query}%"); // Adiciona a busca pelo Cód.Arte (id)
+
 
         // Adiciona o filtro para data completa, se estiver disponível
         if ($dataCompletaFormatada) {
@@ -134,18 +154,34 @@ class OrdemDeServicoController extends Controller
         $ordens = $ordens->where('status', 'Concluido');
     } elseif ($page === 'impressao') {
         $ordens = $ordens->where('status', 'Impressão');
+
+    } elseif ($page === 'laser') {
+        $ordens = $ordens->where('status', 'Laser');
+
     } elseif ($page === 'producao') {
         $ordens = $ordens->where('status', 'Produção');
     } else {
         $ordens = $ordens->whereIn('status', ['Pendente', 'Impressão', 'Produção']);
     }
 
-    // Aplica a ordenação e a paginação
-    $ordens = $ordens->orderBy('id', 'asc')->paginate(10); // 10 resultados por página
 
-    // Retorna a resposta em JSON
-    return response()->json($ordens);
+    // Aplica a ordenação
+    $ordens = $ordens->orderBy('id', 'asc')->get();
+
+    // Retorno em formato semelhante ao paginado, mas sem a paginarção real
+    return response()->json([
+        'data' => $ordens,  // Retorna os dados da ordem
+        'current_page' => 1,  // Página 1 já que não estamos usando paginação real
+        'last_page' => 1,  // Apenas uma página, já que estamos retornando todos os dados
+        'total' => $ordens->count(),  // Total de ordens
+    ]);
 }
+
+
+
+
+  
+
 
 
     public function create()
@@ -187,7 +223,7 @@ class OrdemDeServicoController extends Controller
     public function update(Request $request, $id)
 {
     $validation = $request->validate([
-        'status' => 'required|in:Pendente,Impressão,Produção,Concluido,Entregue',
+        'status' => 'required|in:Pendente,Impressão,Laser,Produção,Concluido,Entregue',
         'ORC_venda'  => 'nullable',
         'cliente'  => 'required',
         'servico'  => 'required',
@@ -279,7 +315,7 @@ class OrdemDeServicoController extends Controller
     public function store(Request $request)
     {
         $validation = $request->validate([
-            'status' => 'required|in:Pendente,Impressão,Produção,Concluido,Entregue',
+            'status' => 'required|in:Pendente,Impressão,Laser,Produção,Concluido,Entregue',
             'ORC_venda'  => 'nullable',
             'cliente'  => 'required',
             'servico'  => 'required',
