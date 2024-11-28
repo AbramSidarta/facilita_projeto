@@ -46,7 +46,9 @@ class OrdemDeServicoController extends Controller
     public function laser()
     {
         $ordemdeservicos = OrdemDeServico::where('status', 'Laser')
+
             ->orderBy('id', 'asc')
+
             ->get();
 
         $ordensVencidas = OrdemDeServico::whereRaw("STR_TO_DATE(CONCAT(data_de_entrega, ' ', hora_de_entrega), '%Y-%m-%d %H:%i:%s') < ?", [now()])
