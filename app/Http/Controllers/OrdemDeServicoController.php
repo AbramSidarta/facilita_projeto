@@ -30,7 +30,7 @@ class OrdemDeServicoController extends Controller
     public function Impressao()
     {
         $ordemdeservicos = OrdemDeServico::where('status', 'Impressão')
-            ->orderBy('id', 'desc')
+            ->orderBy('id', 'asc')
             ->get();
 
         $ordensVencidas = OrdemDeServico::whereRaw("STR_TO_DATE(CONCAT(data_de_entrega, ' ', hora_de_entrega), '%Y-%m-%d %H:%i:%s') < ?", [now()])
@@ -46,7 +46,9 @@ class OrdemDeServicoController extends Controller
     public function laser()
     {
         $ordemdeservicos = OrdemDeServico::where('status', 'Laser')
-            ->orderBy('id', 'desc')
+
+            ->orderBy('id', 'asc')
+
             ->get();
 
         $ordensVencidas = OrdemDeServico::whereRaw("STR_TO_DATE(CONCAT(data_de_entrega, ' ', hora_de_entrega), '%Y-%m-%d %H:%i:%s') < ?", [now()])
@@ -63,7 +65,7 @@ class OrdemDeServicoController extends Controller
     public function producao()
     {
         $ordemdeservicos = OrdemDeServico::where('status', 'Produção')
-            ->orderBy('id', 'desc')
+            ->orderBy('id', 'asc')
             ->get();
 
         $ordensVencidas = OrdemDeServico::whereRaw("STR_TO_DATE(CONCAT(data_de_entrega, ' ', hora_de_entrega), '%Y-%m-%d %H:%i:%s') < ?", [now()])
@@ -80,7 +82,7 @@ class OrdemDeServicoController extends Controller
     public function concluidas()
     {
         $ordemdeservicos = OrdemDeServico::where('status', 'Concluido')
-            ->orderBy('id', 'desc')
+            ->orderBy('id', 'asc')
             ->get();
         $total = OrdemDeServico::count();
         

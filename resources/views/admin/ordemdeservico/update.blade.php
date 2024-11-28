@@ -30,6 +30,7 @@
                                             <select id="status" name="status" class="form-control pe-5" required disabled >
                                                 <option value="Pendente" {{ $ordemServico->status === 'Pendente' ? 'selected' : '' }}>Pendente</option>
                                                 <option value="Impressão" {{ $ordemServico->status === 'Impressão' ? 'selected' : '' }}>Impressão</option>
+                                                <option value="Laser" {{ $ordemServico->status === 'Laser' ? 'selected' : '' }}>Laser</option>
                                                 <option value="Produção" {{ $ordemServico->status === 'Produção' ? 'selected' : '' }}>Produção</option>
                                                 <option value="Concluido" {{ $ordemServico->status === 'Concluido' ? 'selected' : '' }}>Concluído</option>
                                                 <option value="Entregue" {{ $ordemServico->status === 'Entregue' ? 'selected' : '' }}>Entregue</option>
@@ -40,6 +41,7 @@
                                                 <option value="Pendente" {{ $ordemServico->status === 'Pendente' ? 'selected' : '' }}>Pendente</option>
                                                 <option value="Impressão" {{ $ordemServico->status === 'Impressão' ? 'selected' : '' }}>Impressão</option>
                                                 <option value="Produção" {{ $ordemServico->status === 'Produção' ? 'selected' : '' }}>Produção</option>
+                                                <option value="Laser" {{ $ordemServico->status === 'Laser' ? 'selected' : '' }}>Laser</option>
                                             @endif
                                             @if(in_array($userType, ['Impressão', 'Produção', 'Caixa', 'Admin', 'Design']))
                                                 <option value="Concluido" {{ $ordemServico->status === 'Concluido' ? 'selected' : '' }}>Concluído</option>
