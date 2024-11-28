@@ -16,6 +16,16 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('adminOrdemDeServico.Impressao')" :active="request()->routeIs('adminOrdemDeServico.Impressao')">
+                        {{ __('Lista Impressão') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('adminOrdemDeServico.producao')" :active="request()->routeIs('adminOrdemDeServico.producao')">
+                        {{ __('Lista Produção') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('adminOrdemDeServico.concluidas')" :active="request()->routeIs('adminOrdemDeServico.concluidas')">
                         {{ __('Lista Concluídas') }}
                     </x-nav-link>

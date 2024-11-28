@@ -26,6 +26,38 @@ class OrdemDeServicoController extends Controller
         return view('admin.ordemdeservico.home', compact(['ordemdeservicos', 'total', 'ordensVencidas']));
     }
     
+    // Método para listar ordens de serviço concluidas
+    public function Impressao()
+    {
+        $ordemdeservicos = OrdemDeServico::where('status', 'Impressão')
+            ->orderBy('id', 'desc')
+            ->get();
+
+        $ordensVencidas = OrdemDeServico::whereRaw("STR_TO_DATE(CONCAT(data_de_entrega, ' ', hora_de_entrega), '%Y-%m-%d %H:%i:%s') < ?", [now()])
+        ->where('status', 'Impressão') // flitra as com status "Impressão"
+        ->get();
+
+        $total = OrdemDeServico::count();
+        
+        return view('admin.ordemdeservico.Impressao', compact(['ordemdeservicos', 'total', 'ordensVencidas']));
+    }
+
+
+    public function producao()
+    {
+        $ordemdeservicos = OrdemDeServico::where('status', 'Produção')
+            ->orderBy('id', 'desc')
+            ->get();
+
+        $ordensVencidas = OrdemDeServico::whereRaw("STR_TO_DATE(CONCAT(data_de_entrega, ' ', hora_de_entrega), '%Y-%m-%d %H:%i:%s') < ?", [now()])
+        ->where('status', 'Produção') // flitra as com status "Produção"
+        ->get();
+
+        $total = OrdemDeServico::count();
+        
+        return view('admin.ordemdeservico.producao', compact(['ordemdeservicos', 'total', 'ordensVencidas']));
+    }
+
 
     // Método para listar ordens de serviço concluidas
     public function concluidas()
@@ -78,6 +110,10 @@ class OrdemDeServicoController extends Controller
             $ordens = $ordens->where('status', 'Entregue');
         }elseif ($page === 'concluidas'){
             $ordens = $ordens->where('status', 'Concluido');
+        }elseif ($page === 'impressao'){
+            $ordens = $ordens->where('status', 'Impressão');
+        }elseif ($page === 'producao'){
+            $ordens = $ordens->where('status', 'Produção');
         }else {
             $ordens = $ordens->whereIn('status', ['Pendente', 'Impressão', 'Produção']);
         }
