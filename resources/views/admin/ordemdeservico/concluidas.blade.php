@@ -39,7 +39,7 @@
                                     {{ $ordemdeservico->hora_de_entrega }}
                                     </td>
                                     <td class="align-middle">
-                                        <span class=" px-3 py-2 rounded text-white bg-success">Concluído</span>
+                                        <span class="px-3 py-2 rounded text-white bg-success">Concluído</span>
                                     </td>
                                     <td class="align-middle">
                                         <a href="{{ route('adminOrdemDeServico.show', $ordemdeservico->id) }}" class="btn btn-secondary">Ver Mais</a>

@@ -26,6 +26,38 @@ class OrdemDeServicoController extends Controller
         return view('admin.ordemdeservico.home', compact(['ordemdeservicos', 'total', 'ordensVencidas']));
     }
     
+    // Método para listar ordens de serviço concluidas
+    public function Impressao()
+    {
+        $ordemdeservicos = OrdemDeServico::where('status', 'Impressão')
+            ->orderBy('id', 'desc')
+            ->get();
+
+        $ordensVencidas = OrdemDeServico::whereRaw("STR_TO_DATE(CONCAT(data_de_entrega, ' ', hora_de_entrega), '%Y-%m-%d %H:%i:%s') < ?", [now()])
+        ->where('status', 'Impressão') // flitra as com status "Impressão"
+        ->get();
+
+        $total = OrdemDeServico::count();
+        
+        return view('admin.ordemdeservico.Impressao', compact(['ordemdeservicos', 'total', 'ordensVencidas']));
+    }
+
+
+    public function producao()
+    {
+        $ordemdeservicos = OrdemDeServico::where('status', 'Produção')
+            ->orderBy('id', 'desc')
+            ->get();
+
+        $ordensVencidas = OrdemDeServico::whereRaw("STR_TO_DATE(CONCAT(data_de_entrega, ' ', hora_de_entrega), '%Y-%m-%d %H:%i:%s') < ?", [now()])
+        ->where('status', 'Produção') // flitra as com status "Produção"
+        ->get();
+
+        $total = OrdemDeServico::count();
+        
+        return view('admin.ordemdeservico.producao', compact(['ordemdeservicos', 'total', 'ordensVencidas']));
+    }
+
 
     // Método para listar ordens de serviço concluidas
     public function concluidas()
@@ -48,47 +80,73 @@ class OrdemDeServicoController extends Controller
         
         return view('admin.ordemdeservico.entregues', compact(['ordemdeservicos', 'total']));
     }
-
     public function search(Request $request)
-    {
-        $query = $request->input('query');
-        $page = $request->input('page');
-    
-        // Inicia a consulta base
-        $ordens = OrdemDeServico::where(function ($queryBuilder) use ($query) {
-            $queryBuilder->where('cliente', 'like', "%{$query}%")
-                        ->orWhere('servico', 'like', "%{$query}%")
-                        ->orWhere('status', 'like', "%{$query}%")
-                        ->orWhere('id', 'like', "%{$query}%"); // Adiciona a busca pelo Cód.Arte (id)
-        });
-    
-        // Verifica se a busca é por "atrasado"
-        $ordens->orWhere(function ($queryBuilder) use ($query) {
-            if (str_contains(strtolower($query), 'atrasado')) {
-                $queryBuilder->whereRaw("
-                    STR_TO_DATE(CONCAT(data_de_entrega, ' ', hora_de_entrega), '%Y-%m-%d %H:%i:%s') < ?
-                ", [now()])
-                ->where('status', '<>', 'Entregue');
-            }
-        });
-        
-    
-        // Filtra por status se necessário
-        if ($page === 'entregues') {
-            $ordens = $ordens->where('status', 'Entregue');
-        }elseif ($page === 'concluidas'){
-            $ordens = $ordens->where('status', 'Concluido');
-        }else {
-            $ordens = $ordens->whereIn('status', ['Pendente', 'Impressão', 'Produção']);
-        }
-    
-        // Aplica a ordenação e a paginação
-        $ordens = $ordens->orderBy('id', 'asc')->paginate(10); // 10 resultados por página
-    
-        // Retorna a resposta em JSON
-        return response()->json($ordens);
+{
+    $query = $request->input('query');
+    $page = $request->input('page');
+
+    // Verifica se o usuário digitou uma data no formato dd/mm/yyyy ou dd/mm
+    $dataCompletaFormatada = null;
+    $diaMesFormatado = null;
+
+    if (preg_match('/\d{2}\/\d{2}\/\d{4}/', $query)) {
+        // Formato dd/mm/yyyy
+        $partes = explode('/', $query);
+        $dataCompletaFormatada = "{$partes[2]}-{$partes[1]}-{$partes[0]}"; // Converte para yyyy-mm-dd
+    } elseif (preg_match('/\d{2}\/\d{2}/', $query)) {
+        // Formato dd/mm (sem ano)
+        $partes = explode('/', $query);
+        $diaMesFormatado = "{$partes[1]}-{$partes[0]}"; // Formato mm-dd
     }
-    
+
+    // Inicia a consulta base
+    $ordens = OrdemDeServico::where(function ($queryBuilder) use ($query, $dataCompletaFormatada, $diaMesFormatado) {
+        $queryBuilder->where('cliente', 'like', "%{$query}%")
+                     ->orWhere('servico', 'like', "%{$query}%")
+                     ->orWhere('status', 'like', "%{$query}%")
+                     ->orWhere('id', 'like', "%{$query}%"); // Adiciona a busca pelo Cód.Arte (id)
+
+        // Adiciona o filtro para data completa, se estiver disponível
+        if ($dataCompletaFormatada) {
+            $queryBuilder->orWhere('data_de_entrega', 'like', "%{$dataCompletaFormatada}%");
+        }
+
+        // Adiciona o filtro para dia e mês, se estiver disponível
+        if ($diaMesFormatado) {
+            $queryBuilder->orWhereRaw("DATE_FORMAT(data_de_entrega, '%m-%d') = ?", [$diaMesFormatado]);
+        }
+    });
+
+    // Verifica se a busca é por "atrasado"
+    $ordens->orWhere(function ($queryBuilder) use ($query) {
+        if (str_contains(strtolower($query), 'atrasado')) {
+            $queryBuilder->whereRaw("
+                STR_TO_DATE(CONCAT(data_de_entrega, ' ', hora_de_entrega), '%Y-%m-%d %H:%i:%s') < ?
+            ", [now()])
+            ->where('status', '<>', 'Entregue');
+        }
+    });
+
+    // Filtra por status se necessário
+    if ($page === 'entregues') {
+        $ordens = $ordens->where('status', 'Entregue');
+    } elseif ($page === 'concluidas') {
+        $ordens = $ordens->where('status', 'Concluido');
+    } elseif ($page === 'impressao') {
+        $ordens = $ordens->where('status', 'Impressão');
+    } elseif ($page === 'producao') {
+        $ordens = $ordens->where('status', 'Produção');
+    } else {
+        $ordens = $ordens->whereIn('status', ['Pendente', 'Impressão', 'Produção']);
+    }
+
+    // Aplica a ordenação e a paginação
+    $ordens = $ordens->orderBy('id', 'asc')->paginate(10); // 10 resultados por página
+
+    // Retorna a resposta em JSON
+    return response()->json($ordens);
+}
+
 
     public function create()
     {
