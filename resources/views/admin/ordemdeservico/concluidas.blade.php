@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Ordens Entregues') }}
+            {{ __('Ordens concluidas') }}
         </h2>
     </x-slot>
     <div class="py-12">
@@ -9,7 +9,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <div class="d-flex align-items-center justify-content-between mb-3">
-                        <h1 class="mb-0">Lista de Ordens Entregues</h1>
+                        <h1 class="mb-0">Lista de Ordens Concluidos</h1>
                         <input type="text" id="search" data-page="concluidas" placeholder="Buscar Ordens de Serviço..." class="form-control w-25" />
                     </div>
                     @if (Session::has('success'))
@@ -23,6 +23,7 @@
                                 <th>CÓD.Arte</th>
                                 <th>Cliente</th>
                                 <th>Serviços</th>
+                                <th>Funcionário</th>
                                 <th>Data e Hora de Entrega</th>
                                 <th>Status</th>
                                 <th>Ações</th>
@@ -34,6 +35,7 @@
                                     <td class="align-middle">{{ $ordemdeservico->id }}</td>
                                     <td class="align-middle">{{ $ordemdeservico->cliente }}</td>
                                     <td class="align-middle">{{ $ordemdeservico->servico }}</td>
+                                    <td class="align-middle">{{ $ordemdeservico->nome_funcionario }}</td>
                                     <td class="align-middle">
                                     {{ date('d/m/Y', strtotime($ordemdeservico->data_de_entrega)) }}
                                     {{ $ordemdeservico->hora_de_entrega }}
