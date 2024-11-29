@@ -10,36 +10,39 @@
                     </a>
                 </div>
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('adminOrdemDeServico.index')" :active="request()->routeIs('adminOrdemDeServico.index')">
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex bg-danger text-white rounded">
+                    <x-nav-link :href="route('adminOrdemDeServico.index')" :active="request()->routeIs('adminOrdemDeServico.index')"  class="text-white  text-decoration-none"> 
                         {{ __('Ordens De Serviço') }}
                     </x-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('adminOrdemDeServico.Impressao')" :active="request()->routeIs('adminOrdemDeServico.Impressao')">
-                        {{ __('Lista Impressão') }}
+                <div  class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex bg-warning text-dark rounded">
+                    <x-nav-link :href="route('adminOrdemDeServico.Impressao')" :active="request()->routeIs ('adminOrdemDeServico.Impressao')"  class="text-dark  text-decoration-none"> 
+                        {{ __('Impressão') }}
                     </x-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex backgroundColorLaser text-darkLaser rounded">
+                    <x-nav-link :href="route('adminOrdemDeServico.laser')" 
+                                :active="request()->routeIs('adminOrdemDeServico.laser')"
+                                class="text-dark  text-decoration-none">
+                        {{ __('Laser') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex bg-primary text-white rounded">
+                    <x-nav-link :href="route('adminOrdemDeServico.producao')" 
+                                :active="request()->routeIs('adminOrdemDeServico.producao')" 
+                                class="text-white  text-decoration-none">  <!-- Adicionando text-white aqui -->
+                        {{ __('Produção') }}
+                    </x-nav-link>
+                </div>
 
-                    <x-nav-link :href="route('adminOrdemDeServico.laser')" :active="request()->routeIs('adminOrdemDeServico.laser')">
-                        {{ __('Lista Laser') }}
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-
-                    <x-nav-link :href="route('adminOrdemDeServico.producao')" :active="request()->routeIs('adminOrdemDeServico.producao')">
-                        {{ __('Lista Produção') }}
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('adminOrdemDeServico.concluidas')" :active="request()->routeIs('adminOrdemDeServico.concluidas')">
-                        {{ __('Lista Concluídas') }}
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex bg-success text-white rounded">
+                    <x-nav-link :href="route('adminOrdemDeServico.concluidas')" :active="request()->routeIs('adminOrdemDeServico.concluidas')"  class="text-white  text-decoration-none"> 
+                        {{ __('Concluídas') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('adminOrdemDeServico.entregues')" :active="request()->routeIs('adminOrdemDeServico.entregues')">
-                        {{ __('Lista Entregues') }}
+                        {{ __('Entregues') }}
                     </x-nav-link>
                 </div>
             </div>
