@@ -122,9 +122,9 @@ class OrdemDeServicoController extends Controller
     // Inicia a consulta base
     $ordens = OrdemDeServico::where(function ($queryBuilder) use ($query, $dataCompletaFormatada, $diaMesFormatado) {
         $queryBuilder->where('cliente', 'like', "%{$query}%")
-
                     ->orWhere('servico', 'like', "%{$query}%")
                     ->orWhere('status', 'like', "%{$query}%")
+                    ->orWhere('nome_funcionario', 'like', "%{$query}%")
                     ->orWhere('id', 'like', "%{$query}%"); // Adiciona a busca pelo Cód.Arte (id)
 
 

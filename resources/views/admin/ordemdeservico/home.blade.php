@@ -25,6 +25,7 @@
                                 <th>CÓD.Arte</th>
                                 <th>Cliente</th>
                                 <th>Serviços</th>
+                                <th>Funcionário</th>
                                 <th>Data e Hora de Entrega</th>
                                 <th>Status</th>
                                 <th>Ações</th>
@@ -36,6 +37,7 @@
                                     <td class="align-middle">{{ $ordemdeservico->id }}</td>
                                     <td class="align-middle">{{ $ordemdeservico->cliente }}</td>
                                     <td class="align-middle">{{ $ordemdeservico->servico }}</td>
+                                    <td class="align-middle">{{ $ordemdeservico->nome_funcionario }}</td>
                                     <td class="align-middle">
                                     {{ date('d/m/Y', strtotime($ordemdeservico->data_de_entrega)) }} 
                                     {{ $ordemdeservico->hora_de_entrega }}
@@ -118,6 +120,7 @@
                                     <th>CÓD.Arte</th>
                                     <th>Cliente</th>
                                     <th>Serviços</th>
+                                    <th>Funcionário</th>
                                     <th>Data e Hora de Entrega</th>
                                     <th>Status</th>
                                 </tr>
@@ -128,6 +131,7 @@
                                         <td>{{ $ordem->id }}</td>
                                         <td>{{ $ordem->cliente }}</td>
                                         <td>{{ $ordem->servico }}</td>
+                                        <td>{{ $ordem->nome_funcionario }}</td>
                                         <td>{{ date('d/m/Y H:i', strtotime($ordem->data_de_entrega . ' ' . $ordem->hora_de_entrega)) }}</td>
                                         <td>
                                             @php
