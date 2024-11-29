@@ -163,7 +163,7 @@ class OrdemDeServicoController extends Controller
     } elseif ($page === 'producao') {
         $ordens = $ordens->where('status', 'Produção');
     } else {
-        $ordens = $ordens->whereIn('status', ['Pendente', 'Impressão', 'Produção']);
+        $ordens = $ordens->whereIn('status', ['Pendente', 'Impressão', 'Produção','Laser']);
     }
 
 
