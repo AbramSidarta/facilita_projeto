@@ -9,17 +9,7 @@
                     {{ Session::get('success') }}
                 </div>
             @endif
-            @if ($ordemServico->status === 'Entregue')
-                <a style="background-color: #ADB5BD;border: 2px solid #ADB5BD;" href="{{ route('adminOrdemDeServico.entregues') }}" class="btn btn-primary text-dark">Voltar</a>
-            @elseif ($ordemServico->status === 'Concluido')
-                <a style="background-color: #ADB5BD;border: 2px solid #ADB5BD;" href="{{ route('adminOrdemDeServico.concluidas') }}" class="btn btn-primary text-dark">Voltar</a>
-            @elseif ($ordemServico->status === 'Impressão')
-            <a style="background-color: #ADB5BD;border: 2px solid #ADB5BD;" href="{{ route('adminOrdemDeServico.Impressao') }}" class="btn btn-primary text-dark">Voltar</a>
-            @elseif ($ordemServico->status === 'Produção')
-            <a style="background-color: #ADB5BD;border: 2px solid #ADB5BD;" href="{{ route('adminOrdemDeServico.producao') }}" class="btn btn-primary text-dark">Voltar</a>
-            @else
-                <a style="background-color: #ADB5BD;border: 2px solid #ADB5BD;" href="{{ route('adminOrdemDeServico.index') }}" class="btn btn-primary text-dark">Voltar</a>
-            @endif
+            <a style="background-color: #ADB5BD;border: 2px solid #ADB5BD;" href="{{ route('adminOrdemDeServico.index') }}" class="btn btn-primary text-dark">Voltar</a>
         </div>
     </x-slot>
     <div class="py-3">
