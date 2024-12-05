@@ -27,7 +27,8 @@
                         </div>
                         <div class="d-flex justify-content-between d-flex align-items-center">
                             <a href="{{ route('adminOrdemDeServico.duplicar', ['id' => $ordemServico->id]) }}" 
-                                        class="btn text-bg-primary me-3">Duplicar Ordem</a>
+                                style="background-color: #ADB5BD;border: 2px solid #ADB5BD;"
+                                class="btn me-3">Duplicar Ordem</a>
 
                             <a style="background-color: #DC1C2E;border: 2px solid #DC1C2E;"  href="{{ route('adminOrdemDeServico.destroy',['id'=> $ordemServico->id])  }}" onclick="return confirm('Você tem certeza que quer Deletar?')" class="btn btn-primary me-3">Deletar</a>
 
