@@ -17,10 +17,7 @@ Route::middleware(['auth', 'verified'])->group(function (){
     Route::get('/admin/ordemdeservico/producao', [OrdemDeServicoController::class, 'producao'])->name('adminOrdemDeServico.producao');
     Route::get('/admin/ordemdeservico/entregues', [OrdemDeServicoController::class, 'entregues'])->name('adminOrdemDeServico.entregues');
     Route::get('/admin/ordemdeservico/concluidas', [OrdemDeServicoController::class, 'concluidas'])->name('adminOrdemDeServico.concluidas');
-
     Route::get('/admin/ordemdeservico/laser', [OrdemDeServicoController::class, 'laser'])->name('adminOrdemDeServico.laser');
-
-    
 
     // routes/Ordens    
     Route::get('/search-orders', [OrdemDeServicoController::class, 'search'])->name('OrdemDeServicoSearch.orders');
@@ -30,6 +27,7 @@ Route::middleware(['auth', 'verified'])->group(function (){
     Route::get('/admin/ordemdeservico/edit/{id}', [OrdemDeServicoController::class, 'edit'])->name('adminOrdemDeServico.edit');
     Route::put('/admin/ordemdeservico/{id}', [OrdemDeServicoController::class, 'update'])->name('adminOrdemDeServico.update');
     Route::get('/admin/ordemdeservico/{id}', [OrdemDeServicoController::class, 'destroy'])->name('adminOrdemDeServico.destroy');
+    Route::get('/admin/ordemdeservico/createduplicar/{id}', [OrdemDeServicoController::class, 'duplicar'])->name('adminOrdemDeServico.duplicar');
 
     // routes/clientes
     Route::get('/search-clientes', [ClienteController::class, 'search']);

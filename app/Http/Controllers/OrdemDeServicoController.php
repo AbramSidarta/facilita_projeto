@@ -208,6 +208,12 @@ class OrdemDeServicoController extends Controller
         return view('admin.ordemdeservico.update', compact('ordemServico'));
     }
 
+    public function duplicar($id)
+    {
+        $ordemServico = OrdemDeServico::findOrFail($id);
+        return view('admin.ordemdeservico.duplicarOrdem', compact('ordemServico'));
+    }
+    
     public function destroy($id)
     {
         $ordemServico = OrdemDeServico::findOrFail($id)->delete();
