@@ -43,9 +43,20 @@
                                     <td class="align-middle">
                                         <span class="px-3 py-2 rounded text-white bg-success">Concluído</span>
                                     </td>
-                                    <td class="align-middle">
+                                    <td class="align-middle d-flex flex-row">
                                         <a href="{{ route('adminOrdemDeServico.show', $ordemdeservico->id) }}" class="btn btn-secondary">Ver Mais</a>
+
+                                        <!-- Verificar se o usuário é do tipo 'Caixa' -->
+                                        @if ( Auth::user()->usertype == 'Caixa')<!-- Ou use Auth::user()->type se for esse o campo -->
+                                            <form action="{{ route('adminOrdemDeServico.entregar', $ordemdeservico->id) }}" method="POST">
+                                                @csrf
+                                                <button type="submit" onclick="return confirm('Você tem certeza que quer passar para entregue?')" class="ml-3 btn btn-success">Entregar</button>
+                                            </form>
+                                        @endif
                                     </td>
+
+                                    
+
                                 </tr>
                             @empty
                                 <tr>
