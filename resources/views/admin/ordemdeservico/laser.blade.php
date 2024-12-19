@@ -83,7 +83,7 @@
                     <div class="modal-header">
                         <h5 class="modal-title">Ordens de Serviço Vencidas</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
+                            <span aria-hidden="true"  style="font-size: 2rem;">&times;</span>
                         </button>
                     </div>
                     <h5 class="d-flex justify-content-center me-4 m-0 m-3">Para listar todas as Ordens de Serviços atrasadas, pesquise: Atrasado</h5>
