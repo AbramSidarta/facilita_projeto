@@ -28,7 +28,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::put('/admin/ordemdeservico/{id}', [OrdemDeServicoController::class, 'update'])->name('adminOrdemDeServico.update');
     Route::get('/admin/ordemdeservico/{id}', [OrdemDeServicoController::class, 'destroy'])->name('adminOrdemDeServico.destroy');
     Route::get('/admin/ordemdeservico/createduplicar/{id}', [OrdemDeServicoController::class, 'duplicar'])->name('adminOrdemDeServico.duplicar');
+
     Route::get('/admin/ordemdeservico/{id}/entregar', [OrdemDeServicoController::class, 'entregar'])->name('adminOrdemDeServico.entregar'); // Adicionada
+
 });
 
     // routes/clientes
