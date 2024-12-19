@@ -41,6 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <td class="align-middle">
                                 <div class="btn-group" role="group">
                                     <a href="/admin/ordemdeservico${ordem.id}" class="btn bg-secondary text-white fs-6">Ver Mais</a>
+                                    
                                     <!-- Adiciona o botão de 'Entregar' apenas se o tipo de usuário for 'Caixa' -->
                                     ${userType === 'Caixa' ? `
                                         
