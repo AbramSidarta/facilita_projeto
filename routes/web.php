@@ -31,7 +31,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/admin/ordemdeservico/{id}/entregar', [OrdemDeServicoController::class, 'entregar'])->name('adminOrdemDeServico.entregar'); // Adicionada
 
-    
 });
 
     // routes/clientes
