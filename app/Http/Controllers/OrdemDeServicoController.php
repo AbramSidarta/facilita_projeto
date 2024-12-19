@@ -26,6 +26,21 @@ class OrdemDeServicoController extends Controller
         return view('admin.ordemdeservico.home', compact(['ordemdeservicos', 'total', 'ordensVencidas']));
     }
     
+
+    public function entregar($id)
+    {
+        // Encontra a ordem de serviço pelo ID
+        $ordemdeservicos = OrdemDeServico::findOrFail($id);
+
+        // Atualiza o status para 'Entregue'
+        $ordemdeservicos->status = 'Entregue';
+        $ordemdeservicos->save();  // Salva a alteração no banco de dados
+
+        // Redireciona de volta para a lista com uma mensagem de sucesso
+        session()->flash('success', 'Ordem de serviço marcada como entregue com sucesso!');
+        return redirect()->route('adminOrdemDeServico.entregues');
+    }
+
     // Método para listar ordens de serviço concluidas
     public function Impressao()
     {

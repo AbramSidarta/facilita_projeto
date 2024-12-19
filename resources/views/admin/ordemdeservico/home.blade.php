@@ -106,12 +106,13 @@
         <div class="modal fade" id="ordensVencidasModal" tabindex="-1" role="dialog">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Ordens de Serviço Vencidas</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
+                <div class="modal-header">
+                    <h5 class="modal-title">Ordens de Serviço Vencidas</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" style="font-size: 2rem;">&times;</span>
+                    </button>
+                </div>
+
                     <h5 class="d-flex justify-content-center me-4 m-0 m-3">Para listar todas as Ordens de Serviços atrasadas, pesquise: Atrasado</h5>
                     <div class="modal-body">
                         <table class="table table-hover">

@@ -6,7 +6,7 @@ use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\FuncionarioController;
 use App\Http\Controllers\RegisteredUserController;
 
-Route::middleware(['auth', 'verified'])->group(function (){
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/search-orders', [OrdemDeServicoController::class, 'search'])->name('OrdemDeServicoSearch.orders');
 
     // routes/loginRealizado
@@ -28,6 +28,8 @@ Route::middleware(['auth', 'verified'])->group(function (){
     Route::put('/admin/ordemdeservico/{id}', [OrdemDeServicoController::class, 'update'])->name('adminOrdemDeServico.update');
     Route::get('/admin/ordemdeservico/{id}', [OrdemDeServicoController::class, 'destroy'])->name('adminOrdemDeServico.destroy');
     Route::get('/admin/ordemdeservico/createduplicar/{id}', [OrdemDeServicoController::class, 'duplicar'])->name('adminOrdemDeServico.duplicar');
+    Route::post('/admin/ordemdeservico/{id}/entregar', [OrdemDeServicoController::class, 'entregar'])->name('adminOrdemDeServico.entregar'); // Adicionada
+});
 
     // routes/clientes
     Route::get('/search-clientes', [ClienteController::class, 'search']);
@@ -38,7 +40,6 @@ Route::middleware(['auth', 'verified'])->group(function (){
     Route::get('/admin/cliente/edit/{id}', [ClienteController::class, 'edit'])->name('adminCliente.edit');
     Route::put('/admin/cliente/{id}', [ClienteController::class, 'update'])->name('adminCliente.update');
     Route::get('/admin/cliente/{id}', [ClienteController::class, 'destroy'])->name('adminCliente.destroy');
-});
 
 Route::middleware(['auth', 'admin'])->group(function () {
     // routes/funcionarios
