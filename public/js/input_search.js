@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                     <!-- Adiciona o botão de 'Entregar' apenas se o tipo de usuário for 'Caixa' -->
                                     ${userType === 'Caixa' ? `
                                         
-                                        <a href="/admin/ordemdeservico/${ordem.id}/entregar" onclick="return confirm('Você tem certeza que quer passar para entregue?')" class="mx-1 btn bg-success text-white">Entregar</a>
+                                        <a href="/admin/ordemdeservico/${ordem.id}/entregar" onclick="return confirm('Você tem certeza que quer passar para entregue?')" class="mx-1 d-flex align-items-center btn bg-success text-white">Entregar</a>
                                         
                                     ` : ''}
                                 </div>

@@ -50,7 +50,7 @@
                                         @if ( Auth::user()->usertype == 'Caixa')<!-- Ou use Auth::user()->type se for esse o campo -->
                                             <form action="{{ route('adminOrdemDeServico.entregar', $ordemdeservico->id) }}" method="GET">
                                                 @csrf
-                                                <button type="submit" onclick="return confirm('Você tem certeza que quer passar para entregue?')" class="mx-1 btn btn-success">Entregar</button>
+                                                <button type="submit" onclick="return confirm('Você tem certeza que quer passar para entregue?')" class="mx-1 btn btn-success d-flex align-items-center">Entregar</button>
                                             </form>
                                         @endif
                                     </td>
