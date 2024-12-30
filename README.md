@@ -8,7 +8,7 @@ Este sistema foi desenvolvido para a empresa Facilita,feito por dois estagiarios
 
 -> Em "App/Http/Middleware" está o middleware dos admins(e Designs) que lhes permite acesso maximo do sistema;
 
--> Em "App/Models" estam os arquivos que protegem a Integridade das informações do banco de dados;
+-> Em "App/Models" estão os arquivos que protegem a Integridade das informações do banco de dados;
 
 -> Em "database/factories" e "database/seeders" esta o codigo que ja cria automaticamente o usuario base para cadastro dos demais(codigo:1; Senha:12345678;);
 
@@ -18,34 +18,17 @@ Este sistema foi desenvolvido para a empresa Facilita,feito por dois estagiarios
 
 -> Em "public/img" está a imagem da logo da Facilita;
 
--> Em "public/js" estam todos os nosso codigos js do sistema(search,mascara,etc...);
+-> Em "public/js" estão todos os nosso codigos js do sistema(search,mascara,etc...);
 
--> 
+-> Em "resources/views/admin" estão todos os arquivos para cada pagina do sistema e as demais arquivos dentro de "resources/views" são elementos complementares;
 
+-> Em "routes/Auth" estão definidas as rotas que só podem ser acessados somente por usuarios logados,e tem rotas que so podem ser acessados por usuarios deslogados;
 
+-> Em "routes/web" estão as demais rotas do sistema;
 
+-> No arquivo "iniciar_wamp.bat" está um codigo que inicializara o servidor,ligando primeiramente o WampServer, e logo após rodando o codigo:"php artisan serve" para abrir a pagina web;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+-> Abaixo está uma descrição padrão sobre o laravel:
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
