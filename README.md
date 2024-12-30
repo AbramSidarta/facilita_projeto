@@ -1,3 +1,52 @@
+Este sistema foi desenvolvido para a empresa Facilita,feito por dois estagiarios da escola EEEP Jeova Costa Lima,com intuito de facilitar a gestão das ordens de serviços. Abaixo você verá os aspectos importantes sobre o sistema:
+
+-> Primeiramente o projeto foi criado e desenvolvido usando laravel breeze;
+
+-> No sistema á niveis de acessos, baseados no tipo do usuário,que lhes permitem alterar o status da ordem de servico e nos niveis mais altos que são os tipos "Admin" e "Design"conseguem cadastrar novos usuários/funcionarios;
+
+-> Em "App/Http/controllers" estão os controllers do sistema, e dentro de Auth está os controller de criação dos usuarios(Funcionários);
+
+-> Em "App/Http/Middleware" está o middleware dos admins(e Designs) que lhes permite acesso maximo do sistema;
+
+-> Em "App/Models" estam os arquivos que protegem a Integridade das informações do banco de dados;
+
+-> Em "database/factories" e "database/seeders" esta o codigo que ja cria automaticamente o usuario base para cadastro dos demais(codigo:1; Senha:12345678;);
+
+-> Em "database/migrations" está o codigo que gera as tabelas do banco de dados;
+
+-> Em "public/css/styles.css" está todo o nosso css do sistema;
+
+-> Em "public/img" está a imagem da logo da Facilita;
+
+-> Em "public/js" estam todos os nosso codigos js do sistema(search,mascara,etc...);
+
+-> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
