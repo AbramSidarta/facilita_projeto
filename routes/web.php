@@ -7,6 +7,7 @@ use App\Http\Controllers\FuncionarioController;
 use App\Http\Controllers\RegisteredUserController;
 
 Route::middleware(['auth', 'verified'])->group(function () {
+    // Rota de busca única para ordens de serviço
     Route::get('/search-orders', [OrdemDeServicoController::class, 'search'])->name('OrdemDeServicoSearch.orders');
 
     // routes/loginRealizado
@@ -20,7 +21,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/admin/ordemdeservico/laser', [OrdemDeServicoController::class, 'laser'])->name('adminOrdemDeServico.laser');
 
     // routes/Ordens    
-    Route::get('/search-orders', [OrdemDeServicoController::class, 'search'])->name('OrdemDeServicoSearch.orders');
     Route::get('/admin/ordemdeservico/create', [OrdemDeServicoController::class, 'create'])->name('adminOrdemDeServico.create');
     Route::post('/admin/ordemdeservico/', [OrdemDeServicoController::class, 'store'])->name('adminOrdemDeServico.store');
     Route::get('/admin/ordemdeservico{id}', [OrdemDeServicoController::class, 'show'])->name('adminOrdemDeServico.show');
@@ -28,12 +28,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::put('/admin/ordemdeservico/{id}', [OrdemDeServicoController::class, 'update'])->name('adminOrdemDeServico.update');
     Route::get('/admin/ordemdeservico/{id}', [OrdemDeServicoController::class, 'destroy'])->name('adminOrdemDeServico.destroy');
     Route::get('/admin/ordemdeservico/createduplicar/{id}', [OrdemDeServicoController::class, 'duplicar'])->name('adminOrdemDeServico.duplicar');
-
     Route::get('/admin/ordemdeservico/{id}/entregar', [OrdemDeServicoController::class, 'entregar'])->name('adminOrdemDeServico.entregar'); // Adicionada
 
+    // Rota para deletar ordens entregues antigas
+    Route::delete('/service-orders/delete-old', [OrdemDeServicoController::class, 'deleteOldDeliveredOrders'])->name('adminOrdemDeServico.service-orders.delete-old');
 });
 
-    
 Route::middleware(['auth', 'admin'])->group(function () {
     // routes/funcionarios
     Route::get('/search-funcionarios', [FuncionarioController::class, 'search']);
