@@ -30,9 +30,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/admin/ordemdeservico/createduplicar/{id}', [OrdemDeServicoController::class, 'duplicar'])->name('adminOrdemDeServico.duplicar');
     Route::get('/admin/ordemdeservico/{id}/entregar', [OrdemDeServicoController::class, 'entregar'])->name('adminOrdemDeServico.entregar'); // Adicionada
 
+
     // Rota para deletar ordens entregues antigas
     Route::delete('/service-orders/delete-old', [OrdemDeServicoController::class, 'deleteOldDeliveredOrders'])->name('adminOrdemDeServico.service-orders.delete-old');
 });
+
 
 Route::middleware(['auth', 'admin'])->group(function () {
     // routes/funcionarios
