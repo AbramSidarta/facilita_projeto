@@ -228,7 +228,7 @@ class OrdemDeServicoController extends Controller
         $ordemServico = OrdemDeServico::findOrFail($id);
         return view('admin.ordemdeservico.duplicarOrdem', compact('ordemServico'));
     }
-    
+
     public function destroy($id)
     {
         $ordemServico = OrdemDeServico::findOrFail($id)->delete();
@@ -239,6 +239,21 @@ class OrdemDeServicoController extends Controller
             session()->flash('error', 'Ocorreu algum problema');
             return redirect(route('adminOrdemDeServico.show', ['id'=> $ordemServico->id]));
         }
+    }
+
+    public function deleteOldDeliveredOrders()
+    {
+        // Definindo a data de 6 meses atrás
+        $sixMonthsAgo = Carbon::now()->subMonths(6);
+
+        // Deletando ordens de serviço entregues há 6 meses ou mais
+        OrdemDeServico::where('status', 'Entregue')
+            ->where('data_de_entrega', '<', $sixMonthsAgo)
+            ->delete();
+
+        // Redireciona com uma mensagem de sucesso
+        session()->flash('success', 'Ordens de serviço entregues há mais de 6 meses foram deletadas.');
+        return redirect()->route('adminOrdemDeServico.entregues');
     }
 
 
